@@ -1,8 +1,5 @@
-name: deploy
-on:
- push:
-  branches:
-   - master
+name: destroy
+on: [workflow_dispatch]
   
 jobs:
   destroy-app:
