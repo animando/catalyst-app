@@ -19,6 +19,9 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
+      - name: Build UI
+        run: yarn run build
+
       - name: Deploy backend
         run: yarn run deploy:backend
 

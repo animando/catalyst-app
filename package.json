@@ -9,6 +9,7 @@
     "workspaces/ui"
   ],
   "scripts": {
+    "build": "yarn workspace ui run build",
     "deploy:backend": "yarn workspace backend run deploy",
     "deploy:ui": "yarn workspace ui run deploy",
     "destroy": "yarn workspace backend run destroy",
