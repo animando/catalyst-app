@@ -6,7 +6,8 @@ const config: AWS = {
   service: 'backend',
   provider: {
     name: 'aws',
-    runtime: 'nodejs16.x'
+    runtime: 'nodejs16.x',
+    region: 'eu-west-2'
   },
   plugins: [
     'serverless-plugin-typescript',

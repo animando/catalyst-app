@@ -9,6 +9,8 @@
     "serverless-plugin-typescript": "^2.1.4"
   },
   "scripts": {
-    "start": "serverless offline"
+    "start": "serverless offline",
+    "deploy": "serverless deploy",
+    "destroy": "serverless remove"
   }
 }
