@@ -10,7 +10,7 @@ env:
   AWS_ROLE_ARN: arn:aws:iam::726059925999:role/github-role
 
 jobs:
-  pre-deploy:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -19,15 +19,9 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
-  deploy-backend:
-    runs-on: ubuntu-latest
-    steps:
       - name: Deploy backend
         run: yarn run deploy:backend
-      
-  deploy-ui:
-    runs-on: ubuntu-latest
-    steps:
+
       - name: Deploy UI
         run: yarn run deploy:ui
       
