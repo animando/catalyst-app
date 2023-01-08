@@ -10,11 +10,18 @@ const config: AWS = {
     region: 'eu-west-2'
   },
   plugins: [
-    'serverless-plugin-typescript',
+    'serverless-esbuild',
     'serverless-offline',
   ],
   functions: {
     hello
+  },
+  custom: {
+    esbuild: {
+      bundle: true,
+      minify: false,
+      packager: 'yarn'
+    }
   }
 }
 

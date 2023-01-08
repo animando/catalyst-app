@@ -1,0 +1,11 @@
+{
+  "name": "shared-utils",
+  "composite": "true",
+  "private": "true",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  }
+}
+ 
