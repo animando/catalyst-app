@@ -7,8 +7,8 @@
     "workspaces/backend"
   ],
   "scripts": {
-    "deploy": "yarn workspace backend run serverless deploy",
-    "destroy": "yarn workspace backend run serverless destroy"
+    "deploy": "yarn workspace backend run deploy",
+    "destroy": "yarn workspace backend run destroy"
   },
   "devDependencies": {
     "ts-node": "^10.9.1",
