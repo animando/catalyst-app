@@ -9,7 +9,8 @@
     "workspaces/ui"
   ],
   "scripts": {
-    "deploy": "yarn workspace backend run deploy",
+    "deploy:backend": "yarn workspace backend run deploy",
+    "deploy:ui": "yarn workspace ui run deploy",
     "destroy": "yarn workspace backend run destroy",
     "start": "concurrently -n \"backend,ui\" \"yarn workspace backend start\" \"yarn workspace ui start\""
   },
