@@ -12,7 +12,8 @@
     "build": "yarn workspace ui run build",
     "deploy:backend": "yarn workspace backend run deploy",
     "deploy:ui": "yarn workspace ui run deploy",
-    "destroy": "yarn workspace backend run destroy",
+    "destroy:backend": "yarn workspace backend run destroy",
+    "destroy:ui": "yarn workspace ui run destroy",
     "start": "concurrently -n \"backend,ui\" \"yarn workspace backend start\" \"yarn workspace ui start\""
   },
   "devDependencies": {
