@@ -1,0 +1,14 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "license": "MIT",
+  "devDependencies": {
+    "@serverless/typescript": "^3.25.0",
+    "serverless": "^3.26.0",
+    "serverless-offline": "^12.0.4",
+    "serverless-plugin-typescript": "^2.1.4"
+  },
+  "scripts": {
+    "start": "serverless offline"
+  }
+}
