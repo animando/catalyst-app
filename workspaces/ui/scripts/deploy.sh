@@ -1,6 +1,6 @@
 #!/bin/bash
 
-REST_API_ID=`apigateway get-rest-apis --query "items[?contains(name, 'dev-backend')].id" --output text`
+REST_API_ID=`aws apigateway get-rest-apis --query "items[?contains(name, 'dev-backend')].id" --output text`
 
 API_ENDPOINT_BASE=https://$REST_API_ID.execute-api.eu-west-2.amazonaws.com/dev
 
