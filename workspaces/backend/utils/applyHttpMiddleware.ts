@@ -5,8 +5,9 @@ import corsHandler from '@middy/http-cors'
 import { config } from './config';
 
 export const applyHttpMiddleware = (handler: any) => {
+    console.log({ SPA_DOMAIN_NAME: config.SPA_DOMAIN_NAME });
   return middy(handler)
-    .use(corsHandler({ origin:config.SPA_DOMAIN_NAME }))
-    .use(jsonBodyParser())
-    .use(httpErrorHandler());
+  .use(jsonBodyParser())
+  .use(httpErrorHandler())
+  .use(corsHandler({ origin: '*' }));
 }
