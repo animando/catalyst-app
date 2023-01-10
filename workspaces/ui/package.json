@@ -7,8 +7,8 @@
     "start": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "deploy": "scripts/deploy.sh",
-    "destroy": "scripts/destroy.sh"
+    "deploy": "STAGE=dev scripts/deploy.sh",
+    "destroy": "STAGE=dev scripts/destroy.sh"
   },
   "dependencies": {
     "axios": "^1.2.2",
