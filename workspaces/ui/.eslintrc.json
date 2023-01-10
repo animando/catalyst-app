@@ -1,0 +1,12 @@
+{
+  "extends": ["../../.eslintrc.json", "plugin:react-hooks/recommended"],
+  "parserOptions": {
+    "project": ["./tsconfig.eslint.json"]
+  },
+  "rules": {
+    "react/react-in-jsx-scope": "off"
+  },
+  "globals": {
+    "window": true
+  }
+}

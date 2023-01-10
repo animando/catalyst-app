@@ -1,0 +1,15 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "airbnb",
+    "airbnb-typescript",
+    "prettier"
+  ],
+  "rules": {
+    "import/prefer-default-export": 0,
+    "no-implicit-globals": "error"
+  }
+}

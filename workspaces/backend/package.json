@@ -5,6 +5,7 @@
   "license": "MIT",
   "dependencies": {
     "@middy/core": "^4.0.10",
+    "@middy/http-cors": "^4.0.10",
     "@middy/http-error-handler": "^4.0.10",
     "@middy/http-json-body-parser": "^4.0.10",
     "shared-utils": "1.0.0"
@@ -20,6 +21,9 @@
     "typecheck": "tsc --noEmit",
     "start": "serverless offline",
     "deploy": "serverless deploy --stage dev",
-    "destroy": "serverless remove --stage dev"
+    "destroy": "serverless remove --stage dev",
+    "prettier:check": "prettier . --check",
+    "eslint:check": "eslint .",
+    "lint": "yarn run prettier:check && yarn run eslint:check"
   }
 }

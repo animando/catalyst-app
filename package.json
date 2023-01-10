@@ -14,11 +14,21 @@
     "deploy:ui": "yarn workspace ui run deploy",
     "destroy:backend": "yarn workspace backend run destroy",
     "destroy:ui": "yarn workspace ui run destroy",
-    "start": "concurrently -n \"backend,ui\" \"yarn workspace backend start\" \"yarn workspace ui start\""
+    "start": "concurrently -n \"backend,ui\" \"yarn workspace backend start\" \"yarn workspace ui start\"",
+    "lint": "yarn workspaces run lint"
   },
   "devDependencies": {
     "@types/node": "^18.11.18",
+    "@typescript-eslint/eslint-plugin": "^5.48.1",
+    "@typescript-eslint/parser": "^5.48.1",
     "concurrently": "^7.6.0",
+    "eslint": "^8.31.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-airbnb-typescript": "^17.0.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jsx-a11y": "^6.7.0",
+    "prettier": "^2.8.2",
     "ts-node": "^10.9.1",
     "typescript": "^4.9.4"
   }

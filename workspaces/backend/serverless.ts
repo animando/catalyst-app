@@ -1,36 +1,33 @@
-import { AWS } from '@serverless/typescript';
-
-import { hello } from './services/hello';
+/* eslint-disable no-template-curly-in-string,import/no-extraneous-dependencies,import/no-import-module-exports */
+import { AWS } from "@serverless/typescript";
+import { hello } from "./services/hello";
 
 const config: AWS = {
-  service: 'backend',
+  service: "backend",
   provider: {
-    name: 'aws',
-    runtime: 'nodejs16.x',
-    region: 'eu-west-2',
-    stage: 'local',
+    name: "aws",
+    runtime: "nodejs16.x",
+    region: "eu-west-2",
+    stage: "local",
     environment: {
-      SPA_URL: '${file(./serverlessVariables-${self:custom.stage}.yml):spaUrl}'
+      SPA_URL: "${file(./serverlessVariables-${self:custom.stage}.yml):spaUrl}",
     },
   },
-  plugins: [
-    'serverless-esbuild',
-    'serverless-offline',
-  ],
+  plugins: ["serverless-esbuild", "serverless-offline"],
   functions: {
-    hello
+    hello,
   },
   custom: {
-    stage: '${opt:stage, self:provider.stage}',
+    stage: "${opt:stage, self:provider.stage}",
     esbuild: {
       bundle: true,
       minify: false,
-      packager: 'yarn'
+      packager: "yarn",
     },
-    'serverless-offline': {
-      noPrependStageInUrl: true
-    }
+    "serverless-offline": {
+      noPrependStageInUrl: true,
+    },
   },
-}
+};
 
 module.exports = config;
