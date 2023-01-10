@@ -1,4 +1,4 @@
-import { corsConfig } from "../../utils/corsConfig";
+import { corsConfig } from "../../serverlessCorsConfig";
 import { handlerPath } from "../../utils/handlerPath";
 
 export const hello = {
