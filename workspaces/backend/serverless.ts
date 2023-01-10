@@ -10,7 +10,7 @@ const config: AWS = {
     region: 'eu-west-2',
     stage: 'local',
     environment: {
-      SPA_DOMAIN_NAME: '${file(./serverlessVariables-${self:custom.stage}.yml):spaDomainName}'
+      SPA_URL: '${file(./serverlessVariables-${self:custom.stage}.yml):spaUrl}'
     },
   },
   plugins: [

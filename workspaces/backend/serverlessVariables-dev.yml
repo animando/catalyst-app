@@ -1,1 +1,1 @@
-spaDomainName: ${ssm:catalyst-ui-distribution-domain}
+spaUrl: https://${ssm:catalyst-ui-distribution-domain}
