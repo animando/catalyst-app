@@ -1384,6 +1384,30 @@
   resolved "https://registry.yarnpkg.com/@kwsites/promise-deferred/-/promise-deferred-1.1.1.tgz#8ace5259254426ccef57f3175bc64ed7095ed919"
   integrity sha512-GaHYm+c0O9MjZRu0ongGBRbinu8gVAMd2UZjji6jVmqKtZluZnptXGWhz1E8j8D2HJ3f/yMxKAUC0b+57wncIw==
 
+"@middy/core@^4.0.10":
+  version "4.0.10"
+  resolved "https://registry.yarnpkg.com/@middy/core/-/core-4.0.10.tgz#1d86697defc778ee9c2c71ad72af1d1c1a5b9d99"
+  integrity sha512-Kt+uV/zxwglsNldlvEA5rFDZdTTFqH46S2uPT1VP8hQ5wlavFflnKnye5WUtaJ2gbsLsk9iVolYCWWmDXvTBdQ==
+
+"@middy/http-error-handler@^4.0.10":
+  version "4.0.10"
+  resolved "https://registry.yarnpkg.com/@middy/http-error-handler/-/http-error-handler-4.0.10.tgz#17beef3add9bfa61d875e66bda019492e8da91cf"
+  integrity sha512-wb6YL3bJwULNGId86qbNz/rXgJdZ+ylhS9YZTjHMChejY7Jcy/dVwRo2XdLfF0tE6t7ASUuTp6GIbqDAj6aygg==
+  dependencies:
+    "@middy/util" "4.0.10"
+
+"@middy/http-json-body-parser@^4.0.10":
+  version "4.0.10"
+  resolved "https://registry.yarnpkg.com/@middy/http-json-body-parser/-/http-json-body-parser-4.0.10.tgz#ad58fdb2ed8d653ff97935ad956d15db585fa765"
+  integrity sha512-My5uxSqpm8c06XGP/OPVIUQkqOH3NLJfac+WuCQ7kBsZoNP3970+B5bIVWVf0SOPMOnuNw1k/hjQ4kde0ZOBEw==
+  dependencies:
+    "@middy/util" "4.0.10"
+
+"@middy/util@4.0.10":
+  version "4.0.10"
+  resolved "https://registry.yarnpkg.com/@middy/util/-/util-4.0.10.tgz#6af415f739001ef0543759200ad209d15e5b103a"
+  integrity sha512-lF90ZJXvEwM97C3I3l2xIQ7o2cRUQAjffce68hDRfXO2FyUNgTkRWmw0oy90Y8RfE9kyew/vGsJXgibJZmYSmw==
+
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
   resolved "https://registry.yarnpkg.com/@nodelib/fs.scandir/-/fs.scandir-2.1.5.tgz#7619c2eb21b25483f6d167548b4cfd5a7488c3d5"

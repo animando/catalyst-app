@@ -1,6 +1,7 @@
 import { now } from 'shared-utils/general';
+import { applyHttpMiddleware } from '../../utils/applyHttpMiddleware';
 
-export const hello = async () => {
+const helloHandler = async () => {
   return {
     statusCode: 200,
     body: JSON.stringify(
@@ -12,3 +13,5 @@ export const hello = async () => {
     ),
   };
 };
+
+export const hello = applyHttpMiddleware(helloHandler);

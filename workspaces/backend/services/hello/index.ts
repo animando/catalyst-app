@@ -1,4 +1,8 @@
+import { config } from "../../utils/config";
 import { handlerPath } from "../../utils/handlerPath";
+const corsConfig = {
+    origin: config.SPA_DOMAIN_NAME
+}
 
 export const hello = {
     handler: `${handlerPath(__dirname)}/handler.hello`,
@@ -6,7 +10,8 @@ export const hello = {
         {
             http: {
                 path: 'hello',
-                method: 'get'
+                method: 'get',
+                cors: corsConfig,
             }
         }
     ]
