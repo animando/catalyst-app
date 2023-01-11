@@ -1,9 +1,11 @@
 /* eslint-disable no-template-curly-in-string */
-import { handlerPath } from "../../utils/handlerPath";
-import { service, topic, role } from "./config";
+import { handlerPath } from "../../../utils/handlerPath";
+import { service, topic, role } from "../config";
+
+export { iamRoleConsumer1 } from "./iam";
 
 export const consumer1 = {
-  handler: `${handlerPath(__dirname)}/handler.handler`,
+  handler: `${handlerPath(__dirname)}/../handler.handler`,
   role,
   vpc: {
     subnetIds: [

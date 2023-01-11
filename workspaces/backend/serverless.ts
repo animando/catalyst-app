@@ -1,9 +1,7 @@
 /* eslint-disable no-template-curly-in-string,import/no-extraneous-dependencies,import/no-import-module-exports */
 import { AWS } from "@serverless/typescript";
-import { hello } from "./services/hello";
-import { consumer1 } from "./services/consumer1";
-import { iamRoleConsumer1 } from "./services/consumer1/iam";
-import { iamRoleHello } from "./services/hello/iam";
+import { hello, iamRoleHello } from "./services/hello/serverless";
+import { consumer1, iamRoleConsumer1 } from "./services/consumer1/serverless";
 
 const config: AWS = {
   service: "backend",
