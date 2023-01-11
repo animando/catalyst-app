@@ -5,11 +5,14 @@ export const KAFKA_CLUSTER_ID = "${self:custom.kafkaClusterId}";
 export const createTopicArn = (topicName: string) =>
   `arn:aws:kafka:\${self:custom.region}:\${self:custom.accountId}:topic/${KAFKA_CLUSTER_NAME}/${KAFKA_CLUSTER_ID}/${topicName}`;
 
+export const createIamRoleArn = (roleName: string) =>
+  `arn:aws:iam::\${self:custom.accountId}:role/${roleName}`;
+
 export const createRole = (roleName: string, statements: Array<any>) => ({
   Type: "AWS::IAM::Role",
   Properties: {
     RoleName: roleName,
-    AssumePolicyDocument: {
+    AssumeRolePolicyDocument: {
       Version: "2012-10-17",
       Statement: [
         {

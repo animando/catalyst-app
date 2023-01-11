@@ -3,6 +3,7 @@ import { AWS } from "@serverless/typescript";
 import { hello } from "./services/hello";
 import { consumer1 } from "./services/consumer1";
 import { iamRoleConsumer1 } from "./services/consumer1/iam";
+import { iamRoleHello } from "./services/hello/iam";
 
 const config: AWS = {
   service: "backend",
@@ -25,6 +26,7 @@ const config: AWS = {
   resources: {
     Resources: {
       iamRoleConsumer1,
+      iamRoleHello,
     },
   },
   custom: {

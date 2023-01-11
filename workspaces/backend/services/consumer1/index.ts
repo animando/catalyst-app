@@ -1,9 +1,11 @@
 /* eslint-disable no-template-curly-in-string */
 import { handlerPath } from "../../utils/handlerPath";
-import { service, topic } from "./config";
+import { createIamRoleArn } from "../../utils/iamHelpers";
+import { service, topic, role } from "./config";
 
 export const consumer1 = {
   handler: `${handlerPath(__dirname)}/handler.handler`,
+  role: createIamRoleArn(role),
   vpc: {
     subnetIds: [
       "${file(./serverlessVariables-${self:custom.stage}.yml):mskSubnetId1}",
