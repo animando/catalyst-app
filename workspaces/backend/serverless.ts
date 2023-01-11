@@ -1,6 +1,7 @@
 /* eslint-disable no-template-curly-in-string,import/no-extraneous-dependencies,import/no-import-module-exports */
 import { AWS } from "@serverless/typescript";
 import { hello } from "./services/hello";
+import { consumer1 } from "./services/consumer1";
 
 const config: AWS = {
   service: "backend",
@@ -16,6 +17,7 @@ const config: AWS = {
   plugins: ["serverless-esbuild", "serverless-offline"],
   functions: {
     hello,
+    consumer1,
   },
   custom: {
     stage: "${opt:stage, self:provider.stage}",

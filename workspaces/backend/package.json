@@ -8,6 +8,8 @@
     "@middy/http-cors": "^4.0.10",
     "@middy/http-error-handler": "^4.0.10",
     "@middy/http-json-body-parser": "^4.0.10",
+    "dotenv": "^16.0.3",
+    "kafkajs": "^2.2.3",
     "shared-utils": "1.0.0"
   },
   "devDependencies": {
@@ -19,7 +21,10 @@
   },
   "scripts": {
     "typecheck": "tsc --noEmit",
-    "start": "serverless offline",
+    "start:consumers": "ts-node ./localKafkaConsumer.ts",
+    "start:consumers:watch": "nodemon -w localKafkaConsumers.ts yarn run start:consumers",
+    "start:backend": "serverless offline",
+    "start": "yarn run start:backend",
     "deploy": "serverless deploy --stage dev",
     "destroy": "serverless remove --stage dev",
     "prettier:check": "prettier . --check",

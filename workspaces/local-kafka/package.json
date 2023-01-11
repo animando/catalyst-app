@@ -1,0 +1,11 @@
+{
+  "name": "local-kafka",
+  "private": true,
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "start": "yarn run start:kafka",
+    "start:kafka": "docker compose up -d",
+    "stop:kafka": "docker compose down"
+  }
+}

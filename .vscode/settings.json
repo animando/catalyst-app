@@ -13,7 +13,8 @@
   "eslint.workingDirectories": [
     "./workspaces/ui",
     "./workspaces/backend",
-    "./workspaces/shared-utils"
+    "./workspaces/shared-utils",
+    "./workspaces/local-kafka"
   ],
   "vetur.validation.template": false,
   "eslint.format.enable": true,

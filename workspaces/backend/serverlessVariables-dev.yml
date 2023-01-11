@@ -1,1 +1,2 @@
 spaUrl: https://${ssm:catalyst-ui-distribution-domain}
+kafkaId: ${ssm:catalyst-kafka-cluster-id}

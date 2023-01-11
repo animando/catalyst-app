@@ -6,7 +6,8 @@
   "workspaces": [
     "workspaces/backend",
     "workspaces/shared-utils",
-    "workspaces/ui"
+    "workspaces/ui",
+    "workspaces/local-kafka"
   ],
   "scripts": {
     "build": "yarn workspace ui run build",
@@ -14,7 +15,9 @@
     "deploy:ui": "yarn workspace ui run deploy",
     "destroy:backend": "yarn workspace backend run destroy",
     "destroy:ui": "yarn workspace ui run destroy",
-    "start": "concurrently -n \"backend,ui\" \"yarn workspace backend start\" \"yarn workspace ui start\"",
+    "start:kafka": "yarn workspace local-kafka start",
+    "stop:kafka": "yarn workspace local-kafka stop",
+    "start": "concurrently -n \"backend,ui,consumers\" \"yarn workspace local-kafka start\"  \"yarn workspace backend start\" \"yarn workspace ui start\" \"yarn workspace backend start:consumers\"",
     "lint": "yarn workspaces run lint"
   },
   "devDependencies": {
@@ -28,6 +31,7 @@
     "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-jsx-a11y": "^6.7.0",
+    "nodemon": "^2.0.20",
     "prettier": "^2.8.2",
     "ts-node": "^10.9.1",
     "typescript": "^4.9.4"
