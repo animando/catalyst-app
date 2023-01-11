@@ -5,7 +5,7 @@ import { service, topic, role } from "../config";
 export { iamRoleConsumer1 } from "./iam";
 
 export const consumer1 = {
-  handler: `${handlerPath(__dirname)}/../handler.handler`,
+  handler: `${handlerPath(__dirname)}/handler.handler`,
   role,
   vpc: {
     subnetIds: [
