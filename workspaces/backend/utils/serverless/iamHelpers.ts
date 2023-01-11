@@ -1,6 +1,11 @@
 /* eslint-disable no-template-curly-in-string */
 
-import { KAFKA_CLUSTER_ID, KAFKA_CLUSTER_NAME } from "./mskConfig";
+import {
+  KAFKA_CLUSTER_ARN,
+  KAFKA_CLUSTER_ID,
+  KAFKA_CLUSTER_NAME,
+  KAFKA_GROUP_ARN,
+} from "./mskConfig";
 
 export const createTopicArn = (topicName: string) =>
   `arn:aws:kafka:\${self:custom.region}:\${self:custom.accountId}:topic/${KAFKA_CLUSTER_NAME}/${KAFKA_CLUSTER_ID}/${topicName}`;
@@ -44,12 +49,12 @@ export const createRole = (roleName: string, statements: Array<any>) => ({
                 "kafka-cluster:DescribeGroup",
                 "kafka-cluster:AlterGroup",
               ],
-              Resource: "*",
+              Resource: KAFKA_GROUP_ARN,
             },
             {
               Effect: "Allow",
               Action: ["kafka-cluster:Connect"],
-              Resource: "*",
+              Resource: KAFKA_CLUSTER_ARN,
             },
             // {
             //   Effect: "Allow",
