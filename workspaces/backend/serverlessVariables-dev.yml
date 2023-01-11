@@ -7,3 +7,4 @@ kafkaClusterId: d3a2c089-0d5c-4ac7-a8aa-7c29edcdba10-3
 kafkaBootstrapServer: ${ssm:catalyst-kafka-bootstrap-brokers-iam}
 kafkaClusterName: ${ssm:catalyst-kafka-cluster-name}
 lambdaSecurityGroup: ${ssm:lambda-security-group-id}
+kafkaSslDisabled: false

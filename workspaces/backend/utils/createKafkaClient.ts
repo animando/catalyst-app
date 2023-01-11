@@ -6,6 +6,7 @@ export const createKafkaClient = (service: string): KafkaClient => {
   const kafka = new Kafka({
     clientId: service,
     brokers: config.KAFKA_BOOTSTRAP_SERVER.split(","),
+    ssl: config.KAFKA_SSL_DISABLED !== "true",
   });
 
   const producer = kafka.producer({});

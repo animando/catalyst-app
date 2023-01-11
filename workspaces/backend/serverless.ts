@@ -16,6 +16,8 @@ const config: AWS = {
       SPA_URL: "${file(./serverlessVariables-${self:custom.stage}.yml):spaUrl}",
       KAFKA_BOOTSTRAP_SERVER:
         "${file(./serverlessVariables-${self:custom.stage}.yml):kafkaBootstrapServer}",
+      KAFKA_SSL_DISABLED:
+        "${file(./serverlessVariables-${self:custom.stage}.yml):kafkaSslDisabled}",
     },
   },
   plugins: ["serverless-esbuild", "serverless-offline"],
