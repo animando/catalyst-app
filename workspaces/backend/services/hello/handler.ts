@@ -12,7 +12,7 @@ const helloHandler = async () => {
       {
         key: `${Math.floor(Math.random() * 1000)}`,
         value: `Message ${now}`,
-        timestamp: `${now}`,
+        timestamp: `${Date.now()}`,
         headers: {
           header1: "header1",
         },

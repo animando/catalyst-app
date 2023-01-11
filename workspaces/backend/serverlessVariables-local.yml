@@ -6,3 +6,4 @@ mskSubnetId3: local
 kafkaClusterId: local
 kafkaClusterName: local
 lambdaSecurityGroup: local
+kafkaBootstrapServer: localhost:29092
