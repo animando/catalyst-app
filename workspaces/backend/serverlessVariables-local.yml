@@ -5,4 +5,4 @@ mskSubnetId2: local
 mskSubnetId3: local
 kafkaClusterId: local
 kafkaClusterName: local
-mskSecurityGroup: local
+lambdaSecurityGroup: local

@@ -12,7 +12,7 @@ export const consumer1 = {
       "${file(./serverlessVariables-${self:custom.stage}.yml):mskSubnetId3}",
     ],
     securityGroupIds: [
-      "${file(./serverlessVariables-${self:custom.stage}.yml):mskSecurityGroup}",
+      "${file(./serverlessVariables-${self:custom.stage}.yml):lambdaSecurityGroup}",
     ],
   },
   events: [

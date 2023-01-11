@@ -50,6 +50,15 @@ export const createRole = (roleName: string, statements: Array<any>) => ({
             //   ],
             //   Resource: "*",
             // },
+            {
+              Effect: "Allow",
+              Action: [
+                "logs:CreateLogGroup",
+                "logs:CreateLogStream",
+                "logs:PutLogEvents",
+              ],
+              Resource: `arn:aws:logs:\${self:custom.region}:\${self:custom.accountId}:log-group:/aws/lambda/\${self:service}-\${self:custom.stage}:*:*`,
+            },
             ...statements,
           ],
         },
