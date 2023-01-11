@@ -13,6 +13,8 @@ const config: AWS = {
     stage: "local",
     environment: {
       SPA_URL: "${file(./serverlessVariables-${self:custom.stage}.yml):spaUrl}",
+      KAFKA_BOOTSTRAP_SERVER:
+        "${file(./serverlessVariables-${self:custom.stage}.yml):kafkaBootstrapServer}",
     },
   },
   plugins: ["serverless-esbuild", "serverless-offline"],
