@@ -29,23 +29,31 @@ export const createRole = (roleName: string, statements: Array<any>) => ({
     ],
     Policies: [
       {
-        Effect: "Allow",
-        Action: ["kafka:DescribeCluster", "kafka:GetBootstrapBrokers"],
-        Resource: "*",
+        PolicyName: `policy-${roleName}`,
+        PolicyDocument: {
+          Version: "2012-10-17",
+          Statement: [
+            {
+              Effect: "Allow",
+              Action: ["kafka:DescribeCluster", "kafka:GetBootstrapBrokers"],
+              Resource: "*",
+            },
+            // {
+            //   Effect: "Allow",
+            //   Action: [
+            //     "ec2:CreateNetworkInterface",
+            //     "ec2:DescribeNetworkInterfaces",
+            //     "ec2:DescribeVpcs",
+            //     "ec2:DeleteNetworkInterface",
+            //     "ec2:DescribeSubnets",
+            //     "ec2:DescribeSecurityGroups",
+            //   ],
+            //   Resource: "*",
+            // },
+            ...statements,
+          ],
+        },
       },
-      // {
-      //   Effect: "Allow",
-      //   Action: [
-      //     "ec2:CreateNetworkInterface",
-      //     "ec2:DescribeNetworkInterfaces",
-      //     "ec2:DescribeVpcs",
-      //     "ec2:DeleteNetworkInterface",
-      //     "ec2:DescribeSubnets",
-      //     "ec2:DescribeSecurityGroups",
-      //   ],
-      //   Resource: "*",
-      // },
-      ...statements,
     ],
   },
 });
