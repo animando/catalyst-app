@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "license": "MIT",
   "dependencies": {
+    "@jm18457/kafkajs-msk-iam-authentication-mechanism": "^2.0.3",
     "@middy/core": "^4.0.10",
     "@middy/http-cors": "^4.0.10",
     "@middy/http-error-handler": "^4.0.10",

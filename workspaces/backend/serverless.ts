@@ -13,6 +13,7 @@ const config: AWS = {
     region: "eu-west-2",
     stage: "local",
     environment: {
+      REGION: "${self:custom.region}",
       SPA_URL: "${file(./serverlessVariables-${self:custom.stage}.yml):spaUrl}",
       KAFKA_BOOTSTRAP_SERVER:
         "${file(./serverlessVariables-${self:custom.stage}.yml):kafkaBootstrapServer}",

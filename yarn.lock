@@ -202,7 +202,7 @@
     "@aws-sdk/util-utf8-node" "3.208.0"
     tslib "^2.3.1"
 
-"@aws-sdk/client-sts@3.245.0":
+"@aws-sdk/client-sts@3.245.0", "@aws-sdk/client-sts@^3.21.0":
   version "3.245.0"
   resolved "https://registry.yarnpkg.com/@aws-sdk/client-sts/-/client-sts-3.245.0.tgz#c1c46ca94d11786cf67a5f5adb6a44cd35d73546"
   integrity sha512-E+7v2sy34TLni/Dmz6bTU20NWvbHYH9sVUHKQ9kHhmFopUWrs4Nt77f85PbuiKJz/irjUh9ppT5q1odJNRKRVQ==
@@ -291,7 +291,7 @@
     "@aws-sdk/types" "3.226.0"
     tslib "^2.3.1"
 
-"@aws-sdk/credential-provider-node@3.245.0":
+"@aws-sdk/credential-provider-node@3.245.0", "@aws-sdk/credential-provider-node@^3.21.0":
   version "3.245.0"
   resolved "https://registry.yarnpkg.com/@aws-sdk/credential-provider-node/-/credential-provider-node-3.245.0.tgz#3df89fa2668940902b4c16c28df3d4e30b907ad2"
   integrity sha512-Dwv8zmRLTDLeEkGrK/sLNFZSC+ahXZxr07CuID054QKACIdUEvkqYlnalRiTeXngiHGQ54u8wU7f0D32R2oL0g==
@@ -349,7 +349,7 @@
     "@aws-sdk/util-base64" "3.208.0"
     tslib "^2.3.1"
 
-"@aws-sdk/hash-node@3.226.0":
+"@aws-sdk/hash-node@3.226.0", "@aws-sdk/hash-node@^3.20.0":
   version "3.226.0"
   resolved "https://registry.yarnpkg.com/@aws-sdk/hash-node/-/hash-node-3.226.0.tgz#252d98bcbb1e13c8f26d9d416db03cf8cceac185"
   integrity sha512-MdlJhJ9/Espwd0+gUXdZRsHuostB2WxEVAszWxobP0FTT9PnicqnfK7ExmW+DUAc0ywxtEbR3e0UND65rlSTVw==
@@ -550,7 +550,7 @@
     "@aws-sdk/types" "3.226.0"
     tslib "^2.3.1"
 
-"@aws-sdk/signature-v4@3.226.0":
+"@aws-sdk/signature-v4@3.226.0", "@aws-sdk/signature-v4@^3.20.0":
   version "3.226.0"
   resolved "https://registry.yarnpkg.com/@aws-sdk/signature-v4/-/signature-v4-3.226.0.tgz#100390b5c5b55a9b0abd05b06fceb36cfa0ecf98"
   integrity sha512-/R5q5agdPd7HJB68XMzpxrNPk158EHUvkFkuRu5Qf3kkkHebEzWEBlWoVpUe6ss4rP9Tqcue6xPuaftEmhjpYw==
@@ -1364,6 +1364,17 @@
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz#b520529ec21d8e5945a1851dfd1c32e94e39ff45"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
+
+"@jm18457/kafkajs-msk-iam-authentication-mechanism@^2.0.3":
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/@jm18457/kafkajs-msk-iam-authentication-mechanism/-/kafkajs-msk-iam-authentication-mechanism-2.0.3.tgz#c7d9bb8f5f9135ebdc24b19b85d9f7abb839937f"
+  integrity sha512-ZE1vnzPoc0ICnm4pXWACtKHfIU2bZtFHTwLu7sxK27AUlZEbd0c9SBzoRBUSsb5TR3fnVVKFEkINIRvhf6+t3g==
+  dependencies:
+    "@aws-sdk/client-sts" "^3.21.0"
+    "@aws-sdk/credential-provider-node" "^3.21.0"
+    "@aws-sdk/hash-node" "^3.20.0"
+    "@aws-sdk/signature-v4" "^3.20.0"
+    kafkajs "^2.2.0-beta.0"
 
 "@jridgewell/gen-mapping@^0.1.0":
   version "0.1.1"
@@ -4372,7 +4383,7 @@ jwt-decode@^3.1.2:
   resolved "https://registry.yarnpkg.com/jwt-decode/-/jwt-decode-3.1.2.tgz#3fb319f3675a2df0c2895c8f5e9fa4b67b04ed59"
   integrity sha512-UfpWE/VZn0iP50d8cz9NrZLM9lSWhcJ+0Gt/nm4by88UL+J1SiKN8/5dkjMmbEzwL2CAe+67GsegCbIKtbp75A==
 
-kafkajs@^2.2.3:
+kafkajs@^2.2.0-beta.0, kafkajs@^2.2.3:
   version "2.2.3"
   resolved "https://registry.yarnpkg.com/kafkajs/-/kafkajs-2.2.3.tgz#a1ab1b7c4a27699871a89b3978b5cfe5b05c6f3e"
   integrity sha512-JmzIiLHE/TdQ7b4I2B/DNMtfhTh66fmEaEg7gGkyQXBC6f1A7I2jSjeUsVIJfC8d9YcEIURyBjtOEKBO5OHVhg==
