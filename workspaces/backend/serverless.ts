@@ -2,6 +2,7 @@
 import { AWS } from "@serverless/typescript";
 import { hello } from "./services/hello";
 import { consumer1 } from "./services/consumer1";
+import { iamRoleConsumer1 } from "./services/consumer1/iam";
 
 const config: AWS = {
   service: "backend",
@@ -19,6 +20,11 @@ const config: AWS = {
     hello,
     consumer1,
   },
+  resources: {
+    Resources: {
+      iamRoleConsumer1,
+    },
+  },
   custom: {
     stage: "${opt:stage, self:provider.stage}",
     esbuild: {
@@ -29,6 +35,12 @@ const config: AWS = {
     "serverless-offline": {
       noPrependStageInUrl: true,
     },
+    accountId: "${aws:accountId}",
+    region: "${aws:region}",
+    kafkaClusterId:
+      "${file(./serverlessVariables-${self:custom.stage}.yml):kafkaClusterId}",
+    kafkaClusterName:
+      "${file(./serverlessVariables-${self:custom.stage}.yml):kafkaClusterName}",
   },
 };
 

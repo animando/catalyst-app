@@ -1,1 +1,8 @@
 spaUrl: localhost:5173
+kafkaArn: local
+mskSubnetId1: local
+mskSubnetId2: local
+mskSubnetId3: local
+kafkaClusterId: local
+kafkaClusterName: local
+mskSecurityGroup: local

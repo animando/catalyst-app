@@ -17,7 +17,7 @@ export const consumer1 = {
   events: [
     {
       msk: {
-        arn: "${file(./serverlessVariables-${self:custom.stage}.yml):kafkaId}",
+        arn: "${file(./serverlessVariables-${self:custom.stage}.yml):kafkaArn}",
         topic,
         consumerGroupId: service,
         batchSize: 1,
