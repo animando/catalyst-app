@@ -22,7 +22,7 @@
     "serverless-plugin-scripts": "^1.0.2"
   },
   "scripts": {
-    "deployTopicManager": "serverless deploy --stage dev --config serverlessTopicManager.ts",
+    "deploy:topicManager": "serverless deploy --stage dev --config serverlessTopicManager.ts",
     "deploy": "serverless deploy --stage dev",
     "destroy": "serverless remove --stage dev",
     "eslint:check": "eslint .",
