@@ -7,5 +7,6 @@ export { iamRoleTopicManager } from "./iam";
 export const topicManager = {
   ...commonLambdaConfig,
   handler: `${handlerPath(__dirname)}/handler.handler`,
+  timeout: 120,
   role,
 };
