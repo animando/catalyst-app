@@ -8,6 +8,7 @@ export const createTopicArn = (topicName: string) =>
 export const createIamRoleArn = (roleName: string) =>
   `arn:aws:iam::\${self:custom.accountId}:role/${roleName}`;
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const createRole = (roleName: string, statements: Array<any>) => ({
   Type: "AWS::IAM::Role",
   Properties: {
