@@ -1,13 +1,14 @@
 import { kafkaConfig } from "../../serverlessCommonConfig";
 
-export const createTopicArn = (topicName: string) =>
-  `${kafkaConfig.KAFKA_TOPIC_ARN_PREFIX}/${topicName}`;
-
 export const createIamRoleArn = (roleName: string) =>
   `arn:aws:iam::\${self:custom.accountId}:role/${roleName}`;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const createRole = (roleName: string, statements: Array<any>) => ({
+export const createRole = (
+  roleName: string,
+  statements: Array<any>,
+  managedPolicyArns: Array<string> = []
+) => ({
   Type: "AWS::IAM::Role",
   Properties: {
     RoleName: roleName,
@@ -25,6 +26,7 @@ export const createRole = (roleName: string, statements: Array<any>) => ({
     },
     ManagedPolicyArns: [
       "arn:aws:iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole",
+      ...managedPolicyArns,
     ],
     Policies: [
       {
@@ -56,16 +58,4 @@ export const createRole = (roleName: string, statements: Array<any>) => ({
       },
     ],
   },
-});
-
-export const createKafkaWriteStatement = (topicName: string) => ({
-  Effect: "Allow",
-  Action: ["kafka-cluster:DescribeTopic", "kafka-cluster:WriteData"],
-  Resource: createTopicArn(topicName),
-});
-
-export const createKafkaReadStatement = (topicName: string) => ({
-  Effect: "Allow",
-  Action: ["kafka-cluster:DescribeTopic", "kafka-cluster:ReadData"],
-  Resource: createTopicArn(topicName),
 });

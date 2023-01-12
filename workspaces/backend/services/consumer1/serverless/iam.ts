@@ -1,10 +1,7 @@
-import {
-  createKafkaReadStatement,
-  createRole,
-} from "../../../utils/serverless/iamHelpers";
-import { topics } from "../../topics";
+import { policies } from "../../../iam/policies";
+import { createRole } from "../../../utils/serverless/iamHelpers";
 import { role } from "../config";
 
 export const iamRoleConsumer1 = createRole(role, [
-  createKafkaReadStatement(topics.Consumer1Topic),
+  policies.KafkaReadTopicConsumer1,
 ]);
