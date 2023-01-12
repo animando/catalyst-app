@@ -1,14 +1,9 @@
 /* eslint-disable no-template-curly-in-string */
 
-import {
-  KAFKA_CLUSTER_ARN,
-  KAFKA_CLUSTER_ID,
-  KAFKA_CLUSTER_NAME,
-  KAFKA_GROUP_ARN,
-} from "./mskConfig";
+import { kafkaConfig } from "../../serverlessCommonConfig";
 
 export const createTopicArn = (topicName: string) =>
-  `arn:aws:kafka:\${self:custom.region}:\${self:custom.accountId}:topic/${KAFKA_CLUSTER_NAME}/${KAFKA_CLUSTER_ID}/${topicName}`;
+  `${kafkaConfig.KAFKA_TOPIC_ARN_PREFIX}/${topicName}`;
 
 export const createIamRoleArn = (roleName: string) =>
   `arn:aws:iam::\${self:custom.accountId}:role/${roleName}`;
@@ -49,34 +44,13 @@ export const createRole = (roleName: string, statements: Array<any>) => ({
                 "kafka-cluster:DescribeGroup",
                 "kafka-cluster:AlterGroup",
               ],
-              Resource: KAFKA_GROUP_ARN,
+              Resource: kafkaConfig.KAFKA_GROUP_ARN,
             },
             {
               Effect: "Allow",
               Action: ["kafka-cluster:Connect"],
-              Resource: KAFKA_CLUSTER_ARN,
+              Resource: kafkaConfig.KAFKA_CLUSTER_ARN,
             },
-            // {
-            //   Effect: "Allow",
-            //   Action: [
-            //     "ec2:CreateNetworkInterface",
-            //     "ec2:DescribeNetworkInterfaces",
-            //     "ec2:DescribeVpcs",
-            //     "ec2:DeleteNetworkInterface",
-            //     "ec2:DescribeSubnets",
-            //     "ec2:DescribeSecurityGroups",
-            //   ],
-            //   Resource: "*",
-            // },
-            // {
-            //   Effect: "Allow",
-            //   Action: [
-            //     "logs:CreateLogGroup",
-            //     "logs:CreateLogStream",
-            //     "logs:PutLogEvents",
-            //   ],
-            //   Resource: `arn:aws:logs:\${self:custom.region}:\${self:custom.accountId}:log-group:/aws/lambda/\${self:service}-\${self:custom.stage}:*:*`,
-            // },
             ...statements,
           ],
         },
