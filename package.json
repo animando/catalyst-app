@@ -15,6 +15,7 @@
     "deploy:backend": "yarn workspace backend run deploy",
     "deploy:ui": "yarn workspace ui run deploy",
     "destroy:backend": "yarn workspace backend run destroy",
+    "destroy:topicManager": "yarn workspace backend run destroy:topicManager",
     "destroy:ui": "yarn workspace ui run destroy",
     "start:kafka": "yarn workspace local-kafka start",
     "stop:kafka": "yarn workspace local-kafka stop",
