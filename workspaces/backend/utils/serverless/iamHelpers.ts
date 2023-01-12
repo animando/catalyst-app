@@ -1,5 +1,3 @@
-import { kafkaConfig } from "../../serverlessCommonConfig";
-
 export const createIamRoleArn = (roleName: string) =>
   `arn:aws:iam::\${self:custom.accountId}:role/${roleName}`;
 
@@ -33,27 +31,7 @@ export const createRole = (
         PolicyName: `policy-${roleName}`,
         PolicyDocument: {
           Version: "2012-10-17",
-          Statement: [
-            {
-              Effect: "Allow",
-              Action: ["kafka:DescribeCluster", "kafka:GetBootstrapBrokers"],
-              Resource: "*",
-            },
-            {
-              Effect: "Allow",
-              Action: [
-                "kafka-cluster:DescribeGroup",
-                "kafka-cluster:AlterGroup",
-              ],
-              Resource: kafkaConfig.KAFKA_GROUP_ARN,
-            },
-            {
-              Effect: "Allow",
-              Action: ["kafka-cluster:Connect"],
-              Resource: kafkaConfig.KAFKA_CLUSTER_ARN,
-            },
-            ...statements,
-          ],
+          Statement: statements,
         },
       },
     ],
