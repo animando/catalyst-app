@@ -1,9 +1,8 @@
 spaUrl: https://${ssm:catalyst-ui-distribution-domain}
-kafkaArn: ${ssm:catalyst-kafka-cluster-arn}
+kafkaClusterArn: ${ssm:catalyst-kafka-cluster-arn}
 mskSubnetId1: ${ssm:msk-subnet-az1-id}
 mskSubnetId2: ${ssm:msk-subnet-az2-id}
 mskSubnetId3: ${ssm:msk-subnet-az3-id}
-kafkaClusterId: 7332df04-fedb-41bc-90cd-d3606c8b728d-3
 kafkaBootstrapServer: ${ssm:catalyst-kafka-bootstrap-brokers-iam}
 kafkaClusterName: ${ssm:catalyst-kafka-cluster-name}
 lambdaSecurityGroup: ${ssm:lambda-security-group-id}

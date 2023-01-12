@@ -5,20 +5,20 @@ import type { AWS } from "@serverless/typescript";
 export const AWS_ACCOUNT_ID = "${aws:accountId}";
 export const AWS_REGION = "${aws:region}";
 
+const kafkaClusterArn =
+  "${file(./serverlessVariables-${self:custom.stage}.yml):kafkaClusterArn}";
+const arnTokens = kafkaClusterArn.split("/");
+const kafkaClusterId = arnTokens[arnTokens.length - 1];
 export const kafkaConfig = {
-  KAFKA_CLUSTER_ID:
-    "${file(./serverlessVariables-${self:custom.stage}.yml):kafkaClusterId}",
+  KAFKA_CLUSTER_ID: kafkaClusterId,
   KAFKA_SSL_DISABLED:
     "${file(./serverlessVariables-${self:custom.stage}.yml):kafkaSslDisabled}",
   KAFKA_CLUSTER_NAME: "${self:custom.kafkaClusterName}",
-  KAFKA_CLUSTER_ARN:
-    "arn:aws:kafka:${aws:region}:${aws:accountId}:cluster/${self:custom.kafkaClusterName}/${self:custom.kafkaClusterId}",
+  KAFKA_CLUSTER_ARN: kafkaClusterArn,
   KAFKA_BOOTSTRAP_SERVER:
     "${file(./serverlessVariables-${self:custom.stage}.yml):kafkaBootstrapServer}",
-  KAFKA_GROUP_ARN:
-    "arn:aws:kafka:${aws:region}:${aws:accountId}:group/${self:custom.kafkaClusterName}/${self:custom.kafkaClusterId}/*",
-  KAFKA_TOPIC_ARN_PREFIX:
-    "arn:aws:kafka:${aws:region}:${aws:accountId}:topic/${self:custom.kafkaClusterName}/${self:custom.kafkaClusterId}",
+  KAFKA_GROUP_ARN: `arn:aws:kafka:\${aws:region}:\${aws:accountId}:group/\${self:custom.kafkaClusterName}/${kafkaClusterId}/*`,
+  KAFKA_TOPIC_ARN_PREFIX: `arn:aws:kafka:\${aws:region}:\${aws:accountId}:topic/\${self:custom.kafkaClusterName}/${kafkaClusterId}`,
 };
 
 export const spaConfig = {
@@ -63,8 +63,6 @@ export const custom = {
   "serverless-offline": {
     noPrependStageInUrl: true,
   },
-  kafkaClusterId:
-    "${file(./serverlessVariables-${self:custom.stage}.yml):kafkaClusterId}",
   kafkaClusterName:
     "${file(./serverlessVariables-${self:custom.stage}.yml):kafkaClusterName}",
 };
