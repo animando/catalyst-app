@@ -1,4 +1,4 @@
-import { Consumer, Producer } from "kafkajs";
+import { Consumer, Kafka, Producer } from "kafkajs";
 
 export interface MskEvent {
   value: any;
@@ -20,6 +20,7 @@ export interface LocalConsumerConfiguration {
 }
 
 export interface KafkaClient {
+  kafka: Kafka;
   consumer: Consumer;
   producer: Producer;
 }

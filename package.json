@@ -11,6 +11,7 @@
   ],
   "scripts": {
     "build": "yarn workspace ui run build",
+    "deploy:topicManager": "yarn workspace backend run deploy:topicManager",
     "deploy:backend": "yarn workspace backend run deploy",
     "deploy:ui": "yarn workspace ui run deploy",
     "destroy:backend": "yarn workspace backend run destroy",

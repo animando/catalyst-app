@@ -26,6 +26,7 @@ export const createKafkaClient = (service: string): KafkaClient => {
   });
 
   return {
+    kafka,
     producer,
     consumer,
   };

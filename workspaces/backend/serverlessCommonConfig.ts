@@ -1,5 +1,7 @@
 /* eslint-disable no-template-curly-in-string */
 
+import type { AWS } from "@serverless/typescript";
+
 export const AWS_ACCOUNT_ID = "${aws:accountId}";
 export const AWS_REGION = "${aws:region}";
 
@@ -38,6 +40,19 @@ export const iamConfig = {
   IAM_ROLE_PREFIX: "arn:aws:iam::${aws:accountId}:role",
 };
 
+export const provider: AWS["provider"] = {
+  name: "aws",
+  runtime: "nodejs16.x",
+  region: "eu-west-2",
+  stage: "local",
+  environment: {
+    REGION: AWS_REGION,
+    KAFKA_BOOTSTRAP_SERVER: kafkaConfig.KAFKA_BOOTSTRAP_SERVER,
+    KAFKA_SSL_DISABLED: kafkaConfig.KAFKA_SSL_DISABLED,
+    KAFKAJS_NO_PARTITIONER_WARNING: "1",
+  },
+};
+
 export const custom = {
   stage: "${opt:stage, self:provider.stage}",
   esbuild: {
@@ -48,29 +63,8 @@ export const custom = {
   "serverless-offline": {
     noPrependStageInUrl: true,
   },
-  // accountId: "${aws:accountId}",
-  // region: "${aws:region}",
-  // spaUrl: "${file(./serverlessVariables-${self:custom.stage}.yml):spaUrl}",
   kafkaClusterId:
     "${file(./serverlessVariables-${self:custom.stage}.yml):kafkaClusterId}",
-  // kafkaSslDisabled:
-  //   "${file(./serverlessVariables-${self:custom.stage}.yml):kafkaSslDisabled}",
   kafkaClusterName:
     "${file(./serverlessVariables-${self:custom.stage}.yml):kafkaClusterName}",
-  // kafkaClusterArn:
-  //   "arn:aws:kafka:${aws:region}:${aws:accountId}:cluster/${self:custom.kafkaClusterName}/${self:custom.kafkaClusterId}",
-  // kafkaBootstrapServer:
-  //   "arn:aws:kafka:${aws:region}:${aws:accountId}:cluster/${self:custom.kafkaClusterName}/${self:custom.kafkaClusterId}",
-  // kafkaGroupArn:
-  //   "arn:aws:kafka:${aws:region}:${aws:accountId}:group/${self:custom.kafkaClusterName}/${self:custom.kafkaClusterId}/*",
-  // kafkaTopicArnPrefix:
-  //   "arn:aws:kafka:${aws:region}:${aws:accountId}:topic/${self:custom.kafkaClusterName}/${self:custom.kafkaClusterId}",
-  // mskSubnetId1:
-  //   "${file(./serverlessVariables-${self:custom.stage}.yml):mskSubnetId1}",
-  // mskSubnetId2:
-  //   "${file(./serverlessVariables-${self:custom.stage}.yml):mskSubnetId2}",
-  // mskSubnetId3:
-  //   "${file(./serverlessVariables-${self:custom.stage}.yml):mskSubnetId3}",
-  // lambdaSecurityGroup:
-  //   "${file(./serverlessVariables-${self:custom.stage}.yml):lambdaSecurityGroup}",
 };
