@@ -40,8 +40,7 @@ const config: AWS = {
     ...custom,
     scripts: {
       hooks: {
-        "after:deploy:deploy":
-          "sls invoke --function topicManager --stage ${self:custom.stage}",
+        "after:deploy:deploy": "yarn run run:topicManager",
       },
     },
   },
