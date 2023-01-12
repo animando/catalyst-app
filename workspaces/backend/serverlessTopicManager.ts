@@ -40,7 +40,8 @@ const config: AWS = {
     ...custom,
     scripts: {
       hooks: {
-        "after:deploy:deploy": 'echo "DUM DUM',
+        "after:deploy:deploy":
+          "sls invoke --function topicManager --stage ${self:custom.stage}",
       },
     },
   },
