@@ -17,6 +17,7 @@ const config: AWS = {
         "${file(./serverlessVariables-${self:custom.stage}.yml):kafkaBootstrapServer}",
       KAFKA_SSL_DISABLED:
         "${file(./serverlessVariables-${self:custom.stage}.yml):kafkaSslDisabled}",
+      KAFKAJS_NO_PARTITIONER_WARNING: "1",
     },
   },
   plugins: ["serverless-esbuild", "serverless-offline"],
