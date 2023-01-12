@@ -1,13 +1,13 @@
 import { applyHttpMiddleware } from "../../utils/applyHttpMiddleware";
+import { topics } from "../topics";
 import { kafka } from "./kafka";
-import { topic } from "../consumer1/config";
 
 const helloHandler = async () => {
   const now = new Date().toISOString();
   const { producer } = kafka;
   await producer.connect();
   await producer.send({
-    topic,
+    topic: topics.Consumer1Topic,
     messages: [
       {
         key: `${Math.floor(Math.random() * 1000)}`,

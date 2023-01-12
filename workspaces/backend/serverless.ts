@@ -1,5 +1,5 @@
-/* eslint-disable no-template-curly-in-string,import/no-extraneous-dependencies,import/no-import-module-exports */
-import { AWS } from "@serverless/typescript";
+/* eslint-disable import/no-import-module-exports */
+import type { AWS } from "@serverless/typescript";
 import { hello, iamRoleHello } from "./services/hello/serverless";
 import { consumer1, iamRoleConsumer1 } from "./services/consumer1/serverless";
 import { provider, custom, spaConfig } from "./serverlessCommonConfig";

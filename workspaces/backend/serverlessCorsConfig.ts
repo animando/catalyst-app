@@ -1,5 +1,3 @@
-/* eslint-disable no-template-curly-in-string */
-
 import { spaConfig } from "./serverlessCommonConfig";
 
 export const corsConfig = {

@@ -1,11 +1,12 @@
 import { LocalConsumerConfiguration } from "../types";
 import { handler } from "./handler";
 import { kafka } from "./kafka";
-import { topic, service } from "./config";
+import { service } from "./config";
+import { topics } from "../topics";
 
 const config: LocalConsumerConfiguration = {
   handler,
-  topic,
+  topic: topics.Consumer1Topic,
   service,
   kafka,
 };

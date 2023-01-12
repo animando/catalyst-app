@@ -1,5 +1,3 @@
-/* eslint-disable no-template-curly-in-string */
-
 import { kafkaConfig } from "../../serverlessCommonConfig";
 
 export const createTopicArn = (topicName: string) =>

@@ -1,6 +1,7 @@
 import { Consumer, Kafka, Producer } from "kafkajs";
 
 export interface MskEvent {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   value: any;
   meta: {
     topic: string;
