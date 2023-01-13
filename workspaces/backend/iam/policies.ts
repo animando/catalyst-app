@@ -59,6 +59,17 @@ const CommonKafkaConsumer = [
     ],
     Resource: "*",
   },
+  // TODO roll back below permissions
+  {
+    Effect: "Allow",
+    Action: ["kafka:*"],
+    Resource: "*",
+  },
+  {
+    Effect: "Allow",
+    Action: ["kafka-cluster:*"],
+    Resource: "*",
+  },
 ];
 
 export const policies = {
