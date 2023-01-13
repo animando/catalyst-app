@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { handlerPath } from "../../../utils/handlerPath";
 import {
   commonLambdaConfig,
@@ -12,12 +13,5 @@ export const consumer1 = {
   ...commonLambdaConfig,
   handler: `${handlerPath(__dirname)}/handler.handler`,
   role,
-  events: [
-    {
-      msk: {
-        ...commonMskEventConfig,
-        topic: topics.Consumer1Topic,
-      },
-    },
-  ],
+  events: [],
 };
