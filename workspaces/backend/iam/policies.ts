@@ -39,26 +39,26 @@ const CommonKafkaPublisher = [
     Action: ["kafka:DescribeCluster", "kafka:GetBootstrapBrokers"],
     Resource: "*",
   },
-  // {
-  //   Effect: "Allow",
-  //   Action: ["kafka-cluster:DescribeGroup", "kafka-cluster:AlterGroup"],
-  //   Resource: kafkaServerlessConfig.KAFKA_GROUP_ARN,
-  // },
+  {
+    Effect: "Allow",
+    Action: ["kafka-cluster:DescribeGroup", "kafka-cluster:AlterGroup"],
+    Resource: kafkaServerlessConfig.KAFKA_GROUP_ARN,
+  },
   {
     Effect: "Allow",
     Action: ["kafka-cluster:Connect"],
     Resource: kafkaServerlessConfig.KAFKA_CLUSTER_ARN,
   },
-  // {
-  //   Effect: "Allow",
-  //   Action: [
-  //     "ec2:DescribeSecurityGroups",
-  //     "ec2:DescribeVpcs",
-  //     "ec2:DeleteNetworkInterface",
-  //     "ec2:DescribeSubnets",
-  //   ],
-  //   Resource: "*",
-  // },
+  {
+    Effect: "Allow",
+    Action: [
+      "ec2:DescribeSecurityGroups",
+      "ec2:DescribeVpcs",
+      "ec2:DeleteNetworkInterface",
+      "ec2:DescribeSubnets",
+    ],
+    Resource: "*",
+  },
 ];
 
 const CommonKafkaConsumer = [
