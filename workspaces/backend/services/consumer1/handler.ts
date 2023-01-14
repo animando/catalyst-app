@@ -1,31 +1,33 @@
+import type { MSKEvent } from "aws-lambda";
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-console */
-export const handler = async (event: any) => {
+
+// type MessageHeader = any;
+// interface MessageRecord {
+//   topic: string;
+//   partition: number;
+//   offset: number;
+//   timestamp: number;
+//   timestampType: "CREATE_TIME";
+//   key: string;
+//   value: string;
+//   headers: MessageHeader[];
+// }
+// type TopicMessageRecords = Record<string, MessageRecord[]>;
+// interface MskEvent {
+//   records: TopicMessageRecords;
+// }
+export const handler = async (event: MSKEvent) => {
   // eslint-disable-next-line no-console
   console.log("got event", event);
 
-  //   const event = {
-  //     eventSource: "aws:kafka",
-  //     eventSourceArn:
-  //       "arn:aws:kafka:eu-west-2:XXXXX:cluster/catalyst/UUID",
-  //     bootstrapServers: CONNECT_STRING,
-  //     records: { "TOPIC-PARTITION": [] },
-  //   };
-  //   const recordsArrayItem = {
-  //     topic: "TOPIC",
-  //     partition: 3,
-  //     offset: 0,
-  //     timestamp: 1673632348195,
-  //     timestampType: "CREATE_TIME",
-  //     key: "NjI0",
-  //     value: "TWVzc2FnZSAyMDIzLTAxLTEzVDE3OjUyOjI3LjkwOVo=",
-  //     headers: [],
-  //   };
-  Object.entries(event.records).forEach((record: any) => {
-    console.log("got record", record);
-    console.log(JSON.stringify(record));
-    record.headers.forEach((header: any) => {
-      console.log("got header", header);
+  Object.entries(event.records).forEach(([topic, records]) => {
+    console.log("got topic", topic);
+    records.forEach((record) => {
+      console.log("got record", record);
+      record.headers.forEach((header) => {
+        console.log("got header", header);
+      });
     });
   });
 };
