@@ -16,17 +16,22 @@ export const handler = async () => {
   await admin.connect();
   const existingTopics = await admin.listTopics();
 
-  logger.info("all topics", { topics });
-
   const topicsToCreate = allTopics.filter(
     (topic) => !existingTopics.includes(topic)
   );
+  logger.info("topics", { allTopics, existingTopics });
 
-  await admin.createTopics({
-    topics: topicsToCreate.map((topic) => ({
-      topic,
-      numPartitions: NUM_PARTITIONS,
-      replicationFactor: REPLICATION_FACTOR,
-    })),
-  });
+  if (topicsToCreate.length) {
+    logger.info("Creating topics", { topicsToCreate });
+
+    await admin.createTopics({
+      topics: topicsToCreate.map((topic) => ({
+        topic,
+        numPartitions: NUM_PARTITIONS,
+        replicationFactor: REPLICATION_FACTOR,
+      })),
+    });
+  } else {
+    logger.info("Not topics to create");
+  }
 };
