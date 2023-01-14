@@ -139,6 +139,11 @@ const CommonKafkaConsumer = [
     ],
     Resource: kafkaServerlessConfig.KAFKA_CLUSTER_ARN,
   },
+  {
+    Effect: "Allow",
+    Action: ["kafka-cluster:AlterTransactionalId"],
+    Resource: "*",
+  },
 ];
 
 export const policies = {
