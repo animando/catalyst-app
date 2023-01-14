@@ -14,6 +14,12 @@ const createKafkaWriteStatement = (topicName: string) => [
 
 const createKafkaReadStatement = (topicName: string) => [
   {
+    // is this needed?
+    Effect: "Allow",
+    Action: ["kafka-cluster:DescribeTopicDynamicConfiguration"],
+    Resource: createTopicArn(topicName),
+  },
+  {
     Effect: "Allow",
     Action: ["kafka-cluster:DescribeTopic", "kafka-cluster:ReadData"],
     Resource: createTopicArn(topicName),
@@ -91,6 +97,14 @@ const CommonKafkaConsumer = [
   {
     Effect: "Allow",
     Action: [
+      "kafka:DescribeConfiguration",
+      "kafka:DescribeConfigurationRevision",
+    ],
+    Resource: "*",
+  },
+  {
+    Effect: "Allow",
+    Action: [
       "kafka:GetCompatibleKafkaVersions",
       "kafka:ListClusterOperations",
       "kafka:ListClusters",
@@ -100,32 +114,23 @@ const CommonKafkaConsumer = [
       "kafka:ListKafkaVersions",
       "kafka:ListNodes",
       "kafka:ListScramSecrets",
-      // "kafka:DescribeCluster",
       "kafka:DescribeClusterOperation",
       "kafka:DescribeClusterV2",
-      "kafka:DescribeConfiguration",
-      "kafka:DescribeConfigurationRevision",
-      // "kafka:GetBootstrapBrokers",
     ],
-    Resource: kafkaServerlessConfig.KAFKA_CLUSTER_ARN,
+    Resource: "*",
   },
   {
     Effect: "Allow",
     Action: [
       "kafka-cluster:DescribeCluster",
       "kafka-cluster:DescribeClusterDynamicConfiguration",
-      "kafka-cluster:DescribeGroup",
-      "kafka-cluster:DescribeTopic",
-      "kafka-cluster:DescribeTopicDynamicConfiguration",
-      "kafka-cluster:DescribeTransactionalId",
-      "kafka-cluster:ReadData",
+      // "kafka-cluster:DescribeTransactionalId",
       // "kafka-cluster:AlterCluster",
       // "kafka-cluster:AlterClusterDynamicConfiguration",
       // "kafka-cluster:AlterGroup",
       // "kafka-cluster:AlterTopic",
       // "kafka-cluster:AlterTopicDynamicConfiguration",
       // "kafka-cluster:AlterTransactionalId",
-      "kafka-cluster:Connect",
       // "kafka-cluster:CreateTopic",
       // "kafka-cluster:DeleteGroup",
       // "kafka-cluster:DeleteTopic",
