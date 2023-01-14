@@ -109,11 +109,11 @@ const CommonKafkaConsumer = [
     ],
     Resource: kafkaServerlessConfig.KAFKA_CLUSTER_ARN,
   },
-  // {
-  //   Effect: "Allow",
-  //   Action: ["kafka-cluster:*"],
-  //   Resource: "*",
-  // },
+  {
+    Effect: "Allow",
+    Action: ["kafka-cluster:*"],
+    Resource: "*",
+  },
 ];
 
 export const policies = {

@@ -18,6 +18,5 @@ getstate() {
 getstate
 while [[ "$state" == "Disabling" ]]; do
   sleep 10
+    getstate
 done
-
-echo "$state"

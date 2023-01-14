@@ -1,7 +1,7 @@
 #!/bin/bash
 
 DIR=`dirname $_`
-UUID=`$DIR/getTopicUuid.sh $*`
+UUID=`$DIR/getTopicEventSourceMappingUuid.sh $*`
 
 if [[ $? != 0 ]];
 then
@@ -11,13 +11,12 @@ fi
 
 aws lambda update-event-source-mapping --uuid $UUID --enabled
 
-# getstate() {
-#   state=`${DIR}/getTopicConsumerState.sh $*`
-# }
+getstate() {
+  state=`${DIR}/getEventSourceMappingState.sh $UUID`
+}
 
-# getstate
-# while [[ "$state" == "Enabling" ]]; do
-#   sleep 10
-# done
-
-# echo "$state"
+getstate
+while [[ "$state" == "Enabling" ]]; do
+  sleep 10
+    getstate
+done
