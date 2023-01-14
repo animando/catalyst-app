@@ -4,29 +4,13 @@ import { Message } from "../types";
 import { logger } from "./logger";
 
 const consumer1Handler = async (event: Message) => {
-  const {
-    headers,
-    key,
-    offset,
-    partition,
-    timestamp,
-    timestampType,
-    topic,
-    value,
-  } = event;
+  const { value } = event;
 
-  logger.info("Got message", {
-    headers,
-    key,
-    offset,
-    partition,
-    timestamp,
-    timestampType,
-    topic,
+  logger.info("Processing message", {
     value,
   });
 };
 
-const mskHandler = createMskHandler(consumer1Handler);
+const mskHandler = createMskHandler(consumer1Handler, logger);
 
 export const handler = (event: MSKEvent) => mskHandler(event);
