@@ -1,5 +1,5 @@
 import { MSKEvent } from "aws-lambda";
-import { parseMskEvent } from "./parseMskEvent";
+import { parseMskMessages } from "./parseMskMessages";
 
 const testEvent: MSKEvent = {
   eventSource: "aws:kafka",
@@ -13,13 +13,17 @@ const testEvent: MSKEvent = {
         timestamp: 1673688372120,
         timestampType: "CREATE_TIME",
         key: "ODA4",
-        value: "TWVzc2FnZSAyMDIzLTAxLTE0VDA5OjI2OjExLjg3Mlo=",
-        headers: [{ header1: [104, 101, 97, 100, 101, 114, 49] }],
+        value:
+          "eyJtZXNzYWdlIjoiSGVsbG8iLCJub3ciOiIyMDIzLTAxLTE0VDExOjE3OjExLjkzNVoifQ==",
+        headers: [
+          { header1: [104, 101, 97, 100, 101, 114, 49] },
+          { header2: [104, 101, 97, 100, 101, 114, 50] },
+        ],
       },
     ],
   },
 };
-const parsedEvents = [
+const expectedEvents = [
   {
     topic: "consumer1-topic",
     partition: 3,
@@ -27,12 +31,13 @@ const parsedEvents = [
     timestamp: 1673688372120,
     timestampType: "CREATE_TIME",
     key: "808",
-    value: "Message 2023-01-14T09:26:11.872Z",
-    headers: [{ header1: "header1" }],
+    value: { message: "Hello", now: "2023-01-14T11:17:11.935Z" },
+    headers: { header1: "header1", header2: "header2" },
   },
 ];
 describe("parseMskEvent", () => {
   it("should parse event", () => {
-    expect(parseMskEvent(testEvent)).toEqual(parsedEvents);
+    const parsedEvents = parseMskMessages(testEvent);
+    expect(parsedEvents).toEqual(expectedEvents);
   });
 });

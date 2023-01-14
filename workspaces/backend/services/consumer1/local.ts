@@ -1,6 +1,6 @@
 import { LocalConsumerConfiguration } from "../types";
 import { handler } from "./handler";
-import { kafka } from "./kafka";
+import { kafka } from "./utils/kafka";
 import { service } from "./config";
 import { topics } from "../topics";
 

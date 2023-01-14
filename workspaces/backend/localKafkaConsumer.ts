@@ -1,3 +1,4 @@
+/* eslint-disable global-require */
 /* eslint-disable import/no-dynamic-require */
 /* eslint-disable @typescript-eslint/no-var-requires */
 import { MSKEvent } from "aws-lambda";
@@ -5,16 +6,17 @@ import "dotenv/config";
 import { handler } from "./services/consumer1/handler";
 import { LocalConsumerConfiguration } from "./services/types";
 
-const name = "consumer1";
-const config: LocalConsumerConfiguration =
-  require(`./services/${name}/local`).default;
-if (!config) {
-  throw Error(`Unable to load config: ${name}`);
-}
+const consumers = ["consumer1"];
 
-const { consumer } = config.kafka;
+const runConsumer = async (consumerName: string) => {
+  const config: LocalConsumerConfiguration =
+    require(`./services/${consumerName}/local`).default;
+  if (!config) {
+    throw Error(`Unable to load config: ${consumerName}`);
+  }
 
-(async () => {
+  const { consumer } = config.kafka;
+
   await consumer.connect();
   await consumer.subscribe({ topic: config.topic });
   await consumer.run({
@@ -38,7 +40,13 @@ const { consumer } = config.kafka;
           ],
         },
       };
-      handler(event);
+      return handler(event);
     },
+  });
+};
+
+(async () => {
+  consumers.forEach(async (consumerName) => {
+    await runConsumer(consumerName);
   });
 })();

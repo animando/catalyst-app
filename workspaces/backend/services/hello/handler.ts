@@ -1,26 +1,18 @@
 import { applyHttpMiddleware } from "../../utils/applyHttpMiddleware";
+import { publishMessage } from "../../utils/publishMessage";
 import { topics } from "../topics";
+import { logger } from "./logger";
 import { kafka } from "./kafka";
 
 const helloHandler = async () => {
   const now = new Date().toISOString();
-  const { producer } = kafka;
-  await producer.connect();
-  await producer.send({
-    topic: topics.Consumer1Topic,
-    messages: [
-      {
-        key: `${Math.floor(Math.random() * 1000)}`,
-        value: `Message ${now}`,
-        timestamp: `${Date.now()}`,
-        headers: {
-          header1: "header1",
-          header2: "header2",
-        },
-      },
-    ],
-  });
-  await producer.disconnect();
+  const key = `${Math.floor(Math.random() * 1000)}`;
+
+  await publishMessage(
+    { topic: topics.Consumer1Topic, key },
+    { message: "Hello", now },
+    { kafka, logger }
+  );
 
   return {
     statusCode: 200,
