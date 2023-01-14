@@ -11,6 +11,8 @@ const kafkaClusterName =
   "${file(./serverlessVariables-${self:custom.stage}.yml):kafkaClusterName}";
 const arnTokens = kafkaClusterArn.split("/");
 const kafkaClusterId = arnTokens[arnTokens.length - 1];
+console.log({ kafkaClusterId });
+
 export const kafkaConfig = {
   KAFKA_CLUSTER_ID: kafkaClusterId,
   KAFKA_SSL_DISABLED:
@@ -19,8 +21,8 @@ export const kafkaConfig = {
   KAFKA_CLUSTER_ARN: kafkaClusterArn,
   KAFKA_BOOTSTRAP_SERVER:
     "${file(./serverlessVariables-${self:custom.stage}.yml):kafkaBootstrapServer}",
-  KAFKA_GROUP_ARN: `arn:aws:kafka:\${aws:region}:\${aws:accountId}:group/${kafkaClusterName}/${kafkaClusterId}/*`,
-  KAFKA_TOPIC_ARN_PREFIX: `arn:aws:kafka:\${aws:region}:\${aws:accountId}:topic/${kafkaClusterName}/${kafkaClusterId}`,
+  KAFKA_GROUP_ARN: `arn:aws:kafka:\${aws:region}:\${aws:accountId}:group/\${file(./serverlessVariables-\${self:custom.stage}.yml):kafkaClusterName}/${kafkaClusterId}/*`,
+  KAFKA_TOPIC_ARN_PREFIX: `arn:aws:kafka:\${aws:region}:\${aws:accountId}:topic/\${file(./serverlessVariables-\${self:custom.stage}.yml):kafkaClusterName}/${kafkaClusterId}`,
 };
 
 export const spaConfig = {

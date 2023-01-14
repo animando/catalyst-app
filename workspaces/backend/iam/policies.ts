@@ -37,7 +37,7 @@ const CommonKafkaConsumer = [
   {
     Effect: "Allow",
     Action: ["kafka:DescribeCluster", "kafka:GetBootstrapBrokers"],
-    Resource: kafkaConfig.KAFKA_CLUSTER_ARN,
+    Resource: "*",
   },
   {
     Effect: "Allow",
