@@ -9,13 +9,12 @@ then
   exit -1
 fi
 
-aws lambda update-event-source-mapping --uuid $UUID --no-enabled
+state=`aws lambda update-event-source-mapping --uuid $UUID --no-enabled --query "State" --output text`
 
 getstate() {
   state=`${DIR}/getEventSourceMappingState.sh $UUID`
 }
 
-getstate
 while [[ "$state" == "Disabling" ]]; do
   sleep 10
     getstate

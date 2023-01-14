@@ -124,7 +124,6 @@ const CommonKafkaConsumer = [
     Action: [
       "kafka-cluster:DescribeCluster",
       "kafka-cluster:DescribeClusterDynamicConfiguration",
-      // "kafka-cluster:DescribeTransactionalId",
       // "kafka-cluster:AlterCluster",
       // "kafka-cluster:AlterClusterDynamicConfiguration",
       // "kafka-cluster:AlterGroup",
@@ -141,7 +140,10 @@ const CommonKafkaConsumer = [
   },
   {
     Effect: "Allow",
-    Action: ["kafka-cluster:AlterTransactionalId"],
+    Action: [
+      "kafka-cluster:AlterTransactionalId",
+      "kafka-cluster:DescribeTransactionalId",
+    ],
     Resource: "*",
   },
 ];
