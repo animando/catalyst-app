@@ -28,7 +28,7 @@ const expectedEvents = [
     topic: "consumer1-topic",
     partition: 3,
     offset: 2,
-    timestamp: 1673688372120,
+    timestamp: new Date("2023-01-14T09:26:12.120Z"),
     timestampType: "CREATE_TIME",
     key: "808",
     value: { message: "Hello", now: "2023-01-14T11:17:11.935Z" },
