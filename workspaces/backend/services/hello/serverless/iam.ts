@@ -3,7 +3,6 @@ import { createRole } from "../../../utils/serverless/iamHelpers";
 import { role } from "../config";
 
 export const iamRoleHello = createRole(role, [
-  // ...policies.KafkaAdmin, // TODO roll this back
   ...policies.CommonKafkaPublisher,
   ...policies.KafkaReadWriteConsumer1,
 ]);

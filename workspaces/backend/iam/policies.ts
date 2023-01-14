@@ -34,11 +34,11 @@ const createKafkaAdminStatement = () => [
 ];
 
 const CommonKafkaPublisher = [
-  // {
-  //   Effect: "Allow",
-  //   Action: ["kafka:DescribeCluster", "kafka:GetBootstrapBrokers"],
-  //   Resource: "*",
-  // },
+  {
+    Effect: "Allow",
+    Action: ["kafka:DescribeCluster", "kafka:GetBootstrapBrokers"],
+    Resource: "*",
+  },
   // {
   //   Effect: "Allow",
   //   Action: ["kafka-cluster:DescribeGroup", "kafka-cluster:AlterGroup"],
