@@ -20,7 +20,7 @@ export interface Message {
   topic: string;
   partition: number;
   offset: number;
-  timestamp: number;
+  timestamp: Date;
   timestampType: "CREATE_TIME" | "LOG_APPEND_TIME";
   key: string;
   value: any;

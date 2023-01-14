@@ -4,7 +4,7 @@ import { Message } from "../services/types";
 export const parseMskMessages = (event: MSKEvent): Message[] =>
   Object.entries(event.records).flatMap(([_, records]) =>
     records.flatMap((record) => {
-      const { value, key, ...rest } = record;
+      const { value, key, timestamp, ...rest } = record;
       const headers = record.headers
         .flatMap((header) => {
           const entries = Object.entries(header).map(
@@ -28,6 +28,7 @@ export const parseMskMessages = (event: MSKEvent): Message[] =>
 
       return {
         ...rest,
+        timestamp: new Date(timestamp),
         headers,
         value: JSON.parse(Buffer.from(value, "base64").toString()),
         key: Buffer.from(key, "base64").toString(),

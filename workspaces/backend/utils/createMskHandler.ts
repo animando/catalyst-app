@@ -8,10 +8,11 @@ export const createMskHandler =
   async (event: MSKEvent) => {
     const messages = parseMskMessages(event);
 
+    logger.info("Consumed messages", {
+      messages,
+    });
+
     messages.forEach(async (message) => {
-      logger.info("Consuming message", {
-        message,
-      });
       await payloadHandler(message);
     });
   };

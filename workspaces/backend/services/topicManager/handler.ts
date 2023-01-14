@@ -32,6 +32,6 @@ export const handler = async () => {
       })),
     });
   } else {
-    logger.info("Not topics to create");
+    logger.info("No topics to create");
   }
 };
