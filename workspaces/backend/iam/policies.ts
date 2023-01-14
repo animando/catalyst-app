@@ -37,7 +37,7 @@ const CommonKafkaConsumer = [
   {
     Effect: "Allow",
     Action: ["kafka:DescribeCluster", "kafka:GetBootstrapBrokers"],
-    Resource: "*",
+    Resource: kafkaConfig.KAFKA_CLUSTER_ARN,
   },
   {
     Effect: "Allow",
@@ -60,16 +60,32 @@ const CommonKafkaConsumer = [
     Resource: "*",
   },
   // TODO roll back below permissions
-  {
-    Effect: "Allow",
-    Action: ["kafka:*"],
-    Resource: "*",
-  },
-  {
-    Effect: "Allow",
-    Action: ["kafka-cluster:*"],
-    Resource: "*",
-  },
+  // {
+  //   Effect: "Allow",
+  //   Action: [
+  //     "kafka:GetCompatibleKafkaVersions",
+  //     "kafka:ListClusterOperations",
+  //     "kafka:ListClusters",
+  //     "kafka:ListClustersV2",
+  //     "kafka:ListConfigurationRevisions",
+  //     "kafka:ListConfigurations",
+  //     "kafka:ListKafkaVersions",
+  //     "kafka:ListNodes",
+  //     "kafka:ListScramSecrets",
+  //     "kafka:DescribeCluster",
+  //     "kafka:DescribeClusterOperation",
+  //     "kafka:DescribeClusterV2",
+  //     "kafka:DescribeConfiguration",
+  //     "kafka:DescribeConfigurationRevision",
+  //     "kafka:GetBootstrapBrokers",
+  //   ],
+  //   Resource: kafkaConfig.KAFKA_CLUSTER_ARN,
+  // },
+  // {
+  //   Effect: "Allow",
+  //   Action: ["kafka-cluster:*"],
+  //   Resource: "*",
+  // },
 ];
 
 export const policies = {
