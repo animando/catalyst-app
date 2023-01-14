@@ -10,6 +10,10 @@
   ],
   "rules": {
     "import/prefer-default-export": 0,
-    "no-implicit-globals": "error"
+    "no-implicit-globals": "error",
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      { "argsIgnorePattern": "^_" }
+    ]
   }
 }

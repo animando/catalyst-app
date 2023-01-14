@@ -15,6 +15,7 @@ const helloHandler = async () => {
         timestamp: `${Date.now()}`,
         headers: {
           header1: "header1",
+          header2: "header2",
         },
       },
     ],

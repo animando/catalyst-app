@@ -17,13 +17,17 @@
   "devDependencies": {
     "@serverless/typescript": "^3.25.0",
     "@types/aws-lambda": "^8.10.109",
+    "@types/jest": "^29.2.5",
     "esbuild": "^0.16.15",
     "serverless": "^3.26.0",
     "serverless-esbuild": "^1.37.0",
     "serverless-offline": "^12.0.4",
-    "serverless-plugin-scripts": "^1.0.2"
+    "serverless-plugin-scripts": "^1.0.2",
+    "ts-jest": "^29.0.5"
   },
   "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
     "run:topicManager": "serverless invoke --function topicManager --stage dev --config serverlessTopicManager.ts",
     "deploy:topicManager": "serverless deploy --stage dev --config serverlessTopicManager.ts",
     "destroy:topicManager": "serverless destroy --stage dev --config serverlessTopicManager.ts",
