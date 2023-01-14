@@ -5,42 +5,31 @@ import type { AWS } from "@serverless/typescript";
 export const AWS_ACCOUNT_ID = "${aws:accountId}";
 export const AWS_REGION = "${aws:region}";
 
-const kafkaClusterArn =
-  "${file(./serverlessVariables-${self:custom.stage}.yml):kafkaClusterArn}";
-const kafkaClusterName =
-  "${file(./serverlessVariables-${self:custom.stage}.yml):kafkaClusterName}";
-const arnTokens = kafkaClusterArn.split("/");
-const kafkaClusterId = arnTokens[arnTokens.length - 1];
-console.log({ kafkaClusterId });
+// const arnTokens = kafkaClusterArn.split("/");
+// const kafkaClusterId = arnTokens[arnTokens.length - 1];
 
-export const kafkaConfig = {
-  KAFKA_CLUSTER_ID: kafkaClusterId,
-  KAFKA_SSL_DISABLED:
-    "${file(./serverlessVariables-${self:custom.stage}.yml):kafkaSslDisabled}",
-  KAFKA_CLUSTER_NAME: kafkaClusterName,
-  KAFKA_CLUSTER_ARN: kafkaClusterArn,
-  KAFKA_BOOTSTRAP_SERVER:
-    "${file(./serverlessVariables-${self:custom.stage}.yml):kafkaBootstrapServer}",
-  KAFKA_GROUP_ARN: `arn:aws:kafka:\${aws:region}:\${aws:accountId}:group/\${file(./serverlessVariables-\${self:custom.stage}.yml):kafkaClusterName}/${kafkaClusterId}/*`,
-  KAFKA_TOPIC_ARN_PREFIX: `arn:aws:kafka:\${aws:region}:\${aws:accountId}:topic/\${file(./serverlessVariables-\${self:custom.stage}.yml):kafkaClusterName}/${kafkaClusterId}`,
+export const kafkaServerlessConfig = {
+  KAFKA_CLUSTER_ID: "${self:custom.kafkaClusterId}",
+  KAFKA_SSL_DISABLED: "${self:custom.kafkaSslDisabled}",
+  KAFKA_CLUSTER_NAME: "${self:custom.kafkaClusterName}",
+  KAFKA_CLUSTER_ARN: "${self:custom.kafkaClusterArn}",
+  KAFKA_BOOTSTRAP_SERVER: "${self:custom.kafkaBootstrapServer}",
+  KAFKA_GROUP_ARN: "${self:custom.kafkaGroupArn}",
+  KAFKA_TOPIC_ARN_PREFIX: "${self:custom.kafkaTopicArnPrefix}",
 };
 
-export const spaConfig = {
-  SPA_URL: "${file(./serverlessVariables-${self:custom.stage}.yml):spaUrl}",
+export const spaServerlessConfig = {
+  SPA_URL: "${self:custom.spaUrl}",
 };
 
-export const vpcConfig = {
-  MSK_SUBNET_ID1:
-    "${file(./serverlessVariables-${self:custom.stage}.yml):mskSubnetId1}",
-  MSK_SUBNET_ID2:
-    "${file(./serverlessVariables-${self:custom.stage}.yml):mskSubnetId2}",
-  MSK_SUBNET_ID3:
-    "${file(./serverlessVariables-${self:custom.stage}.yml):mskSubnetId3}",
-  LAMBDA_SECURITY_GROUP:
-    "${file(./serverlessVariables-${self:custom.stage}.yml):lambdaSecurityGroup}",
+export const vpcServerlessConfig = {
+  MSK_SUBNET_ID1: "${self:custom.mskSubnetId1}",
+  MSK_SUBNET_ID2: "${self:custom.mskSubnetId2}",
+  MSK_SUBNET_ID3: "${self:custom.mskSubnetId3}",
+  LAMBDA_SECURITY_GROUP: "${self:custom.lambdaSecurityGroup}",
 };
 
-export const iamConfig = {
+export const iamServerlessConfig = {
   IAM_ROLE_PREFIX: "arn:aws:iam::${aws:accountId}:role",
 };
 
@@ -51,8 +40,8 @@ export const provider: AWS["provider"] = {
   stage: "local",
   environment: {
     REGION: AWS_REGION,
-    KAFKA_BOOTSTRAP_SERVER: kafkaConfig.KAFKA_BOOTSTRAP_SERVER,
-    KAFKA_SSL_DISABLED: kafkaConfig.KAFKA_SSL_DISABLED,
+    KAFKA_BOOTSTRAP_SERVER: kafkaServerlessConfig.KAFKA_BOOTSTRAP_SERVER,
+    KAFKA_SSL_DISABLED: kafkaServerlessConfig.KAFKA_SSL_DISABLED,
     KAFKAJS_NO_PARTITIONER_WARNING: "1",
   },
 };
@@ -67,4 +56,29 @@ export const custom = {
   "serverless-offline": {
     noPrependStageInUrl: true,
   },
+  kafkaClusterArn:
+    "${file(./serverlessVariables-${self:custom.stage}.yml):kafkaClusterArn}",
+  kafkaClusterName:
+    "${file(./serverlessVariables-${self:custom.stage}.yml):kafkaClusterName}",
+  kafkaClusterId:
+    "${file(./serverlessVariables-${self:custom.stage}.yml):kafkaClusterId}",
+  kafkaBootstrapServer:
+    "${file(./serverlessVariables-${self:custom.stage}.yml):kafkaBootstrapServer}",
+  kafkaSslDisabled:
+    "${file(./serverlessVariables-${self:custom.stage}.yml):kafkaSslDisabled}",
+  kafkaGroupArn:
+    "arn:aws:kafka:${aws:region}:${aws:accountId}:group/${self:custom.stage}/${self:custom.kafkaClusterName}/${self:custom.kafkaClusterId}/*",
+  kafkaTopicArnPrefix:
+    "arn:aws:kafka:${aws:region}:${aws:accountId}:topic/${self:custom.kafkaClusterName}/${self:custom.kafkaClusterId}",
+
+  mskSubnetId1:
+    "${file(./serverlessVariables-${self:custom.stage}.yml):mskSubnetId1}",
+  mskSubnetId2:
+    "${file(./serverlessVariables-${self:custom.stage}.yml):mskSubnetId2}",
+  mskSubnetId3:
+    "${file(./serverlessVariables-${self:custom.stage}.yml):mskSubnetId3}",
+  lambdaSecurityGroup:
+    "${file(./serverlessVariables-${self:custom.stage}.yml):lambdaSecurityGroup}",
+
+  spaUrl: "${file(./serverlessVariables-${self:custom.stage}.yml):spaUrl}",
 };

@@ -1,9 +1,10 @@
 spaUrl: localhost:5173
 kafkaClusterArn: local/local
-mskSubnetId1: local
-mskSubnetId2: local
-mskSubnetId3: local
-kafkaClusterName: local
-lambdaSecurityGroup: local
+mskSubnetId1: local.mskSubnet1
+mskSubnetId2: local.mskSubnet2
+mskSubnetId3: local.mskSubnet3
+kafkaClusterName: local.kafkaClusterName
+kafkaClusterId: local.kafkaClusterId
+lambdaSecurityGroup: local.lambdaSecurityGroup
 kafkaBootstrapServer: localhost:29092
 kafkaSslDisabled: true

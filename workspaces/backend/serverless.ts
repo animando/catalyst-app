@@ -2,7 +2,11 @@
 import type { AWS } from "@serverless/typescript";
 import { hello, iamRoleHello } from "./services/hello/serverless";
 import { consumer1, iamRoleConsumer1 } from "./services/consumer1/serverless";
-import { provider, custom, spaConfig } from "./serverlessCommonConfig";
+import {
+  provider,
+  custom,
+  spaServerlessConfig,
+} from "./serverlessCommonConfig";
 
 const config: AWS = {
   service: "backend",
@@ -10,7 +14,7 @@ const config: AWS = {
     ...provider,
     environment: {
       ...provider.environment,
-      SPA_URL: spaConfig.SPA_URL,
+      SPA_URL: spaServerlessConfig.SPA_URL,
     },
   },
   plugins: ["serverless-esbuild", "serverless-offline"],

@@ -1,8 +1,8 @@
-import { kafkaConfig } from "../serverlessCommonConfig";
+import { kafkaServerlessConfig } from "../serverlessCommonConfig";
 import { topics } from "../services/topics";
 
 const createTopicArn = (topicName: string) =>
-  `${kafkaConfig.KAFKA_TOPIC_ARN_PREFIX}/${topicName}`;
+  `${kafkaServerlessConfig.KAFKA_TOPIC_ARN_PREFIX}/${topicName}`;
 
 const createKafkaWriteStatement = (topicName: string) => [
   {
@@ -42,12 +42,12 @@ const CommonKafkaConsumer = [
   {
     Effect: "Allow",
     Action: ["kafka-cluster:DescribeGroup", "kafka-cluster:AlterGroup"],
-    Resource: kafkaConfig.KAFKA_GROUP_ARN,
+    Resource: kafkaServerlessConfig.KAFKA_GROUP_ARN,
   },
   {
     Effect: "Allow",
     Action: ["kafka-cluster:Connect"],
-    Resource: kafkaConfig.KAFKA_CLUSTER_ARN,
+    Resource: kafkaServerlessConfig.KAFKA_CLUSTER_ARN,
   },
   {
     Effect: "Allow",

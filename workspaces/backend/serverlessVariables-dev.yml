@@ -1,5 +1,6 @@
 spaUrl: https://${ssm:catalyst-ui-distribution-domain}
 kafkaClusterArn: ${ssm:catalyst-kafka-cluster-arn}
+kafkaClusterId: f46ca2bb-083c-4c08-a8a4-478d2769c4ea-3
 mskSubnetId1: ${ssm:msk-subnet-az1-id}
 mskSubnetId2: ${ssm:msk-subnet-az2-id}
 mskSubnetId3: ${ssm:msk-subnet-az3-id}
