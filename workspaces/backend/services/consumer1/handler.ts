@@ -3,7 +3,12 @@ import { createMskHandler } from "../../utils/createMskHandler";
 import { Message } from "../types";
 import { logger } from "./logger";
 
-const consumer1Handler = async (event: Message) => {
+export interface Consumer1Message {
+  message: string;
+  now: string;
+}
+
+const consumer1Handler = async (event: Message<Consumer1Message>) => {
   const { value } = event;
 
   logger.info("Processing message", {

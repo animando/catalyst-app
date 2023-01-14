@@ -4,9 +4,9 @@ import { KafkaMessageConsumer } from "../services/types";
 import { parseMskMessages } from "./parseMskMessages";
 
 export const createMskHandler =
-  (payloadHandler: KafkaMessageConsumer, logger: Logger) =>
+  <T>(payloadHandler: KafkaMessageConsumer<T>, logger: Logger) =>
   async (event: MSKEvent) => {
-    const messages = parseMskMessages(event);
+    const messages = parseMskMessages<T>(event);
 
     logger.info("Consumed messages", {
       messages,

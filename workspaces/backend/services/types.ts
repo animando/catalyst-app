@@ -16,15 +16,15 @@ export interface KafkaClient {
 
 export type MessageHeaders = Record<string, string | undefined>;
 
-export interface Message {
+export interface Message<T> {
   topic: string;
   partition: number;
   offset: number;
   timestamp: Date;
   timestampType: "CREATE_TIME" | "LOG_APPEND_TIME";
   key: string;
-  value: any;
+  value: T;
   headers: MessageHeaders;
 }
 
-export type KafkaMessageConsumer = (message: Message) => Promise<void>;
+export type KafkaMessageConsumer<T> = (message: Message<T>) => Promise<void>;

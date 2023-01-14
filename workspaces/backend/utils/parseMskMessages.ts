@@ -1,7 +1,7 @@
 import { MSKEvent } from "aws-lambda";
 import { Message } from "../services/types";
 
-export const parseMskMessages = (event: MSKEvent): Message[] =>
+export const parseMskMessages = <T>(event: MSKEvent): Message<T>[] =>
   Object.entries(event.records).flatMap(([_, records]) =>
     records.flatMap((record) => {
       const { value, key, timestamp, ...rest } = record;
