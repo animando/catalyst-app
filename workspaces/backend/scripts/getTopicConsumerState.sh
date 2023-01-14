@@ -1,7 +1,7 @@
 #!/bin/bash
 
 DIR=`dirname $_`
-UUID=`$DIR/getTopicUuid.sh $*`
+UUID=`$DIR/getTopicEventSourceMappingUuid.sh $*`
 
 if [[ $? != 0 ]];
 then
@@ -9,4 +9,4 @@ then
   exit -1
 fi
 
-aws lambda get-event-source-mapping --uuid $UUID  --query "State" --output text
+$DIR/getEventSourceMappingState.sh $UUID
