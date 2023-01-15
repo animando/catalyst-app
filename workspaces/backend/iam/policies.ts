@@ -123,34 +123,32 @@ const CommonKafka = [
   {
     Effect: "Allow",
     Action: [
-      // all
-
       // already got, for all resources
 
-      // already got, resource restricted - trying
+      // already got, resource restricted - 1) one of these made the difference
       "kafka-cluster:Connect",
       "kafka-cluster:DescribeGroup",
       "kafka-cluster:AlterGroup",
       "kafka-cluster:WriteData",
 
-      // don't mind giving (RO) - these don't fix it
-      "kafka-cluster:DescribeCluster",
-      "kafka-cluster:DescribeClusterDynamicConfiguration",
-      "kafka-cluster:DescribeTopic",
-      "kafka-cluster:DescribeTopicDynamicConfiguration",
-      "kafka-cluster:DescribeTransactionalId",
-      "kafka-cluster:ReadData",
-      "kafka-cluster:WriteDataIdempotently",
+      // don't mind giving (RO) - these don't fix it 2) can I now remove these?
+      // "kafka-cluster:DescribeCluster",
+      // "kafka-cluster:DescribeClusterDynamicConfiguration",
+      // "kafka-cluster:DescribeTopic",
+      // "kafka-cluster:DescribeTopicDynamicConfiguration",
+      // "kafka-cluster:DescribeTransactionalId",
+      // "kafka-cluster:ReadData",
+      // "kafka-cluster:WriteDataIdempotently",
 
-      // shouldn't have (RW) - these don't fix it
-      "kafka-cluster:AlterCluster",
-      "kafka-cluster:AlterClusterDynamicConfiguration",
-      "kafka-cluster:AlterTopic",
-      "kafka-cluster:AlterTopicDynamicConfiguration",
-      "kafka-cluster:AlterTransactionalId",
-      "kafka-cluster:CreateTopic",
-      "kafka-cluster:DeleteGroup",
-      "kafka-cluster:DeleteTopic",
+      // shouldn't have (RW) - these don't fix it2) can I now remove these?
+      // "kafka-cluster:AlterCluster",
+      // "kafka-cluster:AlterClusterDynamicConfiguration",
+      // "kafka-cluster:AlterTopic",
+      // "kafka-cluster:AlterTopicDynamicConfiguration",
+      // "kafka-cluster:AlterTransactionalId",
+      // "kafka-cluster:CreateTopic",
+      // "kafka-cluster:DeleteGroup",
+      // "kafka-cluster:DeleteTopic",
     ],
     Resource: "*",
   },
