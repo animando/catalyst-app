@@ -1,10 +1,16 @@
 export const createIamRoleArn = (roleName: string) =>
   `arn:aws:iam::\${self:custom.accountId}:role/${roleName}`;
 
+interface IamStatement {
+  Effect: string;
+  Action: string | string[];
+  Resource: string | string[];
+}
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const createRole = (
   roleName: string,
-  statements: Array<any>,
+  statements: Array<IamStatement>,
   managedPolicyArns: Array<string> = []
 ) => ({
   Type: "AWS::IAM::Role",

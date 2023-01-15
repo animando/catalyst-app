@@ -14,12 +14,6 @@ const createKafkaWriteStatement = (topicName: string) => [
 
 const createKafkaReadStatement = (topicName: string) => [
   {
-    // is this needed?
-    Effect: "Allow",
-    Action: ["kafka-cluster:DescribeTopicDynamicConfiguration"],
-    Resource: createTopicArn(topicName),
-  },
-  {
     Effect: "Allow",
     Action: ["kafka-cluster:DescribeTopic", "kafka-cluster:ReadData"],
     Resource: createTopicArn(topicName),
@@ -39,7 +33,12 @@ const createKafkaAdminStatement = () => [
   },
 ];
 
-const CommonKafkaPublisher = [
+const CommonKafka = [
+  {
+    Effect: "Allow",
+    Action: ["kafka-cluster:Connect"],
+    Resource: kafkaServerlessConfig.KAFKA_CLUSTER_ARN,
+  },
   {
     Effect: "Allow",
     Action: ["kafka:DescribeCluster", "kafka:GetBootstrapBrokers"],
@@ -52,11 +51,6 @@ const CommonKafkaPublisher = [
   },
   {
     Effect: "Allow",
-    Action: ["kafka-cluster:Connect"],
-    Resource: kafkaServerlessConfig.KAFKA_CLUSTER_ARN,
-  },
-  {
-    Effect: "Allow",
     Action: [
       "ec2:DescribeSecurityGroups",
       "ec2:DescribeVpcs",
@@ -65,92 +59,32 @@ const CommonKafkaPublisher = [
     ],
     Resource: "*",
   },
+  {
+    Effect: "Allow",
+    Action: [
+      "ec2:CreateNetworkInterface",
+      "ec2:DescribeNetworkInterfaces",
+      "ec2:DeleteNetworkInterface",
+    ],
+    Resource: "*",
+  },
+  // {
+  //   Action: ["lambda:UpdateEventSourceMapping"],
+  //   Resource: "arn:aws:lambda:eu-west-2:accountId:event-source-mapping:*",
+  //   Effect: "Allow",
+  // },
+  // {
+  //   Action: "lambda:ListEventSourceMappings",
+  //   Resource: ["*"],
+  //   Effect: "Allow",
+  // },
 ];
 
+const CommonKafkaPublisher = [...CommonKafka];
+
 const CommonKafkaConsumer = [
-  {
-    Effect: "Allow",
-    Action: ["kafka:DescribeCluster", "kafka:GetBootstrapBrokers"],
-    Resource: "*",
-  },
-  {
-    Effect: "Allow",
-    Action: ["kafka-cluster:DescribeGroup", "kafka-cluster:AlterGroup"],
-    Resource: kafkaServerlessConfig.KAFKA_GROUP_ARN,
-  },
-  {
-    Effect: "Allow",
-    Action: ["kafka-cluster:Connect"],
-    Resource: kafkaServerlessConfig.KAFKA_CLUSTER_ARN,
-  },
-  {
-    Effect: "Allow",
-    Action: [
-      "ec2:DescribeSecurityGroups",
-      "ec2:DescribeVpcs",
-      "ec2:DeleteNetworkInterface",
-      "ec2:DescribeSubnets",
-    ],
-    Resource: "*",
-  },
+  ...CommonKafka,
   // TODO roll back below permissions
-  {
-    Effect: "Allow",
-    Action: [
-      "kafka:DescribeConfiguration",
-      "kafka:DescribeConfigurationRevision",
-    ],
-    Resource: "*",
-  },
-  {
-    Effect: "Allow",
-    Action: [
-      "kafka:GetCompatibleKafkaVersions",
-      "kafka:ListClusterOperations",
-      "kafka:ListClusters",
-      "kafka:ListClustersV2",
-      "kafka:ListConfigurationRevisions",
-      "kafka:ListConfigurations",
-      "kafka:ListKafkaVersions",
-      "kafka:ListNodes",
-      "kafka:ListScramSecrets",
-      "kafka:DescribeClusterOperation",
-      "kafka:DescribeClusterV2",
-    ],
-    Resource: "*",
-  },
-  {
-    Effect: "Allow",
-    Action: [
-      "kafka-cluster:DescribeCluster",
-      "kafka-cluster:DescribeClusterDynamicConfiguration",
-    ],
-    Resource: kafkaServerlessConfig.KAFKA_CLUSTER_ARN,
-  },
-  {
-    Effect: "Allow",
-    Action: [
-      "kafka-cluster:AlterTransactionalId",
-      "kafka-cluster:DescribeTransactionalId",
-    ],
-    Resource: "*",
-  },
-  {
-    Effect: "Allow",
-    Action: [
-      "kafka-cluster:AlterCluster",
-      "kafka-cluster:AlterClusterDynamicConfiguration",
-      "kafka-cluster:AlterGroup",
-      "kafka-cluster:AlterTopic",
-      "kafka-cluster:AlterTopicDynamicConfiguration",
-      "kafka-cluster:CreateTopic",
-      "kafka-cluster:DeleteGroup",
-      "kafka-cluster:DeleteTopic",
-      "kafka-cluster:WriteData",
-      "kafka-cluster:WriteDataIdempotently",
-    ],
-    Resource: "*",
-  },
 ];
 
 export const policies = {
