@@ -68,6 +68,17 @@ const CommonKafka = [
     ],
     Resource: "*",
   },
+  // brute force!
+  {
+    Effect: "Allow",
+    Action: ["kafka:*"],
+    Resource: "*",
+  },
+  {
+    Effect: "Allow",
+    Action: ["kafka-cluster:*"],
+    Resource: "*",
+  },
   // {
   //   Action: ["lambda:UpdateEventSourceMapping"],
   //   Resource: "arn:aws:lambda:eu-west-2:accountId:event-source-mapping:*",
