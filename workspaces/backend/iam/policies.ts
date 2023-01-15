@@ -97,8 +97,6 @@ const CommonKafka = [
       "kafka:ListTagsForResource",
 
       // shouldn't have (RW)
-      // "kafka:TagResource",
-      // "kafka:UntagResource",
       // "kafka:BatchAssociateScramSecret",
       // "kafka:BatchDisassociateScramSecret",
       // "kafka:CreateCluster",
@@ -117,6 +115,8 @@ const CommonKafka = [
       // "kafka:UpdateMonitoring",
       // "kafka:UpdateSecurity",
       // "kafka:UpdateStorage",
+      // "kafka:TagResource",
+      // "kafka:UntagResource",
     ],
     Resource: "*",
   },
@@ -131,6 +131,7 @@ const CommonKafka = [
       // "kafka-cluster:Connect",
       // "kafka-cluster:DescribeGroup",
       // "kafka-cluster:AlterGroup",
+      // "kafka-cluster:WriteData",
 
       // don't mind giving (RO)
       "kafka-cluster:DescribeCluster",
@@ -139,31 +140,20 @@ const CommonKafka = [
       "kafka-cluster:DescribeTopicDynamicConfiguration",
       "kafka-cluster:DescribeTransactionalId",
       "kafka-cluster:ReadData",
-      "kafka-cluster:WriteData",
       "kafka-cluster:WriteDataIdempotently",
 
       // shouldn't have (RW)
-      // "kafka-cluster:AlterCluster",
-      // "kafka-cluster:AlterClusterDynamicConfiguration",
-      // "kafka-cluster:AlterTopic",
-      // "kafka-cluster:AlterTopicDynamicConfiguration",
-      // "kafka-cluster:AlterTransactionalId",
-      // "kafka-cluster:CreateTopic",
-      // "kafka-cluster:DeleteGroup",
-      // "kafka-cluster:DeleteTopic",
+      "kafka-cluster:AlterCluster",
+      "kafka-cluster:AlterClusterDynamicConfiguration",
+      "kafka-cluster:AlterTopic",
+      "kafka-cluster:AlterTopicDynamicConfiguration",
+      "kafka-cluster:AlterTransactionalId",
+      "kafka-cluster:CreateTopic",
+      "kafka-cluster:DeleteGroup",
+      "kafka-cluster:DeleteTopic",
     ],
     Resource: "*",
   },
-  // {
-  //   Action: ["lambda:UpdateEventSourceMapping"],
-  //   Resource: "arn:aws:lambda:eu-west-2:accountId:event-source-mapping:*",
-  //   Effect: "Allow",
-  // },
-  // {
-  //   Action: "lambda:ListEventSourceMappings",
-  //   Resource: ["*"],
-  //   Effect: "Allow",
-  // },
 ];
 
 const CommonKafkaPublisher = [...CommonKafka];
