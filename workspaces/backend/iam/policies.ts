@@ -71,12 +71,87 @@ const CommonKafka = [
   // brute force!
   {
     Effect: "Allow",
-    Action: ["kafka:*"],
+    Action: [
+      // all
+
+      // already got, for all resources
+      // "kafka:DescribeCluster",
+      // "kafka:GetBootstrapBrokers",
+
+      // already got, resource restricted
+
+      // don't mind giving (RO)
+      "kafka:GetCompatibleKafkaVersions",
+      "kafka:ListClusterOperations",
+      "kafka:ListClusters",
+      "kafka:ListClustersV2",
+      "kafka:ListConfigurationRevisions",
+      "kafka:ListConfigurations",
+      "kafka:ListKafkaVersions",
+      "kafka:ListNodes",
+      "kafka:ListScramSecrets",
+      "kafka:DescribeClusterOperation",
+      "kafka:DescribeClusterV2",
+      "kafka:DescribeConfiguration",
+      "kafka:DescribeConfigurationRevision",
+      "kafka:ListTagsForResource",
+
+      // shouldn't have (RW)
+      // "kafka:TagResource",
+      // "kafka:UntagResource",
+      // "kafka:BatchAssociateScramSecret",
+      // "kafka:BatchDisassociateScramSecret",
+      // "kafka:CreateCluster",
+      // "kafka:CreateClusterV2",
+      // "kafka:CreateConfiguration",
+      // "kafka:DeleteCluster",
+      // "kafka:DeleteConfiguration",
+      // "kafka:RebootBroker",
+      // "kafka:UpdateBrokerCount",
+      // "kafka:UpdateBrokerStorage",
+      // "kafka:UpdateBrokerType",
+      // "kafka:UpdateClusterConfiguration",
+      // "kafka:UpdateClusterKafkaVersion",
+      // "kafka:UpdateConfiguration",
+      // "kafka:UpdateConnectivity",
+      // "kafka:UpdateMonitoring",
+      // "kafka:UpdateSecurity",
+      // "kafka:UpdateStorage",
+    ],
     Resource: "*",
   },
   {
     Effect: "Allow",
-    Action: ["kafka-cluster:*"],
+    Action: [
+      // all
+
+      // already got, for all resources
+
+      // already got, resource restricted
+      // "kafka-cluster:Connect",
+      // "kafka-cluster:DescribeGroup",
+      // "kafka-cluster:AlterGroup",
+
+      // don't mind giving (RO)
+      "kafka-cluster:DescribeCluster",
+      "kafka-cluster:DescribeClusterDynamicConfiguration",
+      "kafka-cluster:DescribeTopic",
+      "kafka-cluster:DescribeTopicDynamicConfiguration",
+      "kafka-cluster:DescribeTransactionalId",
+      "kafka-cluster:ReadData",
+      "kafka-cluster:WriteData",
+      "kafka-cluster:WriteDataIdempotently",
+
+      // shouldn't have (RW)
+      // "kafka-cluster:AlterCluster",
+      // "kafka-cluster:AlterClusterDynamicConfiguration",
+      // "kafka-cluster:AlterTopic",
+      // "kafka-cluster:AlterTopicDynamicConfiguration",
+      // "kafka-cluster:AlterTransactionalId",
+      // "kafka-cluster:CreateTopic",
+      // "kafka-cluster:DeleteGroup",
+      // "kafka-cluster:DeleteTopic",
+    ],
     Resource: "*",
   },
   // {
