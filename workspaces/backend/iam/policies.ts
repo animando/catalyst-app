@@ -128,10 +128,10 @@ const CommonKafka = [
       // already got, resource restricted - 1) one of these made the difference
       "kafka-cluster:Connect",
       "kafka-cluster:DescribeGroup",
-      "kafka-cluster:AlterGroup",
-      "kafka-cluster:WriteData",
+      // "kafka-cluster:AlterGroup", 3) can I remove this?
+      // "kafka-cluster:WriteData", 3) can I remove this?
 
-      // don't mind giving (RO) - these don't fix it 2) can I now remove these?
+      // don't mind giving (RO) - these don't fix it 2) can I now remove these? 3) yes
       // "kafka-cluster:DescribeCluster",
       // "kafka-cluster:DescribeClusterDynamicConfiguration",
       // "kafka-cluster:DescribeTopic",
@@ -140,7 +140,7 @@ const CommonKafka = [
       // "kafka-cluster:ReadData",
       // "kafka-cluster:WriteDataIdempotently",
 
-      // shouldn't have (RW) - these don't fix it2) can I now remove these?
+      // shouldn't have (RW) - these don't fix it2) can I now remove these? 3) yes
       // "kafka-cluster:AlterCluster",
       // "kafka-cluster:AlterClusterDynamicConfiguration",
       // "kafka-cluster:AlterTopic",
