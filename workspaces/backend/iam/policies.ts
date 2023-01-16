@@ -128,8 +128,8 @@ const CommonKafka = [
       // already got, resource restricted - 1) one of these made the difference
       "kafka-cluster:Connect",
       "kafka-cluster:DescribeGroup",
-      // "kafka-cluster:AlterGroup", 3) can I remove this?
-      // "kafka-cluster:WriteData", 3) can I remove this?
+      "kafka-cluster:AlterGroup", // 3) can I remove this? 4) no
+      // "kafka-cluster:WriteData", 3) can I remove this? 4) no, can I remove this alone?
 
       // don't mind giving (RO) - these don't fix it 2) can I now remove these? 3) yes
       // "kafka-cluster:DescribeCluster",
