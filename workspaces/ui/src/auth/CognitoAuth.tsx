@@ -19,7 +19,7 @@ export function CognitoAuth({ children }: Props) {
 
   if (!authenticated) {
     setTimeout(() => {
-      window.location.href = `${environment.USER_POOL_UI_ENDPOINT}/login?client_id=${environment.USER_POOL_CLIENT_ID}&redirect_uri=http://localhost:5173&response_type=code&scope=email+openid+profile`;
+      window.location.href = `${environment.USER_POOL_UI_ENDPOINT}/login?client_id=${environment.USER_POOL_CLIENT_ID}&redirect_uri=${environment.APP_HOST}&response_type=code&scope=email+openid+profile`;
     }, 20000);
   }
 
