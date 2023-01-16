@@ -9,6 +9,9 @@ USER_POOL_UI_ENDPOINT=`aws ssm get-parameter --name cognito-ui-endpoint --query 
 API_ENDPOINT_BASE=https://$REST_API_ID.execute-api.${REGION}.amazonaws.com/$STAGE
 
 export API_ENDPOINT_BASE
+export USER_POOL_CLIENT_SECRET
+export USER_POOL_CLIENT_ID
+export USER_POOL_UI_ENDPOINT
 
 envsubst < dist/config-env.js > dist/config.js
 rm dist/config-env.js
