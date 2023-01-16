@@ -7,4 +7,5 @@ export const environment = {
   USER_POOL_CLIENT_ID: config.USER_POOL_CLIENT_ID,
   USER_POOL_UI_ENDPOINT: config.USER_POOL_UI_ENDPOINT,
   APP_HOST: config.APP_HOST,
+  TOKEN: import.meta.env.VITE_TOKEN,
 };
