@@ -124,13 +124,11 @@ const CommonKafka = [
     Effect: "Allow",
     Action: [
       // already got, for all resources
-
       // already got, resource restricted - 1) one of these made the difference
-      "kafka-cluster:Connect",
-      "kafka-cluster:DescribeGroup",
-      "kafka-cluster:AlterGroup", // 3) can I remove this? 4) no
-      // "kafka-cluster:WriteData", 3) can I remove this? 4) no, can I remove this alone?
-
+      // "kafka-cluster:Connect", // 5) fixed group arn in config, can I remove all these now?
+      // "kafka-cluster:DescribeGroup", // 5) fixed group arn in config, can I remove all these now?
+      // "kafka-cluster:AlterGroup", // 3) can I remove this? 4) no, definitely needed... although... 5) fixed group arn in config, can I remove all these now?
+      // "kafka-cluster:WriteData", 3) can I remove this? 4) no, can I remove this alone? 5) yes
       // don't mind giving (RO) - these don't fix it 2) can I now remove these? 3) yes
       // "kafka-cluster:DescribeCluster",
       // "kafka-cluster:DescribeClusterDynamicConfiguration",
@@ -139,8 +137,7 @@ const CommonKafka = [
       // "kafka-cluster:DescribeTransactionalId",
       // "kafka-cluster:ReadData",
       // "kafka-cluster:WriteDataIdempotently",
-
-      // shouldn't have (RW) - these don't fix it2) can I now remove these? 3) yes
+      // shouldn't have (RW) - these don't fix it 2) can I now remove these? 3) yes
       // "kafka-cluster:AlterCluster",
       // "kafka-cluster:AlterClusterDynamicConfiguration",
       // "kafka-cluster:AlterTopic",

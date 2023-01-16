@@ -67,7 +67,7 @@ export const custom = {
   kafkaSslDisabled:
     "${file(./serverlessVariables-${self:custom.stage}.yml):kafkaSslDisabled}",
   kafkaGroupArn:
-    "arn:aws:kafka:${aws:region}:${aws:accountId}:group/${self:custom.stage}/${self:custom.kafkaClusterName}/${self:custom.kafkaClusterId}/*",
+    "arn:aws:kafka:${aws:region}:${aws:accountId}:group/${self:custom.kafkaClusterName}/${self:custom.kafkaClusterId}/*",
   kafkaTopicArnPrefix:
     "arn:aws:kafka:${aws:region}:${aws:accountId}:topic/${self:custom.kafkaClusterName}/${self:custom.kafkaClusterId}",
 
