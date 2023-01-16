@@ -1,8 +1,11 @@
 export const createIamRoleArn = (roleName: string) =>
   `arn:aws:iam::\${self:custom.accountId}:role/${roleName}`;
 
+export const ALLOW = "Allow" as const;
+export const DENY = "Deny" as const;
+
 interface IamStatement {
-  Effect: string;
+  Effect: typeof ALLOW | typeof DENY;
   Action: string | string[];
   Resource: string | string[];
 }

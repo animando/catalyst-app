@@ -1,12 +1,13 @@
 import { kafkaServerlessConfig } from "../serverlessCommonConfig";
 import { topics } from "../services/topics";
+import { ALLOW } from "../utils/serverless/iamHelpers";
 
 const createTopicArn = (topicName: string) =>
   `${kafkaServerlessConfig.KAFKA_TOPIC_ARN_PREFIX}/${topicName}`;
 
 const createKafkaWriteStatement = (topicName: string) => [
   {
-    Effect: "Allow",
+    Effect: ALLOW,
     Action: ["kafka-cluster:DescribeTopic", "kafka-cluster:WriteData"],
     Resource: createTopicArn(topicName),
   },
@@ -14,7 +15,7 @@ const createKafkaWriteStatement = (topicName: string) => [
 
 const createKafkaReadStatement = (topicName: string) => [
   {
-    Effect: "Allow",
+    Effect: ALLOW,
     Action: ["kafka-cluster:DescribeTopic", "kafka-cluster:ReadData"],
     Resource: createTopicArn(topicName),
   },
@@ -22,12 +23,12 @@ const createKafkaReadStatement = (topicName: string) => [
 
 const createKafkaAdminStatement = () => [
   {
-    Effect: "Allow",
+    Effect: ALLOW,
     Action: ["kafka:*"],
     Resource: "*",
   },
   {
-    Effect: "Allow",
+    Effect: ALLOW,
     Action: ["kafka-cluster:*"],
     Resource: "*",
   },
@@ -35,22 +36,22 @@ const createKafkaAdminStatement = () => [
 
 const CommonKafka = [
   {
-    Effect: "Allow",
+    Effect: ALLOW,
     Action: ["kafka-cluster:Connect"],
     Resource: kafkaServerlessConfig.KAFKA_CLUSTER_ARN,
   },
   {
-    Effect: "Allow",
+    Effect: ALLOW,
     Action: ["kafka:DescribeCluster", "kafka:GetBootstrapBrokers"],
     Resource: "*",
   },
   {
-    Effect: "Allow",
+    Effect: ALLOW,
     Action: ["kafka-cluster:DescribeGroup", "kafka-cluster:AlterGroup"],
     Resource: kafkaServerlessConfig.KAFKA_GROUP_ARN,
   },
   {
-    Effect: "Allow",
+    Effect: ALLOW,
     Action: [
       "ec2:DescribeSecurityGroups",
       "ec2:DescribeVpcs",
@@ -60,7 +61,7 @@ const CommonKafka = [
     Resource: "*",
   },
   {
-    Effect: "Allow",
+    Effect: ALLOW,
     Action: [
       "ec2:CreateNetworkInterface",
       "ec2:DescribeNetworkInterfaces",
@@ -69,59 +70,60 @@ const CommonKafka = [
     Resource: "*",
   },
   // brute force!
-  {
-    Effect: "Allow",
-    Action: [
-      // all
-
-      // already got, for all resources
-      // "kafka:DescribeCluster",
-      // "kafka:GetBootstrapBrokers",
-
-      // already got, resource restricted
-
-      // don't mind giving (RO)
-      "kafka:GetCompatibleKafkaVersions",
-      "kafka:ListClusterOperations",
-      "kafka:ListClusters",
-      "kafka:ListClustersV2",
-      "kafka:ListConfigurationRevisions",
-      "kafka:ListConfigurations",
-      "kafka:ListKafkaVersions",
-      "kafka:ListNodes",
-      "kafka:ListScramSecrets",
-      "kafka:DescribeClusterOperation",
-      "kafka:DescribeClusterV2",
-      "kafka:DescribeConfiguration",
-      "kafka:DescribeConfigurationRevision",
-      "kafka:ListTagsForResource",
-
-      // shouldn't have (RW)
-      // "kafka:BatchAssociateScramSecret",
-      // "kafka:BatchDisassociateScramSecret",
-      // "kafka:CreateCluster",
-      // "kafka:CreateClusterV2",
-      // "kafka:CreateConfiguration",
-      // "kafka:DeleteCluster",
-      // "kafka:DeleteConfiguration",
-      // "kafka:RebootBroker",
-      // "kafka:UpdateBrokerCount",
-      // "kafka:UpdateBrokerStorage",
-      // "kafka:UpdateBrokerType",
-      // "kafka:UpdateClusterConfiguration",
-      // "kafka:UpdateClusterKafkaVersion",
-      // "kafka:UpdateConfiguration",
-      // "kafka:UpdateConnectivity",
-      // "kafka:UpdateMonitoring",
-      // "kafka:UpdateSecurity",
-      // "kafka:UpdateStorage",
-      // "kafka:TagResource",
-      // "kafka:UntagResource",
-    ],
-    Resource: "*",
-  },
   // {
-  //   Effect: "Allow",
+  //   Effect: ALLOW,
+  //   Action: [
+  // all
+
+  // already got, for all resources
+  // "kafka:DescribeCluster",
+  // "kafka:GetBootstrapBrokers",
+
+  // already got, resource restricted
+
+  // don't mind giving (RO)
+  // 6) can I lose these as well now?
+  // "kafka:GetCompatibleKafkaVersions",
+  // "kafka:ListClusterOperations",
+  // "kafka:ListClusters",
+  // "kafka:ListClustersV2",
+  // "kafka:ListConfigurationRevisions",
+  // "kafka:ListConfigurations",
+  // "kafka:ListKafkaVersions",
+  // "kafka:ListNodes",
+  // "kafka:ListScramSecrets",
+  // "kafka:DescribeClusterOperation",
+  // "kafka:DescribeClusterV2",
+  // "kafka:DescribeConfiguration",
+  // "kafka:DescribeConfigurationRevision",
+  // "kafka:ListTagsForResource",
+
+  // shouldn't have (RW)
+  // "kafka:BatchAssociateScramSecret",
+  // "kafka:BatchDisassociateScramSecret",
+  // "kafka:CreateCluster",
+  // "kafka:CreateClusterV2",
+  // "kafka:CreateConfiguration",
+  // "kafka:DeleteCluster",
+  // "kafka:DeleteConfiguration",
+  // "kafka:RebootBroker",
+  // "kafka:UpdateBrokerCount",
+  // "kafka:UpdateBrokerStorage",
+  // "kafka:UpdateBrokerType",
+  // "kafka:UpdateClusterConfiguration",
+  // "kafka:UpdateClusterKafkaVersion",
+  // "kafka:UpdateConfiguration",
+  // "kafka:UpdateConnectivity",
+  // "kafka:UpdateMonitoring",
+  // "kafka:UpdateSecurity",
+  // "kafka:UpdateStorage",
+  // "kafka:TagResource",
+  // "kafka:UntagResource",
+  //   ],
+  //   Resource: "*",
+  // },
+  // {
+  //   Effect: ALLOW,
   //   Action: [
   // already got, for all resources
   // already got, resource restricted - 1) one of these made the difference
