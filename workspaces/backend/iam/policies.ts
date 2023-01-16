@@ -34,7 +34,15 @@ const createKafkaAdminStatement = () => [
   },
 ];
 
-const CommonKafka = [
+const KafkaGroupPermissions = [
+  {
+    Effect: ALLOW,
+    Action: ["kafka-cluster:DescribeGroup", "kafka-cluster:AlterGroup"],
+    Resource: kafkaServerlessConfig.KAFKA_GROUP_ARN,
+  },
+];
+
+const BaseKafkaPermissions = [
   {
     Effect: ALLOW,
     Action: ["kafka-cluster:Connect"],
@@ -45,11 +53,9 @@ const CommonKafka = [
     Action: ["kafka:DescribeCluster", "kafka:GetBootstrapBrokers"],
     Resource: "*",
   },
-  {
-    Effect: ALLOW,
-    Action: ["kafka-cluster:DescribeGroup", "kafka-cluster:AlterGroup"],
-    Resource: kafkaServerlessConfig.KAFKA_GROUP_ARN,
-  },
+];
+
+const KafkaEc2Permissions = [
   {
     Effect: ALLOW,
     Action: [
@@ -69,96 +75,17 @@ const CommonKafka = [
     ],
     Resource: "*",
   },
-  // brute force!
-  // {
-  //   Effect: ALLOW,
-  //   Action: [
-  // all
-
-  // already got, for all resources
-  // "kafka:DescribeCluster",
-  // "kafka:GetBootstrapBrokers",
-
-  // already got, resource restricted
-
-  // don't mind giving (RO)
-  // 6) can I lose these as well now?
-  // "kafka:GetCompatibleKafkaVersions",
-  // "kafka:ListClusterOperations",
-  // "kafka:ListClusters",
-  // "kafka:ListClustersV2",
-  // "kafka:ListConfigurationRevisions",
-  // "kafka:ListConfigurations",
-  // "kafka:ListKafkaVersions",
-  // "kafka:ListNodes",
-  // "kafka:ListScramSecrets",
-  // "kafka:DescribeClusterOperation",
-  // "kafka:DescribeClusterV2",
-  // "kafka:DescribeConfiguration",
-  // "kafka:DescribeConfigurationRevision",
-  // "kafka:ListTagsForResource",
-
-  // shouldn't have (RW)
-  // "kafka:BatchAssociateScramSecret",
-  // "kafka:BatchDisassociateScramSecret",
-  // "kafka:CreateCluster",
-  // "kafka:CreateClusterV2",
-  // "kafka:CreateConfiguration",
-  // "kafka:DeleteCluster",
-  // "kafka:DeleteConfiguration",
-  // "kafka:RebootBroker",
-  // "kafka:UpdateBrokerCount",
-  // "kafka:UpdateBrokerStorage",
-  // "kafka:UpdateBrokerType",
-  // "kafka:UpdateClusterConfiguration",
-  // "kafka:UpdateClusterKafkaVersion",
-  // "kafka:UpdateConfiguration",
-  // "kafka:UpdateConnectivity",
-  // "kafka:UpdateMonitoring",
-  // "kafka:UpdateSecurity",
-  // "kafka:UpdateStorage",
-  // "kafka:TagResource",
-  // "kafka:UntagResource",
-  //   ],
-  //   Resource: "*",
-  // },
-  // {
-  //   Effect: ALLOW,
-  //   Action: [
-  // already got, for all resources
-  // already got, resource restricted - 1) one of these made the difference
-  // "kafka-cluster:Connect", // 5) fixed group arn in config, can I remove all these now?
-  // "kafka-cluster:DescribeGroup", // 5) fixed group arn in config, can I remove all these now?
-  // "kafka-cluster:AlterGroup", // 3) can I remove this? 4) no, definitely needed... although... 5) fixed group arn in config, can I remove all these now?
-  // "kafka-cluster:WriteData", 3) can I remove this? 4) no, can I remove this alone? 5) yes
-  // don't mind giving (RO) - these don't fix it 2) can I now remove these? 3) yes
-  // "kafka-cluster:DescribeCluster",
-  // "kafka-cluster:DescribeClusterDynamicConfiguration",
-  // "kafka-cluster:DescribeTopic",
-  // "kafka-cluster:DescribeTopicDynamicConfiguration",
-  // "kafka-cluster:DescribeTransactionalId",
-  // "kafka-cluster:ReadData",
-  // "kafka-cluster:WriteDataIdempotently",
-  // shouldn't have (RW) - these don't fix it 2) can I now remove these? 3) yes
-  // "kafka-cluster:AlterCluster",
-  // "kafka-cluster:AlterClusterDynamicConfiguration",
-  // "kafka-cluster:AlterTopic",
-  // "kafka-cluster:AlterTopicDynamicConfiguration",
-  // "kafka-cluster:AlterTransactionalId",
-  // "kafka-cluster:CreateTopic",
-  // "kafka-cluster:DeleteGroup",
-  // "kafka-cluster:DeleteTopic",
-  //   ],
-  //   Resource: "*",
-  // },
 ];
 
-const CommonKafkaPublisher = [...CommonKafka];
-
-const CommonKafkaConsumer = [
-  ...CommonKafka,
-  // TODO roll back below permissions
+const CommonKafka = [
+  ...BaseKafkaPermissions,
+  ...KafkaGroupPermissions,
+  ...KafkaEc2Permissions,
 ];
+
+const CommonKafkaPublisher = CommonKafka;
+
+const CommonKafkaConsumer = CommonKafka;
 
 export const policies = {
   CommonKafkaConsumer,
