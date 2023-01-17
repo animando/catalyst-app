@@ -13,6 +13,9 @@ const config: AWS = {
   service: "auth",
   provider: {
     ...provider,
+    environment: {
+      // auth lambda cannot have environment variables
+    },
     region: "us-east-1",
   },
   plugins: [
