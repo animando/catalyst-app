@@ -29,9 +29,9 @@ export const spaServerlessConfig = {
 };
 
 export const vpcServerlessConfig = {
-  MSK_SUBNET_ID1: "${self:custom.mskSubnetId1}",
-  MSK_SUBNET_ID2: "${self:custom.mskSubnetId2}",
-  MSK_SUBNET_ID3: "${self:custom.mskSubnetId3}",
+  PRIVATE_SUBNET_ID1: "${self:custom.privateSubnetId1}",
+  PRIVATE_SUBNET_ID2: "${self:custom.privateSubnetId2}",
+  PRIVATE_SUBNET_ID3: "${self:custom.privateSubnetId3}",
   LAMBDA_SECURITY_GROUP: "${self:custom.lambdaSecurityGroup}",
 };
 
@@ -92,13 +92,15 @@ export const kafkaServerlessCustomConfig = {
     "arn:aws:kafka:${aws:region}:${aws:accountId}:group/${self:custom.kafkaClusterName}/${self:custom.kafkaClusterId}/*",
   kafkaTopicArnPrefix:
     "arn:aws:kafka:${aws:region}:${aws:accountId}:topic/${self:custom.kafkaClusterName}/${self:custom.kafkaClusterId}",
+};
 
+export const vpcServerlessCustomConfig = {
   mskSubnetId1:
-    "${file(./serverlessVariables-${self:custom.stage}.yml):mskSubnetId1}",
+    "${file(./serverlessVariables-${self:custom.stage}.yml):privateSubnetId1}",
   mskSubnetId2:
-    "${file(./serverlessVariables-${self:custom.stage}.yml):mskSubnetId2}",
+    "${file(./serverlessVariables-${self:custom.stage}.yml):privateSubnetId2}",
   mskSubnetId3:
-    "${file(./serverlessVariables-${self:custom.stage}.yml):mskSubnetId3}",
+    "${file(./serverlessVariables-${self:custom.stage}.yml):privateSubnetId3}",
   lambdaSecurityGroup:
     "${file(./serverlessVariables-${self:custom.stage}.yml):lambdaSecurityGroup}",
 };
@@ -124,5 +126,6 @@ export const custom = {
   "serverless-offline": {
     noPrependStageInUrl: true,
   },
+  ...vpcServerlessCustomConfig,
   spaUrl: "${file(./serverlessVariables-${self:custom.stage}.yml):spaUrl}",
 };

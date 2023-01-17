@@ -6,9 +6,9 @@ import {
 export const commonLambdaConfig = {
   vpc: {
     subnetIds: [
-      vpcServerlessConfig.MSK_SUBNET_ID1,
-      vpcServerlessConfig.MSK_SUBNET_ID2,
-      vpcServerlessConfig.MSK_SUBNET_ID3,
+      vpcServerlessConfig.PRIVATE_SUBNET_ID1,
+      vpcServerlessConfig.PRIVATE_SUBNET_ID2,
+      vpcServerlessConfig.PRIVATE_SUBNET_ID3,
     ],
     securityGroupIds: [vpcServerlessConfig.LAMBDA_SECURITY_GROUP],
   },

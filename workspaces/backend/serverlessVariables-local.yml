@@ -1,8 +1,8 @@
 spaUrl: localhost:5173
 kafkaClusterArn: local/local
-mskSubnetId1: local.mskSubnet1
-mskSubnetId2: local.mskSubnet2
-mskSubnetId3: local.mskSubnet3
+privateSubnetId1: local.mskSubnet1
+privateSubnetId2: local.mskSubnet2
+privateSubnetId3: local.mskSubnet3
 kafkaClusterName: local.kafkaClusterName
 kafkaClusterId: local.kafkaClusterId
 lambdaSecurityGroup: local.lambdaSecurityGroup
