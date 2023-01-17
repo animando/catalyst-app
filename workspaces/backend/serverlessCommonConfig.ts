@@ -27,6 +27,7 @@ export const kafkaEnvironment = {
 export const spaServerlessConfig = {
   SPA_URL: "${self:custom.spaUrl}",
 };
+
 export const spaServerlessEnvironment = {
   SPA_URL: spaServerlessConfig.SPA_URL,
 };
@@ -56,9 +57,6 @@ export const iamServerlessConfig = {
 export const cloudfrontServerlessConfig = {
   DISTRIBUTION_ID: "${self:custom.distributionId}",
 };
-export const cloudfrontServerlessEnvironment = {
-  DISTRIBUTION_ID: cloudfrontServerlessConfig.DISTRIBUTION_ID,
-};
 
 export const cloudfrontServerlessCustomConfig = {
   distributionId:
@@ -66,27 +64,10 @@ export const cloudfrontServerlessCustomConfig = {
 };
 
 export const cognitoServerlessConfig = {
-  USER_POOL_ID: "${self:custom.userPoolId}",
-  USER_POOL_CLIENT_ID: "${self:custom.userPoolClientId}",
-  USER_POOL_DOMAIN: "${self:custom.userPoolDomain}",
   USER_POOL_CLIENT_SECRET_ARN: "${self:custom.userPoolClientSecretArn}",
 };
 
-export const cognitoServerlessEnvironment = {
-  USER_POOL_ID: cognitoServerlessConfig.USER_POOL_ID,
-  USER_POOL_CLIENT_ID: cognitoServerlessConfig.USER_POOL_CLIENT_ID,
-  USER_POOL_DOMAIN: cognitoServerlessConfig.USER_POOL_DOMAIN,
-  USER_POOL_CLIENT_SECRET_ARN:
-    cognitoServerlessConfig.USER_POOL_CLIENT_SECRET_ARN,
-};
-
 export const cognitoServerlessCustomConfig = {
-  userPoolId:
-    "${file(./serverlessVariables-${self:custom.stage}.yml):userPoolId}",
-  userPoolClientId:
-    "${file(./serverlessVariables-${self:custom.stage}.yml):userPoolClientId}",
-  userPoolDomain:
-    "${file(./serverlessVariables-${self:custom.stage}.yml):userPoolDomain}",
   userPoolClientSecretArn:
     "${file(./serverlessVariables-${self:custom.stage}.yml):userPoolClientSecretArn}",
 };

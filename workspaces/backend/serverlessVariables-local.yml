@@ -8,8 +8,5 @@ kafkaClusterId: local.kafkaClusterId
 lambdaSecurityGroup: local.lambdaSecurityGroup
 kafkaBootstrapServer: localhost:29092
 kafkaSslDisabled: true
-userPoolId: local
-userPoolClientId: local
-userPoolDomain: local
 distributionId: local
 userPoolClientSecretArn: local

@@ -2,9 +2,7 @@
 import type { AWS } from "@serverless/typescript";
 import {
   cloudfrontServerlessCustomConfig,
-  cloudfrontServerlessEnvironment,
   cognitoServerlessCustomConfig,
-  cognitoServerlessEnvironment,
   custom,
   provider,
 } from "./serverlessCommonConfig";
@@ -16,12 +14,6 @@ const config: AWS = {
   provider: {
     ...provider,
     region: "us-east-1",
-    environment: {
-      ...provider.environment,
-      REGION: "eu-west-2",
-      ...cognitoServerlessEnvironment,
-      ...cloudfrontServerlessEnvironment,
-    },
   },
   plugins: [
     "serverless-esbuild",
