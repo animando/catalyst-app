@@ -7,6 +7,7 @@ export { iamRoleAuth } from "./iam";
 export const auth = {
   handler: `${handlerPath(__dirname)}/handler.handler`,
   role,
+  memorySize: 128,
   events: [
     {
       preExistingCloudFront: {
