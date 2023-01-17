@@ -1,5 +1,4 @@
 import {
-  cloudfrontServerlessConfig,
   cognitoServerlessConfig,
   kafkaServerlessConfig,
 } from "../serverlessCommonConfig";

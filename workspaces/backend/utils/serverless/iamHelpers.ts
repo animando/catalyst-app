@@ -4,7 +4,7 @@ export const createIamRoleArn = (roleName: string) =>
 export const ALLOW = "Allow" as const;
 export const DENY = "Deny" as const;
 
-interface IamStatement {
+export interface IamStatement {
   Effect: typeof ALLOW | typeof DENY;
   Action: string | string[];
   Resource: string | string[];
