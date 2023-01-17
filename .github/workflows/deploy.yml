@@ -26,6 +26,9 @@ jobs:
       - name: Deploy auth
         run: yarn run deploy:auth
 
+      - name: Deploy preTokenGeneration
+        run: yarn run deploy:preTokenGeneration
+
       - name: Deploy topic manager
         run: yarn run deploy:topicManager
 
