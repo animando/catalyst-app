@@ -12,7 +12,7 @@ import {
 import { auth, iamRoleAuth } from "./services/auth/serverless";
 
 const config: AWS = {
-  service: "topic-manager",
+  service: "auth",
   provider: {
     ...provider,
     environment: {
