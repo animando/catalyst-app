@@ -35,6 +35,17 @@ export const vpcServerlessConfig = {
   LAMBDA_SECURITY_GROUP: "${self:custom.lambdaSecurityGroup}",
 };
 
+export const vpcServerlessCustomConfig = {
+  privateSubnetId1:
+    "${file(./serverlessVariables-${self:custom.stage}.yml):privateSubnetId1}",
+  privateSubnetId2:
+    "${file(./serverlessVariables-${self:custom.stage}.yml):privateSubnetId2}",
+  privateSubnetId3:
+    "${file(./serverlessVariables-${self:custom.stage}.yml):privateSubnetId3}",
+  lambdaSecurityGroup:
+    "${file(./serverlessVariables-${self:custom.stage}.yml):lambdaSecurityGroup}",
+};
+
 export const iamServerlessConfig = {
   IAM_ROLE_PREFIX: "arn:aws:iam::${aws:accountId}:role",
 };
@@ -92,17 +103,6 @@ export const kafkaServerlessCustomConfig = {
     "arn:aws:kafka:${aws:region}:${aws:accountId}:group/${self:custom.kafkaClusterName}/${self:custom.kafkaClusterId}/*",
   kafkaTopicArnPrefix:
     "arn:aws:kafka:${aws:region}:${aws:accountId}:topic/${self:custom.kafkaClusterName}/${self:custom.kafkaClusterId}",
-};
-
-export const vpcServerlessCustomConfig = {
-  mskSubnetId1:
-    "${file(./serverlessVariables-${self:custom.stage}.yml):privateSubnetId1}",
-  mskSubnetId2:
-    "${file(./serverlessVariables-${self:custom.stage}.yml):privateSubnetId2}",
-  mskSubnetId3:
-    "${file(./serverlessVariables-${self:custom.stage}.yml):privateSubnetId3}",
-  lambdaSecurityGroup:
-    "${file(./serverlessVariables-${self:custom.stage}.yml):lambdaSecurityGroup}",
 };
 
 export const provider: AWS["provider"] = {
