@@ -11,5 +11,5 @@ kafkaSslDisabled: false
 userPoolId: ${ssm:user-pool-id}
 userPoolClientId: ${ssm:user-pool-client-id}
 userPoolDomain: ${ssm:user-pool-domain}
-distributionId: ${ssm:catalyst-ui-distribution-id}
+distributionId: ${ssm(eu-west-2):catalyst-ui-distribution-id}
 userPoolClientSecretArn: ${ssm:user-pool-client-secret-arn}

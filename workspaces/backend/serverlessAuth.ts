@@ -15,8 +15,10 @@ const config: AWS = {
   service: "auth",
   provider: {
     ...provider,
+    region: "us-east-1",
     environment: {
       ...provider.environment,
+      REGION: "eu-west-2",
       ...cognitoServerlessEnvironment,
       ...cloudfrontServerlessEnvironment,
     },
