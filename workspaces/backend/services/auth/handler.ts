@@ -50,7 +50,7 @@ export const handler = async (event: any) => {
     region,
     userPoolId,
     userPoolAppId,
-    userPoolDomain,
+    userPoolDomain: `https://${userPoolDomain}.auth.${region}.amazoncognito.com`,
     userPoolAppSecret,
   });
 
