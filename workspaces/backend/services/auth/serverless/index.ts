@@ -1,5 +1,4 @@
 import { cloudfrontServerlessConfig } from "../../../serverlessCommonConfig";
-import { config } from "../../../utils/config";
 import { handlerPath } from "../../../utils/handlerPath";
 import { commonLambdaConfig } from "../../../utils/serverless/commonLambdaConfig";
 import { role } from "../config";
