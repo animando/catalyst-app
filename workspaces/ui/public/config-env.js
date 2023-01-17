@@ -1,8 +1,6 @@
 // eslint-disable-next-line no-underscore-dangle
 window.__config__ = {
   API_ENDPOINT_BASE: "$API_ENDPOINT_BASE",
-  USER_POOL_CLIENT_SECRET: "$USER_POOL_CLIENT_SECRET",
   USER_POOL_CLIENT_ID: "$USER_POOL_CLIENT_ID",
-  USER_POOL_UI_ENDPOINT: "$USER_POOL_UI_ENDPOINT",
   APP_HOST: "$APP_HOST",
 };
