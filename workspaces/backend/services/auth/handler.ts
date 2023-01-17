@@ -4,14 +4,15 @@ import {
   GetSecretValueCommand,
 } from "@aws-sdk/client-secrets-manager";
 import { SSMClient, GetParameterCommand } from "@aws-sdk/client-ssm";
-import { config } from "../../utils/config";
+
+const region = "eu-west-2";
 
 const secretsmanager = new SecretsManagerClient({
-  region: config.REGION,
+  region,
 });
 
 const ssm = new SSMClient({
-  region: config.REGION,
+  region,
 });
 
 const getSecret = async (secretId: string): Promise<string> => {
@@ -46,7 +47,7 @@ export const handler = async (event: any) => {
   const userPoolDomain = await getSsmParameter("user-pool-domain");
 
   const authenticator = new Authenticator({
-    region: config.REGION,
+    region,
     userPoolId,
     userPoolAppId,
     userPoolDomain,
