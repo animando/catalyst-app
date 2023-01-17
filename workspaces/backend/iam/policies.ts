@@ -1,6 +1,7 @@
 import {
   cognitoServerlessConfig,
   kafkaServerlessConfig,
+  ssmServerlessConfig,
 } from "../serverlessCommonConfig";
 import { topics } from "../services/topics";
 import { ALLOW } from "../utils/serverless/iamHelpers";
@@ -97,6 +98,14 @@ const CommonKafkaPublisher = CommonKafka;
 
 const CommonKafkaConsumer = CommonKafka;
 
+const ReadSsmParameters = [
+  {
+    Effect: ALLOW,
+    Action: ["ssm:GetParameter"],
+    Resource: `${ssmServerlessConfig.SSM_ARN_PREFIX}/*`,
+  },
+];
+
 export const policies = {
   CommonKafkaConsumer,
   CommonKafkaPublisher,
@@ -106,4 +115,5 @@ export const policies = {
   ReadAppClientSecret: createReadSecretStatement(
     cognitoServerlessConfig.USER_POOL_CLIENT_SECRET_ARN
   ),
+  ReadSsmParameters,
 };

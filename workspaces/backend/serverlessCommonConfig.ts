@@ -72,6 +72,15 @@ export const cognitoServerlessCustomConfig = {
     "${file(./serverlessVariables-${self:custom.stage}.yml):userPoolClientSecretArn}",
 };
 
+export const ssmServerlessConfig = {
+  SSM_ARN_PREFIX: "${self:custom.ssmArnPrefix}",
+};
+
+export const ssmServerlessCustomConfig = {
+  // can region be removed from this
+  ssmArnPrefix: "arn:aws:ssm:eu-west-2:${aws:accountId}:parameter",
+};
+
 export const kafkaServerlessCustomConfig = {
   kafkaClusterArn:
     "${file(./serverlessVariables-${self:custom.stage}.yml):kafkaClusterArn}",

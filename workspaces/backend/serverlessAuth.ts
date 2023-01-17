@@ -5,6 +5,7 @@ import {
   cognitoServerlessCustomConfig,
   custom,
   provider,
+  ssmServerlessCustomConfig,
 } from "./serverlessCommonConfig";
 
 import { auth, iamRoleAuth } from "./services/auth/serverless";
@@ -34,6 +35,7 @@ const config: AWS = {
     ...custom,
     ...cognitoServerlessCustomConfig,
     ...cloudfrontServerlessCustomConfig,
+    ...ssmServerlessCustomConfig,
   },
 };
 
