@@ -35,4 +35,7 @@ export const createRole = (
     ],
   },
 });
-export const iamRoleAuth = createRole(role, [...policies.ReadAppClientSecret]);
+export const iamRoleAuth = createRole(role, [
+  ...policies.ReadAppClientSecret,
+  ...policies.ReadSsmParameters,
+]);
