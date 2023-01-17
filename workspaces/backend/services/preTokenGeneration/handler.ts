@@ -5,7 +5,7 @@ export const handler = async (event: any, context: any, callback: any) => {
   // eslint-disable-next-line no-param-reassign
   event.response = {
     claimsOverrideDetails: {
-      groupOverrrideDetails: {
+      groupOverrideDetails: {
         groupsToOverride: ["bob"],
       },
     },

@@ -23,7 +23,8 @@ export function HomePage() {
 
   return (
     <div>
-      <p>Logged in as {authContext.username}</p>
+      <p>Username: {authContext.username}</p>
+      <p>Groups: {JSON.stringify(authContext.groups)}</p>
       {data}
     </div>
   );

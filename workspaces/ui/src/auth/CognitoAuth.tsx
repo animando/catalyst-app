@@ -15,25 +15,19 @@ const useCognito = (localToken?: string) => {
 
     const user = Cookies.get(`${cookieBase}.LastAuthUser`);
     accessToken = Cookies.get(`${cookieBase}.${user}.accessToken`);
-    const idToken = Cookies.get(`${cookieBase}.${user}.idToken`);
 
     if (!accessToken && localToken) {
       Cookies.set(`${cookieBase}.LastAuthUser`, "gk");
-      Cookies.set(
-        `${cookieBase}.gk.accessToken`,
-        "header.eyJ1c2VybmFtZSI6ImplcmVteSJ9.signature"
-      );
+      Cookies.set(`${cookieBase}.gk.accessToken`, localToken);
     }
 
-    if (idToken) {
-      // eslint-disable-next-line no-console
-      console.log({ idToken: jwtDecode(idToken) });
-    }
     if (accessToken) {
-      const decoded = jwtDecode(accessToken) as AuthContext;
-      // eslint-disable-next-line no-console
-      console.log({ accessToken: decoded });
-      setAuthContext(decoded);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const decoded = jwtDecode(accessToken) as any;
+      setAuthContext({
+        username: decoded.username,
+        groups: decoded["cognito:groups"],
+      });
     } else {
       setErrorAuthenticating(true);
     }
