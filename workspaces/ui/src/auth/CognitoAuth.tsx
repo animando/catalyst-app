@@ -4,7 +4,7 @@ import Cookies from "js-cookie";
 import { environment } from "../utils/environment";
 import { AuthContext, AuthContextProvider } from "./authContext";
 
-const cookieBase = `CognitoIdentifyServiceProvider.${environment.USER_POOL_CLIENT_ID}`;
+const cookieBase = `CognitoIdentityServiceProvider.${environment.USER_POOL_CLIENT_ID}`;
 
 const useCognito = (localToken?: string) => {
   const [authContext, setAuthContext] = useState<AuthContext>();
@@ -13,9 +13,15 @@ const useCognito = (localToken?: string) => {
   useEffect(() => {
     let accessToken = localToken;
 
-    if (!localToken) {
-      const user = Cookies.get(`${cookieBase}.LastAuthUser`);
-      accessToken = Cookies.get(`${cookieBase}.${user}.accessToken`);
+    const user = Cookies.get(`${cookieBase}.LastAuthUser`);
+    accessToken = Cookies.get(`${cookieBase}.${user}.accessToken`);
+
+    if (!accessToken && localToken) {
+      Cookies.set(`${cookieBase}.LastAuthUser`, "gk");
+      Cookies.set(
+        `${cookieBase}.gk.accessToken`,
+        "header.eyJ1c2VybmFtZSI6ImplcmVteSJ9.signature"
+      );
     }
 
     if (accessToken) {
