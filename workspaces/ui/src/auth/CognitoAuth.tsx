@@ -15,6 +15,7 @@ const useCognito = (localToken?: string) => {
 
     const user = Cookies.get(`${cookieBase}.LastAuthUser`);
     accessToken = Cookies.get(`${cookieBase}.${user}.accessToken`);
+    const idToken = Cookies.get(`${cookieBase}.${user}.idToken`);
 
     if (!accessToken && localToken) {
       Cookies.set(`${cookieBase}.LastAuthUser`, "gk");
@@ -24,8 +25,14 @@ const useCognito = (localToken?: string) => {
       );
     }
 
+    if (idToken) {
+      // eslint-disable-next-line no-console
+      console.log({ idToken: jwtDecode(idToken) });
+    }
     if (accessToken) {
       const decoded = jwtDecode(accessToken) as AuthContext;
+      // eslint-disable-next-line no-console
+      console.log({ accessToken: decoded });
       setAuthContext(decoded);
     } else {
       setErrorAuthenticating(true);

@@ -9,12 +9,10 @@ const authFunctions: AWS["functions"] = {
   preTokenGeneration: {
     handler: `${handlerPath(__dirname)}/handler.handler`,
     role,
-    memorySize: 128,
-    timeout: 5,
     events: [
       {
         cognitoUserPool: {
-          pool: cognitoServerlessConfig.USER_POOL_ID,
+          pool: cognitoServerlessConfig.USER_POOL_NAME,
           trigger: "PreTokenGeneration",
           existing: true,
         },

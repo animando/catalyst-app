@@ -5,9 +5,6 @@ import type { AWS } from "@serverless/typescript";
 export const AWS_ACCOUNT_ID = "${aws:accountId}";
 export const AWS_REGION = "${aws:region}";
 
-// const arnTokens = kafkaClusterArn.split("/");
-// const kafkaClusterId = arnTokens[arnTokens.length - 1];
-
 export const kafkaServerlessConfig = {
   KAFKA_CLUSTER_ID: "${self:custom.kafkaClusterId}",
   KAFKA_SSL_DISABLED: "${self:custom.kafkaSslDisabled}",
@@ -66,7 +63,7 @@ export const cloudfrontServerlessCustomConfig = {
 export const cognitoServerlessConfig = {
   USER_POOL_CLIENT_SECRET_ARN: "${self:custom.userPoolClientSecretArn}",
   USER_POOL_ID: "${self:custom.userPoolId}",
-  USER_POOL_ARN: "${self:custom.userPoolArn}",
+  USER_POOL_NAME: "${self:custom.userPoolName}",
 };
 
 export const cognitoServerlessCustomConfig = {
@@ -74,8 +71,8 @@ export const cognitoServerlessCustomConfig = {
     "${file(./serverlessVariables-${self:custom.stage}.yml):userPoolClientSecretArn}",
   userPoolId:
     "${file(./serverlessVariables-${self:custom.stage}.yml):userPoolId}",
-  userPoolArn:
-    "${file(./serverlessVariables-${self:custom.stage}.yml):userPoolArn}",
+  userPoolName:
+    "${file(./serverlessVariables-${self:custom.stage}.yml):userPoolName}",
 };
 
 export const ssmServerlessConfig = {
