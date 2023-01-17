@@ -1,10 +1,21 @@
-import { kafkaServerlessConfig } from "../serverlessCommonConfig";
+import {
+  cloudfrontServerlessConfig,
+  cognitoServerlessConfig,
+  kafkaServerlessConfig,
+} from "../serverlessCommonConfig";
 import { topics } from "../services/topics";
 import { ALLOW } from "../utils/serverless/iamHelpers";
 
 const createTopicArn = (topicName: string) =>
   `${kafkaServerlessConfig.KAFKA_TOPIC_ARN_PREFIX}/${topicName}`;
 
+const createReadSecretStatement = (secretArn: string) => [
+  {
+    Effect: ALLOW,
+    Action: ["secretsmanager:GetSecretValue"],
+    Resource: secretArn,
+  },
+];
 const createKafkaWriteStatement = (topicName: string) => [
   {
     Effect: ALLOW,
@@ -93,4 +104,7 @@ export const policies = {
   KafkaAdmin: createKafkaAdminStatement(),
   KafkaReadTopicConsumer1: createKafkaReadStatement(topics.Consumer1Topic),
   KafkaReadWriteConsumer1: createKafkaWriteStatement(topics.Consumer1Topic),
+  ReadAppClientSecret: createReadSecretStatement(
+    cognitoServerlessConfig.USER_POOL_CLIENT_SECRET_ARN
+  ),
 };

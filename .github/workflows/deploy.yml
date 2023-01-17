@@ -23,6 +23,9 @@ jobs:
       - name: Build UI
         run: yarn run build
 
+      - name: Deploy auth
+        run: yarn run deploy:auth
+
       - name: Deploy topic manager
         run: yarn run deploy:topicManager
 

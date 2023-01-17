@@ -5,11 +5,13 @@
   "license": "MIT",
   "dependencies": {
     "@aws-lambda-powertools/logger": "^1.5.0",
+    "@aws-sdk/client-secrets-manager": "^3.250.0",
     "@jm18457/kafkajs-msk-iam-authentication-mechanism": "^2.0.3",
     "@middy/core": "^4.0.10",
     "@middy/http-cors": "^4.0.10",
     "@middy/http-error-handler": "^4.0.10",
     "@middy/http-json-body-parser": "^4.0.10",
+    "cognito-at-edge": "^1.3.1",
     "dotenv": "^16.0.3",
     "kafkajs": "^2.2.3",
     "shared-utils": "1.0.0"
@@ -21,25 +23,28 @@
     "esbuild": "^0.16.15",
     "serverless": "^3.26.0",
     "serverless-esbuild": "^1.37.0",
+    "serverless-lambda-edge-pre-existing-cloudfront": "^1.2.0",
     "serverless-offline": "^12.0.4",
     "serverless-plugin-scripts": "^1.0.2",
     "ts-jest": "^29.0.5"
   },
   "scripts": {
-    "test": "jest",
-    "test:watch": "jest --watch",
-    "run:topicManager": "serverless invoke --function topicManager --stage dev --config serverlessTopicManager.ts",
+    "deploy:auth": "serverless deploy --stage dev --config serverlessAuth.ts",
     "deploy:topicManager": "serverless deploy --stage dev --config serverlessTopicManager.ts",
-    "destroy:topicManager": "serverless destroy --stage dev --config serverlessTopicManager.ts",
     "deploy": "serverless deploy --stage dev",
+    "destroy:auth": "serverless destroy --stage dev --config serverlessAuth.ts",
+    "destroy:topicManager": "serverless destroy --stage dev --config serverlessTopicManager.ts",
     "destroy": "serverless remove --stage dev",
     "eslint:check": "eslint .",
     "lint": "yarn run prettier:check && yarn run eslint:check",
     "prettier:check": "prettier . --check",
+    "run:topicManager": "serverless invoke --function topicManager --stage dev --config serverlessTopicManager.ts",
     "start:backend": "serverless offline",
     "start:consumers:watch": "nodemon -w localKafkaConsumers.ts yarn run start:consumers",
     "start:consumers": "ts-node ./localKafkaConsumer.ts",
     "start": "yarn run start:backend",
+    "test:watch": "jest --watch",
+    "test": "jest",
     "typecheck": "tsc --noEmit"
   }
 }

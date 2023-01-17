@@ -8,3 +8,8 @@ kafkaBootstrapServer: ${ssm:catalyst-kafka-bootstrap-brokers-iam}
 kafkaClusterName: ${ssm:catalyst-kafka-cluster-name}
 lambdaSecurityGroup: ${ssm:lambda-security-group-id}
 kafkaSslDisabled: false
+userPoolId: ${ssm:user-pool-id}
+userPoolClientId: ${ssm:user-pool-client-id}
+userPoolDomain: ${ssm:user-pool-domain}
+distributionId: ${ssm:catalyst-ui-distribution-id}
+userPoolClientSecretArn: ${ssm:user-pool-client-secret-arn}

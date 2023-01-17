@@ -5,7 +5,8 @@ import { consumer1, iamRoleConsumer1 } from "./services/consumer1/serverless";
 import {
   provider,
   custom,
-  spaServerlessConfig,
+  kafkaEnvironment,
+  kafkaServerlessCustomConfig,
 } from "./serverlessCommonConfig";
 
 const config: AWS = {
@@ -14,7 +15,7 @@ const config: AWS = {
     ...provider,
     environment: {
       ...provider.environment,
-      SPA_URL: spaServerlessConfig.SPA_URL,
+      ...kafkaEnvironment,
     },
   },
   plugins: ["serverless-esbuild", "serverless-offline"],
@@ -28,7 +29,10 @@ const config: AWS = {
       iamRoleHello,
     },
   },
-  custom,
+  custom: {
+    ...custom,
+    ...kafkaServerlessCustomConfig,
+  },
 };
 
 module.exports = config;

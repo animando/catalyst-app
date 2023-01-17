@@ -11,16 +11,18 @@
   ],
   "scripts": {
     "build": "yarn workspace ui run build",
-    "deploy:topicManager": "yarn workspace backend run deploy:topicManager",
+    "deploy:auth": "yarn workspace backend run deploy:auth",
     "deploy:backend": "yarn workspace backend run deploy",
+    "deploy:topicManager": "yarn workspace backend run deploy:topicManager",
     "deploy:ui": "yarn workspace ui run deploy",
+    "destroy:auth": "yarn workspace backend run destroy:auth",
     "destroy:backend": "yarn workspace backend run destroy",
     "destroy:topicManager": "yarn workspace backend run destroy:topicManager",
     "destroy:ui": "yarn workspace ui run destroy",
+    "lint": "yarn workspaces run lint",
     "start:kafka": "yarn workspace local-kafka start",
-    "stop:kafka": "yarn workspace local-kafka stop",
     "start": "concurrently -n \"backend,ui,consumers\" \"yarn workspace local-kafka start\"  \"yarn workspace backend start\" \"yarn workspace ui start\" \"yarn workspace backend start:consumers\"",
-    "lint": "yarn workspaces run lint"
+    "stop:kafka": "yarn workspace local-kafka stop"
   },
   "devDependencies": {
     "@types/node": "^18.11.18",
