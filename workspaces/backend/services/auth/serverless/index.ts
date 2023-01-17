@@ -17,7 +17,6 @@ export const auth = {
         eventType: "viewer-request",
         pathPattern: "*",
         includeBody: false,
-        stage: config.STAGE,
       },
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } as any,
