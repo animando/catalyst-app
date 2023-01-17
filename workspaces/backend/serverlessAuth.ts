@@ -16,6 +16,7 @@ const config: AWS = {
   provider: {
     ...provider,
     environment: {
+      ...provider.environment,
       ...cognitoServerlessEnvironment,
       ...cloudfrontServerlessEnvironment,
     },

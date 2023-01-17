@@ -27,6 +27,9 @@ export const kafkaEnvironment = {
 export const spaServerlessConfig = {
   SPA_URL: "${self:custom.spaUrl}",
 };
+export const spaServerlessEnvironment = {
+  SPA_URL: spaServerlessConfig.SPA_URL,
+};
 
 export const vpcServerlessConfig = {
   PRIVATE_SUBNET_ID1: "${self:custom.privateSubnetId1}",

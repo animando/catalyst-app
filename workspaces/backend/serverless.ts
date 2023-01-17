@@ -7,6 +7,7 @@ import {
   custom,
   kafkaEnvironment,
   kafkaServerlessCustomConfig,
+  spaServerlessEnvironment,
 } from "./serverlessCommonConfig";
 
 const config: AWS = {
@@ -16,6 +17,7 @@ const config: AWS = {
     environment: {
       ...provider.environment,
       ...kafkaEnvironment,
+      ...spaServerlessEnvironment,
     },
   },
   plugins: ["serverless-esbuild", "serverless-offline"],
