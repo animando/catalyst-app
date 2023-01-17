@@ -129,6 +129,4 @@ export const custom = {
   "serverless-offline": {
     noPrependStageInUrl: true,
   },
-  ...vpcServerlessCustomConfig,
-  spaUrl: "${file(./serverlessVariables-${self:custom.stage}.yml):spaUrl}",
 };

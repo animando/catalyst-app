@@ -5,6 +5,7 @@ import {
   kafkaEnvironment,
   kafkaServerlessCustomConfig,
   provider,
+  vpcServerlessCustomConfig,
 } from "./serverlessCommonConfig";
 
 import {
@@ -33,6 +34,7 @@ const config: AWS = {
   custom: {
     ...custom,
     ...kafkaServerlessCustomConfig,
+    ...vpcServerlessCustomConfig,
     scripts: {
       hooks: {
         "after:deploy:deploy": "yarn run run:topicManager",

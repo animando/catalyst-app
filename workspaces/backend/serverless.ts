@@ -1,3 +1,4 @@
+/* eslint-disable no-template-curly-in-string */
 /* eslint-disable import/no-import-module-exports */
 import type { AWS } from "@serverless/typescript";
 import { hello, iamRoleHello } from "./services/hello/serverless";
@@ -8,6 +9,7 @@ import {
   kafkaEnvironment,
   kafkaServerlessCustomConfig,
   spaServerlessEnvironment,
+  vpcServerlessCustomConfig,
 } from "./serverlessCommonConfig";
 
 const config: AWS = {
@@ -34,6 +36,8 @@ const config: AWS = {
   custom: {
     ...custom,
     ...kafkaServerlessCustomConfig,
+    ...vpcServerlessCustomConfig,
+    spaUrl: "${file(./serverlessVariables-${self:custom.stage}.yml):spaUrl}",
   },
 };
 
