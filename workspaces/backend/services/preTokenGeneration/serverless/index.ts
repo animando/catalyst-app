@@ -16,6 +16,7 @@ const authFunctions: AWS["functions"] = {
         cognitoUserPool: {
           pool: cognitoServerlessConfig.USER_POOL_ID,
           trigger: "PreTokenGeneration",
+          existing: true,
         },
       },
     ],
