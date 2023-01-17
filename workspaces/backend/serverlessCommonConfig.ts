@@ -65,11 +65,14 @@ export const cloudfrontServerlessCustomConfig = {
 
 export const cognitoServerlessConfig = {
   USER_POOL_CLIENT_SECRET_ARN: "${self:custom.userPoolClientSecretArn}",
+  USER_POOL_ID: "${self:custom.userPoolId}",
 };
 
 export const cognitoServerlessCustomConfig = {
   userPoolClientSecretArn:
     "${file(./serverlessVariables-${self:custom.stage}.yml):userPoolClientSecretArn}",
+  userPoolId:
+    "${file(./serverlessVariables-${self:custom.stage}.yml):userPoolId}",
 };
 
 export const ssmServerlessConfig = {

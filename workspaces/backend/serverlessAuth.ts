@@ -9,6 +9,10 @@ import {
 } from "./serverlessCommonConfig";
 
 import { auth, iamRoleAuth } from "./services/auth/serverless";
+import {
+  preTokenGeneration,
+  iamRolePreTokenGeneration,
+} from "./services/preTokenGeneration/serverless";
 
 const config: AWS = {
   service: "auth",
@@ -25,10 +29,12 @@ const config: AWS = {
   ],
   functions: {
     auth,
+    preTokenGeneration,
   },
   resources: {
     Resources: {
       iamRoleAuth,
+      iamRolePreTokenGeneration,
     },
   },
   custom: {

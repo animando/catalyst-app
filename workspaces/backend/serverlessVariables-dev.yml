@@ -10,3 +10,4 @@ lambdaSecurityGroup: ${ssm:lambda-security-group-id}
 kafkaSslDisabled: false
 distributionId: ${ssm(eu-west-2):catalyst-ui-distribution-id}
 userPoolClientSecretArn: ${ssm(eu-west-2):user-pool-client-secret-arn}
+userPoolId: ${ssm(eu-west-2):user-pool-id}
