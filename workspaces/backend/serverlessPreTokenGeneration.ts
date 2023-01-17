@@ -1,6 +1,7 @@
 /* eslint-disable import/no-import-module-exports */
 import type { AWS } from "@serverless/typescript";
 import {
+  cognitoServerlessConfig,
   cognitoServerlessCustomConfig,
   custom,
   provider,
@@ -10,6 +11,16 @@ import {
   preTokenGeneration,
   iamRolePreTokenGeneration,
 } from "./services/preTokenGeneration/serverless";
+
+const cognitoInvokePermission = {
+  Type: "AWS::Lambda::Permission",
+  Properties: {
+    Action: "lambda:InvokeFunction",
+    FunctionName: "preTokenGeneration",
+    Principal: "cognito-idp.amazonaws.com",
+    SourceArn: cognitoServerlessConfig.USER_POOL_ARN,
+  },
+};
 
 const config: AWS = {
   service: "preTokenGeneration",
@@ -23,6 +34,7 @@ const config: AWS = {
   resources: {
     Resources: {
       iamRolePreTokenGeneration,
+      cognitoInvokePermission,
     },
   },
   custom: {
