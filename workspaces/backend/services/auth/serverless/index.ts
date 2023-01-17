@@ -8,6 +8,7 @@ export const auth = {
   handler: `${handlerPath(__dirname)}/handler.handler`,
   role,
   memorySize: 128,
+  timeout: 5,
   events: [
     {
       preExistingCloudFront: {
