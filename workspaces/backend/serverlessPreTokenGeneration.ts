@@ -21,6 +21,7 @@ const cognitoInvokePermission = {
     Principal: "cognito-idp.amazonaws.com",
     SourceArn: cognitoServerlessConfig.USER_POOL_ARN,
   },
+  DependsOn: ["preTokenGeneration-${self:custom.stage}"],
 };
 
 const config: AWS = {
