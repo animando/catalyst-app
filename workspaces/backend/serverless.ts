@@ -14,6 +14,7 @@ import {
   kafkaServerlessCustomConfig,
   spaServerlessEnvironment,
   vpcServerlessCustomConfig,
+  cognitoServerlessCustomConfig,
 } from "./serverlessCommonConfig";
 
 const config: AWS = {
@@ -41,6 +42,7 @@ const config: AWS = {
   },
   custom: {
     ...custom,
+    ...cognitoServerlessCustomConfig,
     ...kafkaServerlessCustomConfig,
     ...vpcServerlessCustomConfig,
     spaUrl: "${file(./serverlessVariables-${self:custom.stage}.yml):spaUrl}",
