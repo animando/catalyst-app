@@ -18,7 +18,7 @@
     "shared-utils": "1.0.0"
   },
   "devDependencies": {
-    "@serverless/typescript": "^3.25.0",
+    "@typescript": "^3.25.0",
     "@types/aws-lambda": "^8.10.109",
     "@types/jest": "^29.2.5",
     "esbuild": "^0.16.15",

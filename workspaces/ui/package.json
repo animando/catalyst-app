@@ -11,7 +11,8 @@
     "destroy": "STAGE=dev scripts/destroy.sh",
     "prettier:check": "prettier . --check",
     "eslint:check": "eslint .",
-    "lint": "yarn run prettier:check && yarn run eslint:check"
+    "lint": "yarn run prettier:check && yarn run eslint:check",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "axios": "^1.2.2",

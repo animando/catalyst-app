@@ -38,13 +38,13 @@ export const vpcServerlessConfig = {
 
 export const vpcServerlessCustomConfig = {
   privateSubnetId1:
-    "${file(./serverlessVariables-${self:custom.stage}.yml):privateSubnetId1}",
+    "${file(serverless/serverlessVariables-${self:custom.stage}.yml):privateSubnetId1}",
   privateSubnetId2:
-    "${file(./serverlessVariables-${self:custom.stage}.yml):privateSubnetId2}",
+    "${file(serverless/serverlessVariables-${self:custom.stage}.yml):privateSubnetId2}",
   privateSubnetId3:
-    "${file(./serverlessVariables-${self:custom.stage}.yml):privateSubnetId3}",
+    "${file(serverless/serverlessVariables-${self:custom.stage}.yml):privateSubnetId3}",
   lambdaSecurityGroup:
-    "${file(./serverlessVariables-${self:custom.stage}.yml):lambdaSecurityGroup}",
+    "${file(serverless/serverlessVariables-${self:custom.stage}.yml):lambdaSecurityGroup}",
 };
 
 export const iamServerlessConfig = {
@@ -57,7 +57,7 @@ export const cloudfrontServerlessConfig = {
 
 export const cloudfrontServerlessCustomConfig = {
   distributionId:
-    "${file(./serverlessVariables-${self:custom.stage}.yml):distributionId}",
+    "${file(serverless/serverlessVariables-${self:custom.stage}.yml):distributionId}",
 };
 
 export const cognitoServerlessConfig = {
@@ -68,11 +68,11 @@ export const cognitoServerlessConfig = {
 
 export const cognitoServerlessCustomConfig = {
   userPoolClientSecretArn:
-    "${file(./serverlessVariables-${self:custom.stage}.yml):userPoolClientSecretArn}",
+    "${file(serverless/serverlessVariables-${self:custom.stage}.yml):userPoolClientSecretArn}",
   userPoolId:
-    "${file(./serverlessVariables-${self:custom.stage}.yml):userPoolId}",
+    "${file(serverless/serverlessVariables-${self:custom.stage}.yml):userPoolId}",
   userPoolName:
-    "${file(./serverlessVariables-${self:custom.stage}.yml):userPoolName}",
+    "${file(serverless/serverlessVariables-${self:custom.stage}.yml):userPoolName}",
 };
 
 export const ssmServerlessConfig = {
@@ -86,15 +86,15 @@ export const ssmServerlessCustomConfig = {
 
 export const kafkaServerlessCustomConfig = {
   kafkaClusterArn:
-    "${file(./serverlessVariables-${self:custom.stage}.yml):kafkaClusterArn}",
+    "${file(serverless/serverlessVariables-${self:custom.stage}.yml):kafkaClusterArn}",
   kafkaClusterName:
-    "${file(./serverlessVariables-${self:custom.stage}.yml):kafkaClusterName}",
+    "${file(serverless/serverlessVariables-${self:custom.stage}.yml):kafkaClusterName}",
   kafkaClusterId:
-    "${file(./serverlessVariables-${self:custom.stage}.yml):kafkaClusterId}",
+    "${file(serverless/serverlessVariables-${self:custom.stage}.yml):kafkaClusterId}",
   kafkaBootstrapServer:
-    "${file(./serverlessVariables-${self:custom.stage}.yml):kafkaBootstrapServer}",
+    "${file(serverless/serverlessVariables-${self:custom.stage}.yml):kafkaBootstrapServer}",
   kafkaSslDisabled:
-    "${file(./serverlessVariables-${self:custom.stage}.yml):kafkaSslDisabled}",
+    "${file(serverless/serverlessVariables-${self:custom.stage}.yml):kafkaSslDisabled}",
   kafkaGroupArn:
     "arn:aws:kafka:${aws:region}:${aws:accountId}:group/${self:custom.kafkaClusterName}/${self:custom.kafkaClusterId}/*",
   kafkaTopicArnPrefix:

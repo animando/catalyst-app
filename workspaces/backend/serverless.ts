@@ -13,7 +13,7 @@ import {
   kafkaServerlessCustomConfig,
   vpcServerlessCustomConfig,
   cognitoServerlessCustomConfig,
-} from "./serverlessCommonConfig";
+} from "./serverless/serverlessCommonConfig";
 
 const config: AWS = {
   service: "backend",

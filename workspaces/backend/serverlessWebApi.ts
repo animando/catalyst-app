@@ -10,7 +10,7 @@ import {
   spaServerlessEnvironment,
   vpcServerlessCustomConfig,
   cognitoServerlessCustomConfig,
-} from "./serverlessCommonConfig";
+} from "./serverless/serverlessCommonConfig";
 
 const config: AWS = {
   service: "webApi",
@@ -36,7 +36,8 @@ const config: AWS = {
     ...cognitoServerlessCustomConfig,
     ...kafkaServerlessCustomConfig,
     ...vpcServerlessCustomConfig,
-    spaUrl: "${file(./serverlessVariables-${self:custom.stage}.yml):spaUrl}",
+    spaUrl:
+      "${file(serverless/serverlessVariables-${self:custom.stage}.yml):spaUrl}",
   },
 };
 

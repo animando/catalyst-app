@@ -1,4 +1,4 @@
-import { corsConfig } from "../../../serverlessCorsConfig";
+import { corsConfig } from "../../../serverless/serverlessCorsConfig";
 import { handlerPath } from "../../../utils/handlerPath";
 import { commonLambdaConfig } from "../../../utils/serverless/commonLambdaConfig";
 import { role } from "../config";

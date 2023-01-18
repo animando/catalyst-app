@@ -6,7 +6,7 @@ import {
   kafkaServerlessCustomConfig,
   provider,
   vpcServerlessCustomConfig,
-} from "./serverlessCommonConfig";
+} from "./serverless/serverlessCommonConfig";
 
 import {
   topicManager,

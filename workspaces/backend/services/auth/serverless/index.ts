@@ -1,5 +1,5 @@
 import type { AWS } from "@serverless/typescript";
-import { cloudfrontServerlessConfig } from "../../../serverlessCommonConfig";
+import { cloudfrontServerlessConfig } from "../../../serverless/serverlessCommonConfig";
 import { handlerPath } from "../../../utils/handlerPath";
 import { role } from "../config";
 

@@ -6,7 +6,7 @@ import {
   custom,
   provider,
   ssmServerlessCustomConfig,
-} from "./serverlessCommonConfig";
+} from "./serverless/serverlessCommonConfig";
 
 import { auth, iamRoleAuth } from "./services/auth/serverless";
 

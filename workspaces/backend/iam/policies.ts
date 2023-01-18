@@ -2,7 +2,7 @@ import {
   cognitoServerlessConfig,
   kafkaServerlessConfig,
   ssmServerlessConfig,
-} from "../serverlessCommonConfig";
+} from "../serverless/serverlessCommonConfig";
 import { topics } from "../services/topics";
 import { ALLOW } from "../utils/serverless/iamHelpers";
 

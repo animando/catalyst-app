@@ -1,5 +1,5 @@
 import type { AWS } from "@serverless/typescript";
-import { cognitoServerlessConfig } from "../../../serverlessCommonConfig";
+import { cognitoServerlessConfig } from "../../../serverless/serverlessCommonConfig";
 import { handlerPath } from "../../../utils/handlerPath";
 import { commonLambdaConfig } from "../../../utils/serverless/commonLambdaConfig";
 import { role } from "../config";

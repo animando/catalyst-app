@@ -1,7 +1,7 @@
 import {
   kafkaServerlessConfig,
   vpcServerlessConfig,
-} from "../../serverlessCommonConfig";
+} from "../../serverless/serverlessCommonConfig";
 
 export const commonLambdaConfig = {
   vpc: {
