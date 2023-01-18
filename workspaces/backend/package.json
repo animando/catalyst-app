@@ -31,11 +31,9 @@
   },
   "scripts": {
     "deploy:auth": "serverless deploy --stage dev --config serverlessAuth.ts",
-    "deploy:preTokenGeneration": "serverless deploy --stage dev --config serverlessPreTokenGeneration.ts",
     "deploy:topicManager": "serverless deploy --stage dev --config serverlessTopicManager.ts",
     "deploy": "serverless deploy --stage dev",
     "destroy:auth": "serverless remove --stage dev --config serverlessAuth.ts",
-    "destroy:preTokenGeneration": "serverless remove --stage dev --config serverlessPreTokenGeneration.ts",
     "destroy:topicManager": "serverless remove --stage dev --config serverlessTopicManager.ts",
     "destroy": "serverless remove --stage dev",
     "eslint:check": "eslint .",
