@@ -17,7 +17,8 @@ const ApiGatewayAuthorizer = {
   Type: "AWS::ApiGateway::Authorizer",
   Properties: {
     Name: "ApiGatewayAuthorizer",
-    IdentitySource: "COGNITO_USER_POOLS",
+    Type: "COGNITO_USER_POOLS",
+    IdentitySource: "method.request.header.Authorization",
     RestApiId: {
       Ref: "ApiGatewayRestApi",
     },

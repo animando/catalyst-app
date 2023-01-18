@@ -1,4 +1,7 @@
-import { spaServerlessConfig } from "./serverlessCommonConfig";
+import {
+  cognitoServerlessConfig,
+  spaServerlessConfig,
+} from "./serverlessCommonConfig";
 
 export const corsConfig = {
   origin: spaServerlessConfig.SPA_URL,
@@ -13,5 +16,5 @@ export const authorizer = {
   authorizerId: {
     Ref: "ApiGatewayAuthorizer",
   },
-  scopes: [""],
+  scopes: [cognitoServerlessConfig.WEBAPI_ACCESS_SCOPE],
 };

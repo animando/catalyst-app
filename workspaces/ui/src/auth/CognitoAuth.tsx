@@ -3,6 +3,7 @@ import jwtDecode from "jwt-decode";
 import Cookies from "js-cookie";
 import { environment } from "../utils/environment";
 import { AuthContext, AuthContextProvider } from "./authContext";
+import { setApiToken } from "../api/webApi";
 
 const cookieBase = `CognitoIdentityServiceProvider.${environment.USER_POOL_CLIENT_ID}`;
 
@@ -24,6 +25,7 @@ const useCognito = (localToken?: string) => {
     if (accessToken) {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const decoded = jwtDecode(accessToken) as any;
+      setApiToken(accessToken);
       setAuthContext({
         username: decoded.username,
         groups: decoded["cognito:groups"],
