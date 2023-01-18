@@ -35,6 +35,13 @@ const config: AWS = {
       ...kafkaEnvironment,
       ...spaServerlessEnvironment,
     },
+    apiGateway: {
+      apiKeys: [
+        {
+          name: "ui-api-key",
+        },
+      ],
+    },
   },
   plugins: ["serverless-esbuild", "serverless-offline"],
   functions: {

@@ -19,6 +19,7 @@ export const hello = {
         method: "get",
         cors: corsConfig,
         authorizer,
+        private: true,
       },
     },
   ],
