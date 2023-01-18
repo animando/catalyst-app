@@ -1,8 +1,9 @@
+import { PreTokenGenerationTriggerHandler } from "aws-lambda";
 import { logger } from "./logger";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const handler = async (event: any, context: any) => {
-  logger.info("Got event", { event, context });
+export const handler: PreTokenGenerationTriggerHandler = (event) => {
+  logger.info("Got event", { event });
   // eslint-disable-next-line no-param-reassign
   event.response = {
     claimsOverrideDetails: {
@@ -11,5 +12,5 @@ export const handler = async (event: any, context: any) => {
       },
     },
   };
-  return event;
+  return Promise.resolve(event);
 };
