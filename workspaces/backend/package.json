@@ -42,10 +42,11 @@
     "lint": "yarn run prettier:check && yarn run eslint:check",
     "prettier:check": "prettier . --check",
     "run:topicManager": "serverless invoke --function topicManager --stage dev --config serverlessTopicManager.ts",
+    "start:webApi": "serverless offline --config serverlessWebApi.ts --httpPort 4000 --lambdaPort 4002",
     "start:backend": "serverless offline",
     "start:consumers:watch": "nodemon -w localKafkaConsumers.ts yarn run start:consumers",
     "start:consumers": "ts-node ./localKafkaConsumer.ts",
-    "start": "yarn run start:backend",
+    "start": "concurrently -n \"backend,webApi\" \"yarn run start:backend\" \"yarn run start:webApi\"",
     "test:watch": "jest --watch",
     "test": "jest",
     "typecheck": "tsc --noEmit"
