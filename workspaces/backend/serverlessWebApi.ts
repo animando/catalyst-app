@@ -13,6 +13,16 @@ import {
   cognitoServerlessConfig,
 } from "./serverless/serverlessCommonConfig";
 
+const apiKeyConfig = process.env.DISABLE_PRIVATE_APIS
+  ? {}
+  : {
+      apiKeys: [
+        {
+          name: "ui-api-key",
+        },
+      ],
+    };
+
 const ApiGatewayAuthorizer = {
   Type: "AWS::ApiGateway::Authorizer",
   Properties: {
@@ -36,11 +46,7 @@ const config: AWS = {
       ...spaServerlessEnvironment,
     },
     apiGateway: {
-      apiKeys: [
-        {
-          name: "ui-api-key",
-        },
-      ],
+      ...apiKeyConfig,
     },
   },
   plugins: ["serverless-esbuild", "serverless-offline"],

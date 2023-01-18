@@ -19,7 +19,7 @@ export const hello = {
         method: "get",
         cors: corsConfig,
         authorizer,
-        private: true,
+        ...(process.env.DISABLE_PRIVATE_APIS ? {} : { private: true }),
       },
     },
   ],
