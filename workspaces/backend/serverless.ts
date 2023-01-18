@@ -4,6 +4,10 @@ import type { AWS } from "@serverless/typescript";
 import { hello, iamRoleHello } from "./services/hello/serverless";
 import { consumer1, iamRoleConsumer1 } from "./services/consumer1/serverless";
 import {
+  preTokenGeneration,
+  iamRolePreTokenGeneration,
+} from "./services/preTokenGeneration/serverless";
+import {
   provider,
   custom,
   kafkaEnvironment,
@@ -26,11 +30,13 @@ const config: AWS = {
   functions: {
     hello,
     consumer1,
+    preTokenGeneration,
   },
   resources: {
     Resources: {
       iamRoleConsumer1,
       iamRoleHello,
+      iamRolePreTokenGeneration,
     },
   },
   custom: {

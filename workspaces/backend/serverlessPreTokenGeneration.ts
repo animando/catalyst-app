@@ -4,6 +4,7 @@ import {
   cognitoServerlessCustomConfig,
   custom,
   provider,
+  vpcServerlessCustomConfig,
 } from "./serverlessCommonConfig";
 
 import {
@@ -28,6 +29,7 @@ const config: AWS = {
   custom: {
     ...custom,
     ...cognitoServerlessCustomConfig,
+    ...vpcServerlessCustomConfig,
   },
 };
 

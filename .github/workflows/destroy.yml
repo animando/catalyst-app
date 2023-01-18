@@ -26,8 +26,5 @@ jobs:
       - name: Destroy topic manager
         run: yarn run destroy:topicManager
 
-      - name: Destroy preTokenGeneration
-        run: yarn run destroy:preTokenGeneration
-
       - name: Destroy auth
         run: yarn run destroy:auth

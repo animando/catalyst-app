@@ -1,7 +1,8 @@
-import {} from "@aws-sdk/client-secrets-manager";
+import { logger } from "./logger";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const handler = async (event: any, context: any, callback: any) => {
+export const handler = async (event: any, context: any) => {
+  logger.info("Got event", { event, context });
   // eslint-disable-next-line no-param-reassign
   event.response = {
     claimsOverrideDetails: {
@@ -10,5 +11,5 @@ export const handler = async (event: any, context: any, callback: any) => {
       },
     },
   };
-  callback(null, event);
+  return event;
 };
