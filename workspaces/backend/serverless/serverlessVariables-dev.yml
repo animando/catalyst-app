@@ -14,4 +14,4 @@ userPoolArn: ${ssm(eu-west-2):user-pool-arn}
 userPoolId: ${ssm(eu-west-2):user-pool-id}
 userPoolName: ${ssm(eu-west-2):user-pool-name}
 vpcEndpointId: ${ssm:vpc-endpoint-id}
-webapiAccessScope: ${ssm:webapi-access-scope}
+webapiAccessScope: ${ssm(eu-west-2):webapi-access-scope}
