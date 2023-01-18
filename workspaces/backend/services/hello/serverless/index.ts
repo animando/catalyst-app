@@ -1,4 +1,7 @@
-import { corsConfig } from "../../../serverless/serverlessCorsConfig";
+import {
+  authorizer,
+  corsConfig,
+} from "../../../serverless/serverlessHttpConfig";
 import { handlerPath } from "../../../utils/handlerPath";
 import { commonLambdaConfig } from "../../../utils/serverless/commonLambdaConfig";
 import { role } from "../config";
@@ -15,6 +18,7 @@ export const hello = {
         path: "hello",
         method: "get",
         cors: corsConfig,
+        authorizer,
       },
     },
   ],

@@ -13,12 +13,15 @@ import {
   kafkaServerlessCustomConfig,
   vpcServerlessCustomConfig,
   cognitoServerlessCustomConfig,
+  vpcServerlessConfig,
 } from "./serverless/serverlessCommonConfig";
 
 const config: AWS = {
   service: "backend",
   provider: {
     ...provider,
+    endpointType: "PRIVATE",
+    vpcEndpointIds: [vpcServerlessConfig.VPC_ENDPOINT_ID],
     environment: {
       ...provider.environment,
       ...kafkaEnvironment,

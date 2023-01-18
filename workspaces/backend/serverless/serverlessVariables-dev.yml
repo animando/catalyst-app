@@ -10,5 +10,8 @@ lambdaSecurityGroup: ${ssm:lambda-security-group-id}
 kafkaSslDisabled: false
 distributionId: ${ssm(eu-west-2):catalyst-ui-distribution-id}
 userPoolClientSecretArn: ${ssm(eu-west-2):user-pool-client-secret-arn}
+userPoolArn: ${ssm(eu-west-2):user-pool-arn}
 userPoolId: ${ssm(eu-west-2):user-pool-id}
 userPoolName: ${ssm(eu-west-2):user-pool-name}
+vpcEndpointId: ${ssm:vpc-endpoint-id}
+webapiAccessScope: ${ssm:webapi-access-scope}

@@ -10,5 +10,8 @@ kafkaBootstrapServer: localhost:29092
 kafkaSslDisabled: true
 distributionId: local
 userPoolClientSecretArn: local
+userPoolArn: local
 userPoolId: local
 userPoolName: local
+vpcEndpointId: local
+webapiAccessScope: local

@@ -10,7 +10,20 @@ import {
   spaServerlessEnvironment,
   vpcServerlessCustomConfig,
   cognitoServerlessCustomConfig,
+  cognitoServerlessConfig,
 } from "./serverless/serverlessCommonConfig";
+
+const ApiGatewayAuthorizer = {
+  Type: "AWS::ApiGateway::Authorizer",
+  Properties: {
+    Name: "ApiGatewayAuthorizer",
+    IdentitySource: "COGNITO_USER_POOLS",
+    RestApi: {
+      Ref: "ApiGatewayRestApi",
+    },
+    ProviderARNs: [cognitoServerlessConfig.USER_POOL_ARN],
+  },
+};
 
 const config: AWS = {
   service: "webApi",
@@ -28,6 +41,7 @@ const config: AWS = {
   },
   resources: {
     Resources: {
+      ApiGatewayAuthorizer,
       iamRoleHello,
     },
   },

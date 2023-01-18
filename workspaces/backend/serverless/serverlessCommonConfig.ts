@@ -34,6 +34,7 @@ export const vpcServerlessConfig = {
   PRIVATE_SUBNET_ID2: "${self:custom.privateSubnetId2}",
   PRIVATE_SUBNET_ID3: "${self:custom.privateSubnetId3}",
   LAMBDA_SECURITY_GROUP: "${self:custom.lambdaSecurityGroup}",
+  VPC_ENDPOINT_ID: "${self:custom.vpcEndpointId}",
 };
 
 export const vpcServerlessCustomConfig = {
@@ -45,6 +46,8 @@ export const vpcServerlessCustomConfig = {
     "${file(serverless/serverlessVariables-${self:custom.stage}.yml):privateSubnetId3}",
   lambdaSecurityGroup:
     "${file(serverless/serverlessVariables-${self:custom.stage}.yml):lambdaSecurityGroup}",
+  vpcEndpointId:
+    "${file(serverless/serverlessVariables-${self:custom.stage}.yml):vpcEndpointId}",
 };
 
 export const iamServerlessConfig = {
@@ -62,17 +65,23 @@ export const cloudfrontServerlessCustomConfig = {
 
 export const cognitoServerlessConfig = {
   USER_POOL_CLIENT_SECRET_ARN: "${self:custom.userPoolClientSecretArn}",
+  USER_POOL_ARN: "${self:custom.userPoolArn}",
   USER_POOL_ID: "${self:custom.userPoolId}",
   USER_POOL_NAME: "${self:custom.userPoolName}",
+  WEBAPI_ACCESS_SCOPE: "${self:custom.webapiAccessScope}",
 };
 
 export const cognitoServerlessCustomConfig = {
   userPoolClientSecretArn:
     "${file(serverless/serverlessVariables-${self:custom.stage}.yml):userPoolClientSecretArn}",
+  userPoolArn:
+    "${file(serverless/serverlessVariables-${self:custom.stage}.yml):userPoolArn}",
   userPoolId:
     "${file(serverless/serverlessVariables-${self:custom.stage}.yml):userPoolId}",
   userPoolName:
     "${file(serverless/serverlessVariables-${self:custom.stage}.yml):userPoolName}",
+  webapiAccessScope:
+    "${file(serverless/serverlessVariables-${self:custom.stage}.yml):webapiAccessScope}",
 };
 
 export const ssmServerlessConfig = {
