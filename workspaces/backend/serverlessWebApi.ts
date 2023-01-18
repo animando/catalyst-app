@@ -18,7 +18,7 @@ const ApiGatewayAuthorizer = {
   Properties: {
     Name: "ApiGatewayAuthorizer",
     IdentitySource: "COGNITO_USER_POOLS",
-    RestApi: {
+    RestApiId: {
       Ref: "ApiGatewayRestApi",
     },
     ProviderARNs: [cognitoServerlessConfig.USER_POOL_ARN],
