@@ -5,12 +5,12 @@ import { logger } from "./logger";
 export const handler: PreTokenGenerationTriggerHandler = (event) => {
   logger.info("Got event", { event });
   // eslint-disable-next-line no-param-reassign
-  event.response = {
-    claimsOverrideDetails: {
-      groupOverrideDetails: {
-        groupsToOverride: ["bob"],
-      },
-    },
-  };
+  // event.response = {
+  //   claimsOverrideDetails: {
+  //     groupOverrideDetails: {
+  //       groupsToOverride: ["bob"],
+  //     },
+  //   },
+  // };
   return Promise.resolve(event);
 };

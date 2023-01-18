@@ -1,9 +1,10 @@
-import { applyHttpMiddleware } from "../../utils/applyHttpMiddleware";
+import { applyHttpMiddleware } from "../../middleware/applyHttpMiddleware";
 import { publishMessage } from "../../utils/publishMessage";
 import { topics } from "../topics";
 import { logger } from "./logger";
 import { kafka } from "./kafka";
 import { Consumer1Message } from "../consumer1/handler";
+import { requireUserGroup } from "../../middleware/requireUserGroup";
 
 const helloHandler = async () => {
   const now = new Date().toISOString();
@@ -27,4 +28,6 @@ const helloHandler = async () => {
   };
 };
 
-export const hello = applyHttpMiddleware(helloHandler);
+export const hello = applyHttpMiddleware(helloHandler, { logger }).use(
+  requireUserGroup("admin", { logger })
+);

@@ -23,7 +23,8 @@
     "destroy:webApi": "yarn workspace backend run destroy:webApi",
     "lint": "yarn workspaces run lint",
     "start:kafka": "yarn workspace local-kafka start",
-    "start": "concurrently -n \"backend,ui,consumers\" \"yarn workspace local-kafka start\"  \"yarn workspace backend start\" \"yarn workspace ui start\" \"yarn workspace backend start:consumers\"",
+    "start:backend": "yarn workspace backend start",
+    "start": "concurrently -n \"kafka,backend,ui,consumers\" \"yarn workspace local-kafka start\"  \"yarn start:backend\" \"yarn workspace ui start\" \"yarn workspace backend start:consumers\"",
     "stop:kafka": "yarn workspace local-kafka stop",
     "typecheck": "yarn workspaces run typecheck"
   },
