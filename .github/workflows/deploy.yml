@@ -32,5 +32,8 @@ jobs:
       - name: Deploy backend
         run: yarn run deploy:backend
 
+      - name: Deploy web api
+        run: yarn run deploy:webApi
+
       - name: Deploy UI
         run: yarn run deploy:ui

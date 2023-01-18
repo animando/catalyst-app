@@ -1,7 +1,7 @@
 #!/bin/bash
 
 REGION=eu-west-2
-REST_API_ID=`aws apigateway get-rest-apis --query "items[?contains(name, '$STAGE-backend')].id" --output text`
+REST_API_ID=`aws apigateway get-rest-apis --query "items[?contains(name, '$STAGE-webApi')].id" --output text`
 USER_POOL_CLIENT_ID=`aws ssm get-parameter --name user-pool-client-id  --query "Parameter.Value" --output text`
 CF_DISTRIBUTION_DOMAIN=`aws ssm get-parameter --name catalyst-ui-distribution-domain --query "Parameter.Value" --output text`
 

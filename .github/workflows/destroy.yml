@@ -20,6 +20,9 @@ jobs:
       - name: Destroy UI
         run: yarn run destroy:ui
 
+      - name: Destroy web api
+        run: yarn run destroy:webApi
+
       - name: Destroy backend
         run: yarn run destroy:backend
 

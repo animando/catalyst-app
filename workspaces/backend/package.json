@@ -32,9 +32,11 @@
   "scripts": {
     "deploy:auth": "serverless deploy --stage dev --config serverlessAuth.ts",
     "deploy:topicManager": "serverless deploy --stage dev --config serverlessTopicManager.ts",
+    "deploy:webApi": "serverless deploy --stage dev --config serverlessWebApi.ts",
     "deploy": "serverless deploy --stage dev",
     "destroy:auth": "serverless remove --stage dev --config serverlessAuth.ts",
     "destroy:topicManager": "serverless remove --stage dev --config serverlessTopicManager.ts",
+    "destroy:webApi": "serverless remove --stage dev --config serverlessWebApi.ts",
     "destroy": "serverless remove --stage dev",
     "eslint:check": "eslint .",
     "lint": "yarn run prettier:check && yarn run eslint:check",

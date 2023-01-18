@@ -1,38 +1,34 @@
 /* eslint-disable no-template-curly-in-string */
 /* eslint-disable import/no-import-module-exports */
 import type { AWS } from "@serverless/typescript";
-import { consumer1, iamRoleConsumer1 } from "./services/consumer1/serverless";
-import {
-  preTokenGeneration,
-  iamRolePreTokenGeneration,
-} from "./services/preTokenGeneration/serverless";
+import { hello, iamRoleHello } from "./services/hello/serverless";
 import {
   provider,
   custom,
   kafkaEnvironment,
   kafkaServerlessCustomConfig,
+  spaServerlessEnvironment,
   vpcServerlessCustomConfig,
   cognitoServerlessCustomConfig,
 } from "./serverlessCommonConfig";
 
 const config: AWS = {
-  service: "backend",
+  service: "webApi",
   provider: {
     ...provider,
     environment: {
       ...provider.environment,
       ...kafkaEnvironment,
+      ...spaServerlessEnvironment,
     },
   },
   plugins: ["serverless-esbuild", "serverless-offline"],
   functions: {
-    consumer1,
-    preTokenGeneration,
+    hello,
   },
   resources: {
     Resources: {
-      iamRoleConsumer1,
-      iamRolePreTokenGeneration,
+      iamRoleHello,
     },
   },
   custom: {
@@ -40,6 +36,7 @@ const config: AWS = {
     ...cognitoServerlessCustomConfig,
     ...kafkaServerlessCustomConfig,
     ...vpcServerlessCustomConfig,
+    spaUrl: "${file(./serverlessVariables-${self:custom.stage}.yml):spaUrl}",
   },
 };
 
