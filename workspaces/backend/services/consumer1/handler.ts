@@ -4,6 +4,7 @@ import { createMskHandler } from "../../utils/createMskHandler";
 import { Consumer1Message, SnsTopic1Payload } from "../messageTypes";
 import { MSKHandler } from "../types";
 import { logger } from "./logger";
+import Consumer1MessageSchema from "../../schemas/Consumer1Message.json";
 
 const consumer1Handler: MSKHandler<Consumer1Message> = async (
   event,
@@ -52,4 +53,7 @@ const consumer1Handler: MSKHandler<Consumer1Message> = async (
   );
 };
 
-export const handler = createMskHandler(consumer1Handler, logger);
+export const handler = createMskHandler(consumer1Handler, {
+  logger,
+  schema: Consumer1MessageSchema,
+});

@@ -1,0 +1,12 @@
+{
+  "type": "object",
+  "required": ["message", "now"],
+  "properties": {
+    "message": {
+      "type": "string"
+    },
+    "now": {
+      "type": "string"
+    }
+  }
+}
