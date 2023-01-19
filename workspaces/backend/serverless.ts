@@ -39,6 +39,9 @@ const config: AWS = {
       ...kafkaEnvironment,
     },
   },
+  package: {
+    individually: true,
+  },
   plugins: [
     "serverless-esbuild",
     "serverless-offline",
