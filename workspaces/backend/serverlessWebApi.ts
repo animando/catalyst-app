@@ -21,6 +21,17 @@ const apiKeyConfig = process.env.DISABLE_PRIVATE_APIS
           name: "ui-api-key",
         },
       ],
+      usagePlan: {
+        quota: {
+          limit: 500,
+          offset: 0,
+          period: "DAY" as const,
+        },
+        throttle: {
+          burstLimit: 20,
+          rateLimit: 5,
+        },
+      },
     };
 
 const ApiGatewayAuthorizer = {
