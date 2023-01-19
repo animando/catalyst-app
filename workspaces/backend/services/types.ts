@@ -16,7 +16,7 @@ export interface KafkaClient {
 
 export type MessageHeaders = Record<string, string | undefined>;
 
-export interface Message<T> {
+interface MessageAttributes<T> {
   topic: string;
   partition: number;
   offset: number;
@@ -27,4 +27,9 @@ export interface Message<T> {
   headers: MessageHeaders;
 }
 
-export type KafkaMessageConsumer<T> = (message: Message<T>) => Promise<void>;
+export type MSKMessageEvent<T> = Omit<MSKEvent, "records"> &
+  MessageAttributes<T>;
+
+export type KafkaMessageConsumer<T> = (
+  message: MSKMessageEvent<T>
+) => Promise<void>;

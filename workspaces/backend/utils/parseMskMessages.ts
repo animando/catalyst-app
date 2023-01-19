@@ -1,8 +1,10 @@
 import { MSKEvent } from "aws-lambda";
-import { Message } from "../services/types";
+import { MSKMessageEvent } from "../services/types";
 
-export const parseMskMessages = <T>(event: MSKEvent): Message<T>[] =>
-  Object.entries(event.records).flatMap(([_, records]) =>
+export const parseMskMessages = <T>(event: MSKEvent): MSKMessageEvent<T>[] => {
+  const { eventSource, eventSourceArn } = event;
+
+  return Object.entries(event.records).flatMap(([_, records]) =>
     records.flatMap((record) => {
       const { value, key, timestamp, ...rest } = record;
       const headers = record.headers
@@ -28,6 +30,8 @@ export const parseMskMessages = <T>(event: MSKEvent): Message<T>[] =>
 
       return {
         ...rest,
+        eventSource,
+        eventSourceArn,
         timestamp: new Date(timestamp),
         headers,
         value: JSON.parse(Buffer.from(value, "base64").toString()),
@@ -35,3 +39,4 @@ export const parseMskMessages = <T>(event: MSKEvent): Message<T>[] =>
       };
     })
   );
+};

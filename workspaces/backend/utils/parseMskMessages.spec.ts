@@ -25,6 +25,8 @@ const testEvent: MSKEvent = {
 };
 const expectedEvents = [
   {
+    eventSource: "aws:kafka",
+    eventSourceArn: "arn:aws:kafka:eu-west-2:1234567890:cluster/catalyst/id",
     topic: "consumer1-topic",
     partition: 3,
     offset: 2,

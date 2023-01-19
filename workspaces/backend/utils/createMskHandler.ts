@@ -1,11 +1,11 @@
 import { Logger } from "@aws-lambda-powertools/logger";
-import { MSKEvent } from "aws-lambda";
-import { KafkaMessageConsumer } from "../services/types";
+import { Context, Handler, MSKEvent, Callback } from "aws-lambda";
+import { MSKMessageEvent } from "../services/types";
 import { parseMskMessages } from "./parseMskMessages";
 
 export const createMskHandler =
-  <T>(payloadHandler: KafkaMessageConsumer<T>, logger: Logger) =>
-  async (event: MSKEvent) => {
+  <T>(payloadHandler: Handler<MSKMessageEvent<T>>, logger: Logger) =>
+  async (event: MSKEvent, context: Context, callback: Callback<void>) => {
     const messages = parseMskMessages<T>(event);
 
     logger.info("Consumed messages", {
@@ -13,6 +13,6 @@ export const createMskHandler =
     });
 
     messages.forEach(async (message) => {
-      await payloadHandler(message);
+      await payloadHandler(message, context, callback);
     });
   };
