@@ -18,7 +18,6 @@ import {
   cognitoServerlessCustomConfig,
   vpcServerlessConfig,
 } from "./serverless/serverlessCommonConfig";
-// import { snsTopics } from "./services/topics";
 
 const config: AWS = {
   service: "backend",
@@ -29,9 +28,9 @@ const config: AWS = {
     environment: {
       ...provider.environment,
       ...kafkaEnvironment,
-      // SNS_TOPIC1: {
-      //   Ref: snsTopics.Topic1,
-      // },
+      SNS_TOPIC1: {
+        Ref: "SNSTopicTopic1",
+      },
     },
   },
   plugins: [
