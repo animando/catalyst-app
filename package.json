@@ -22,6 +22,7 @@
     "destroy:ui": "yarn workspace ui run destroy",
     "destroy:webApi": "yarn workspace backend run destroy:webApi",
     "generate:types": "yarn workspace backend run generate:types",
+    "generate:types:watch": "yarn workspace backend run generate:types:watch",
     "lint": "yarn workspaces run lint",
     "start:kafka": "yarn workspace local-kafka start",
     "start:backend": "yarn workspace backend start",
