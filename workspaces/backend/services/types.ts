@@ -1,4 +1,10 @@
-import { Handler, MSKEvent, SNSEvent, SNSEventRecord } from "aws-lambda";
+import {
+  Context,
+  Handler,
+  MSKEvent,
+  SNSEvent,
+  SNSEventRecord,
+} from "aws-lambda";
 import { Consumer, Kafka, Producer } from "kafkajs";
 
 export interface LocalConsumerConfiguration {
@@ -51,3 +57,8 @@ type ParsedSNSResult<T> =
 export type SNSMessageEvent<T> = Omit<SNSEvent, "Records"> &
   SNSEventRecord &
   ParsedSNSResult<T>;
+
+export type MSKHandler<T> = (
+  event: MSKMessageEvent<T>,
+  context: Context
+) => Promise<void>;

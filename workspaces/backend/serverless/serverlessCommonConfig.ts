@@ -112,11 +112,13 @@ export const kafkaServerlessCustomConfig = {
 
 export const snsServerlessConfig = {
   SnsTopic1: "${self:custom.snsTopic1Arn}",
+  SNS_TOPIC_ARN_PREFIX: "${self:custom.snsTopicArnPrefix}",
 };
 export const snsServerlessCustomConfig = {
   snsTopic1Arn: {
     Ref: "SNSTopicTopic1",
   },
+  snsTopicArnPrefix: "arn:aws:sns:${aws:region}:${aws:accountId}",
 };
 
 export const provider: AWS["provider"] = {

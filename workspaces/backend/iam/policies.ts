@@ -1,13 +1,16 @@
 import {
   cognitoServerlessConfig,
   kafkaServerlessConfig,
+  snsServerlessConfig,
   ssmServerlessConfig,
 } from "../serverless/serverlessCommonConfig";
-import { kafkaTopics } from "../services/topics";
+import { kafkaTopics, snsTopics } from "../services/topics";
 import { ALLOW } from "../utils/serverless/iamHelpers";
 
 const createTopicArn = (topicName: string) =>
   `${kafkaServerlessConfig.KAFKA_TOPIC_ARN_PREFIX}/${topicName}`;
+const createSnsTopicArn = (topicName: string) =>
+  `${snsServerlessConfig.SNS_TOPIC_ARN_PREFIX}:${topicName}`;
 
 const createReadSecretStatement = (secretArn: string) => [
   {
@@ -29,6 +32,13 @@ const createKafkaReadStatement = (topicName: string) => [
     Effect: ALLOW,
     Action: ["kafka-cluster:DescribeTopic", "kafka-cluster:ReadData"],
     Resource: createTopicArn(topicName),
+  },
+];
+const createSnsPublishStatement = (topicName: string) => [
+  {
+    Effect: ALLOW,
+    Action: ["sns:Publish"],
+    Resource: createSnsTopicArn(topicName),
   },
 ];
 
@@ -118,4 +128,5 @@ export const policies = {
     cognitoServerlessConfig.USER_POOL_CLIENT_SECRET_ARN
   ),
   ReadSsmParameters,
+  PublishTopic1: createSnsPublishStatement(snsTopics.Topic1),
 };
