@@ -3,8 +3,8 @@ import { publishMessage } from "../../utils/publishMessage";
 import { kafkaTopics } from "../topics";
 import { logger } from "./logger";
 import { kafka } from "./kafka";
-import { Consumer1Message } from "../consumer1/handler";
 import { requireUserGroup } from "../../middleware/requireUserGroup";
+import { Consumer1Message } from "../messageTypes";
 
 const helloHandler = async () => {
   const now = new Date().toISOString();

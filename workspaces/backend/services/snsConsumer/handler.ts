@@ -1,5 +1,6 @@
 import type { Handler, SNSEvent } from "aws-lambda";
 import { createSnsHandler } from "../../utils/createSnsHandler";
+import { SnsTopic1Payload } from "../messageTypes";
 import { SNSMessageEvent } from "../types";
 import { logger } from "./logger";
 
@@ -8,7 +9,7 @@ export interface Consumer1Message {
   now: string;
 }
 
-export const topic1Handler: Handler<SNSMessageEvent<any>> = async (
+export const topic1Handler: Handler<SNSMessageEvent<SnsTopic1Payload>> = async (
   event,
   context
 ) => {

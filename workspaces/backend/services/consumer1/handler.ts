@@ -3,13 +3,9 @@ import { PublishCommand, SNSClient } from "@aws-sdk/client-sns";
 import type { Handler, MSKEvent } from "aws-lambda";
 import { config } from "../../utils/config";
 import { createMskHandler } from "../../utils/createMskHandler";
+import { Consumer1Message, SnsTopic1Payload } from "../messageTypes";
 import { MSKHandler } from "../types";
 import { logger } from "./logger";
-
-export interface Consumer1Message {
-  message: string;
-  now: string;
-}
 
 const consumer1Handler: MSKHandler<Consumer1Message> = async (
   event,
@@ -39,9 +35,11 @@ const consumer1Handler: MSKHandler<Consumer1Message> = async (
     });
   }
 
-  const payload = Buffer.from(
-    JSON.stringify({ snsMesssage: "hello" })
-  ).toString("base64");
+  const snsMessage: SnsTopic1Payload = {
+    snsMessage: "hello",
+  };
+
+  const payload = Buffer.from(JSON.stringify(snsMessage)).toString("base64");
 
   logger.info("Preparing to send sns message", {
     topic: config.SNS_TOPIC1,
