@@ -1,3 +1,4 @@
+import { snsServerlessConfig } from "../../../serverless/serverlessCommonConfig";
 import { handlerPath } from "../../../utils/handlerPath";
 import {
   commonLambdaConfig,
@@ -12,6 +13,9 @@ export const consumer1 = {
   ...commonLambdaConfig,
   handler: `${handlerPath(__dirname)}/handler.handler`,
   role,
+  environment: {
+    SNS_TOPIC1: snsServerlessConfig.SnsTopic1,
+  },
   events: [
     {
       msk: {

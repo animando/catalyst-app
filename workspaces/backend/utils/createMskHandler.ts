@@ -6,7 +6,7 @@ import { parseMskMessages } from "./parseMskMessages";
 export const createMskHandler =
   <T>(payloadHandler: Handler<MSKMessageEvent<T>>, logger: Logger) =>
   async (event: MSKEvent, context: Context, callback: Callback<void>) => {
-    const messages = parseMskMessages<T>(event);
+    const messages = parseMskMessages<T>(event, { logger });
 
     logger.info("Consumed messages", {
       messages,

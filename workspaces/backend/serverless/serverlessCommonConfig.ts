@@ -110,6 +110,15 @@ export const kafkaServerlessCustomConfig = {
     "arn:aws:kafka:${aws:region}:${aws:accountId}:topic/${self:custom.kafkaClusterName}/${self:custom.kafkaClusterId}",
 };
 
+export const snsServerlessConfig = {
+  SnsTopic1: "${self:custom.snsTopic1Arn}",
+};
+export const snsServerlessCustomConfig = {
+  snsTopic1Arn: {
+    Ref: "SNSTopicTopic1",
+  },
+};
+
 export const provider: AWS["provider"] = {
   name: "aws",
   runtime: "nodejs16.x",
@@ -126,6 +135,7 @@ export const custom = {
   esbuild: {
     bundle: true,
     minify: false,
+    sourcemap: true,
     packager: "yarn",
   },
   "serverless-offline": {

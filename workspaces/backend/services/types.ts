@@ -1,4 +1,4 @@
-import { Handler, MSKEvent } from "aws-lambda";
+import { Handler, MSKEvent, SNSEvent, SNSEventRecord } from "aws-lambda";
 import { Consumer, Kafka, Producer } from "kafkajs";
 
 export interface LocalConsumerConfiguration {
@@ -16,20 +16,38 @@ export interface KafkaClient {
 
 export type MessageHeaders = Record<string, string | undefined>;
 
-interface MessageAttributes<T> {
+interface MskMessageAttributes {
   topic: string;
   partition: number;
   offset: number;
   timestamp: Date;
   timestampType: "CREATE_TIME" | "LOG_APPEND_TIME";
   key: string;
-  value: T;
   headers: MessageHeaders;
 }
 
-export type MSKMessageEvent<T> = Omit<MSKEvent, "records"> &
-  MessageAttributes<T>;
+type ParsedMessageAttributes<M, T> = M & {
+  parsed: true;
+  value: T;
+};
+type UnparsedMessageAttributes<M> = M & {
+  parsed: false;
+  value: unknown;
+};
 
-export type KafkaMessageConsumer<T> = (
-  message: MSKMessageEvent<T>
-) => Promise<void>;
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+interface SnsMessageAttributes {}
+
+type ParsedMSKResult<T> =
+  | ParsedMessageAttributes<MskMessageAttributes, T>
+  | UnparsedMessageAttributes<MskMessageAttributes>;
+
+export type MSKMessageEvent<T> = Omit<MSKEvent, "records"> & ParsedMSKResult<T>;
+
+type ParsedSNSResult<T> =
+  | ParsedMessageAttributes<SnsMessageAttributes, T>
+  | UnparsedMessageAttributes<SnsMessageAttributes>;
+
+export type SNSMessageEvent<T> = Omit<SNSEvent, "Records"> &
+  SNSEventRecord &
+  ParsedSNSResult<T>;

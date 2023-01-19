@@ -1,6 +1,6 @@
+import { snsServerlessConfig } from "../../../serverless/serverlessCommonConfig";
 import { handlerPath } from "../../../utils/handlerPath";
 import { commonLambdaConfig } from "../../../utils/serverless/commonLambdaConfig";
-import { snsTopics } from "../../topics";
 import { role } from "../config";
 
 export { iamRoleSnsConsumer } from "./iam";
@@ -11,7 +11,10 @@ export const snsConsumer = {
   role,
   events: [
     {
-      sns: snsTopics.Topic1,
+      sns: {
+        arn: snsServerlessConfig.SnsTopic1,
+        topicName: "topic1",
+      },
     },
   ],
 };

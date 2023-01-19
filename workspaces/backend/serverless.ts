@@ -17,7 +17,16 @@ import {
   vpcServerlessCustomConfig,
   cognitoServerlessCustomConfig,
   vpcServerlessConfig,
+  snsServerlessCustomConfig,
 } from "./serverless/serverlessCommonConfig";
+import { snsTopics } from "./services/topics";
+
+const SNSTopicTopic1 = {
+  Type: "AWS::SNS::Topic",
+  Properties: {
+    TopicName: snsTopics.Topic1,
+  },
+};
 
 const config: AWS = {
   service: "backend",
@@ -28,9 +37,6 @@ const config: AWS = {
     environment: {
       ...provider.environment,
       ...kafkaEnvironment,
-      SNS_TOPIC1: {
-        Ref: "SNSTopicTopic1",
-      },
     },
   },
   plugins: [
@@ -48,6 +54,7 @@ const config: AWS = {
       iamRoleConsumer1,
       iamRolePreTokenGeneration,
       iamRoleSnsConsumer,
+      SNSTopicTopic1,
     },
   },
   custom: {
@@ -55,6 +62,7 @@ const config: AWS = {
     ...cognitoServerlessCustomConfig,
     ...kafkaServerlessCustomConfig,
     ...vpcServerlessCustomConfig,
+    ...snsServerlessCustomConfig,
     "serverless-offline-sns": {
       port: 5000,
     },

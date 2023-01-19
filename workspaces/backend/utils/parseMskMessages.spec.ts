@@ -1,5 +1,12 @@
+import { Logger } from "@aws-lambda-powertools/logger";
 import { MSKEvent } from "aws-lambda";
 import { parseMskMessages } from "./parseMskMessages";
+
+const mockLogger = {
+  info: jest.fn(),
+  error: jest.fn(),
+  debug: jest.fn(),
+} as unknown as Logger;
 
 const testEvent: MSKEvent = {
   eventSource: "aws:kafka",
@@ -33,13 +40,14 @@ const expectedEvents = [
     timestamp: new Date("2023-01-14T09:26:12.120Z"),
     timestampType: "CREATE_TIME",
     key: "808",
+    parsed: true,
     value: { message: "Hello", now: "2023-01-14T11:17:11.935Z" },
     headers: { header1: "header1", header2: "header2" },
   },
 ];
 describe("parseMskEvent", () => {
   it("should parse event", () => {
-    const parsedEvents = parseMskMessages(testEvent);
+    const parsedEvents = parseMskMessages(testEvent, { logger: mockLogger });
     expect(parsedEvents).toEqual(expectedEvents);
   });
 });
