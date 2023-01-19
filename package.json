@@ -21,6 +21,7 @@
     "destroy:topicManager": "yarn workspace backend run destroy:topicManager",
     "destroy:ui": "yarn workspace ui run destroy",
     "destroy:webApi": "yarn workspace backend run destroy:webApi",
+    "generate:types": "yarn workspace backend run generate:types",
     "lint": "yarn workspaces run lint",
     "start:kafka": "yarn workspace local-kafka start",
     "start:backend": "yarn workspace backend start",

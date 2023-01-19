@@ -1,10 +1,11 @@
 import { PublishCommand, SNSClient } from "@aws-sdk/client-sns";
 import { config } from "../../utils/config";
 import { createMskHandler } from "../../utils/createMskHandler";
-import { Consumer1Message, SnsTopic1Payload } from "../messageTypes";
 import { MSKHandler } from "../types";
 import { logger } from "./logger";
-import Consumer1MessageSchema from "../../schemas/Consumer1Message.json";
+import Consumer1MessageSchema from "../../json-schemas/Consumer1Message.json";
+import { Consumer1Message } from "../../compiled-types/Consumer1Message";
+import { SnsTopic1Payload } from "../../compiled-types/SnsTopic1Payload";
 
 const consumer1Handler: MSKHandler<Consumer1Message> = async (
   event,

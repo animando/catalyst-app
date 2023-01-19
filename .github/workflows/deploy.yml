@@ -20,6 +20,9 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
+      - name: Generate types
+        run: yarn run generate:types
+
       - name: Build UI
         run: yarn run build
 

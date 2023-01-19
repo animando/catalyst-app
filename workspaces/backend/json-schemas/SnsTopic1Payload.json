@@ -1,0 +1,9 @@
+{
+  "type": "object",
+  "required": ["snsMessage"],
+  "properties": {
+    "snsMessage": {
+      "type": "string"
+    }
+  }
+}

@@ -4,7 +4,7 @@ import { kafkaTopics } from "../topics";
 import { logger } from "./logger";
 import { kafka } from "./kafka";
 import { requireUserGroup } from "../../middleware/requireUserGroup";
-import { Consumer1Message } from "../messageTypes";
+import { Consumer1Message } from "../../compiled-types/Consumer1Message";
 
 const helloHandler = async () => {
   const now = new Date().toISOString();
