@@ -3,7 +3,7 @@ import {
   commonLambdaConfig,
   commonMskEventConfig,
 } from "../../../utils/serverless/commonLambdaConfig";
-import { topics } from "../../topics";
+import { kafkaTopics } from "../../topics";
 import { role } from "../config";
 
 export { iamRoleConsumer1 } from "./iam";
@@ -16,7 +16,7 @@ export const consumer1 = {
     {
       msk: {
         ...commonMskEventConfig,
-        topic: topics.Consumer1Topic,
+        topic: kafkaTopics.Consumer1Topic,
       },
     },
   ],

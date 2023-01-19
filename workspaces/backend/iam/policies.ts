@@ -3,7 +3,7 @@ import {
   kafkaServerlessConfig,
   ssmServerlessConfig,
 } from "../serverless/serverlessCommonConfig";
-import { topics } from "../services/topics";
+import { kafkaTopics } from "../services/topics";
 import { ALLOW } from "../utils/serverless/iamHelpers";
 
 const createTopicArn = (topicName: string) =>
@@ -110,8 +110,10 @@ export const policies = {
   CommonKafkaConsumer,
   CommonKafkaPublisher,
   KafkaAdmin: createKafkaAdminStatement(),
-  KafkaReadTopicConsumer1: createKafkaReadStatement(topics.Consumer1Topic),
-  KafkaReadWriteConsumer1: createKafkaWriteStatement(topics.Consumer1Topic),
+  KafkaReadTopicConsumer1: createKafkaReadStatement(kafkaTopics.Consumer1Topic),
+  KafkaReadWriteConsumer1: createKafkaWriteStatement(
+    kafkaTopics.Consumer1Topic
+  ),
   ReadAppClientSecret: createReadSecretStatement(
     cognitoServerlessConfig.USER_POOL_CLIENT_SECRET_ARN
   ),

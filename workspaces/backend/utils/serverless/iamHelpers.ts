@@ -13,7 +13,7 @@ export interface IamStatement {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const createRole = (
   roleName: string,
-  statements: Array<IamStatement>,
+  statements: Array<IamStatement> = [],
   managedPolicyArns: Array<string> = []
 ) => ({
   Type: "AWS::IAM::Role",
@@ -35,14 +35,18 @@ export const createRole = (
       "arn:aws:iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole",
       ...managedPolicyArns,
     ],
-    Policies: [
-      {
-        PolicyName: `policy-${roleName}`,
-        PolicyDocument: {
-          Version: "2012-10-17",
-          Statement: statements,
-        },
-      },
-    ],
+    ...(statements.length
+      ? {
+          Policies: [
+            {
+              PolicyName: `policy-${roleName}`,
+              PolicyDocument: {
+                Version: "2012-10-17",
+                Statement: statements,
+              },
+            },
+          ],
+        }
+      : {}),
   },
 });

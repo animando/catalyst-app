@@ -1,5 +1,5 @@
 import { config } from "../../utils/config";
-import { topics } from "../topics";
+import { kafkaTopics } from "../topics";
 import { kafkaClient } from "./kafka";
 import { logger } from "./logger";
 
@@ -8,7 +8,7 @@ const NUM_PARTITIONS = 10;
 
 const { kafka } = kafkaClient;
 
-const allTopics = Object.values(topics);
+const allTopics = Object.values(kafkaTopics);
 
 export const handler = async () => {
   const admin = kafka.admin();

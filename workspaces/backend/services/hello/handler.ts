@@ -1,6 +1,6 @@
 import { applyHttpMiddleware } from "../../middleware/applyHttpMiddleware";
 import { publishMessage } from "../../utils/publishMessage";
-import { topics } from "../topics";
+import { kafkaTopics } from "../topics";
 import { logger } from "./logger";
 import { kafka } from "./kafka";
 import { Consumer1Message } from "../consumer1/handler";
@@ -11,7 +11,7 @@ const helloHandler = async () => {
   const key = `${Math.floor(Math.random() * 1000)}`;
   const payload: Consumer1Message = { message: "Hello", now };
 
-  await publishMessage({ topic: topics.Consumer1Topic, key }, payload, {
+  await publishMessage({ topic: kafkaTopics.Consumer1Topic, key }, payload, {
     kafka,
     logger,
   });
@@ -29,5 +29,5 @@ const helloHandler = async () => {
 };
 
 export const hello = applyHttpMiddleware(helloHandler, { logger }).use(
-  requireUserGroup("admin", { logger })
+  requireUserGroup("bob", { logger })
 );

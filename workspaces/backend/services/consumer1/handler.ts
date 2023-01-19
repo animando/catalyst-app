@@ -1,4 +1,6 @@
+import { PublishCommand, SNSClient } from "@aws-sdk/client-sns";
 import type { Handler, MSKEvent } from "aws-lambda";
+import { config } from "../../utils/config";
 import { createMskHandler } from "../../utils/createMskHandler";
 import { MSKMessageEvent } from "../types";
 import { logger } from "./logger";
@@ -13,11 +15,27 @@ const consumer1Handler: Handler<MSKMessageEvent<Consumer1Message>> = async (
   context
 ) => {
   const { value } = event;
+  console.log({
+    REGION: config.REGION,
+  });
+  const sns = new SNSClient({
+    region: config.REGION,
+    endpoint: "http://localhost:5000",
+  });
 
   logger.info("Processing message", {
     value,
     context,
   });
+
+  await sns.send(
+    new PublishCommand({
+      TopicArn: config.SNS_TOPIC1,
+      Message: Buffer.from(JSON.stringify({ snsMesssage: "hello" })).toString(
+        "base64"
+      ),
+    })
+  );
 };
 
 const mskHandler = createMskHandler(consumer1Handler, logger);

@@ -1,7 +1,7 @@
 /* eslint-disable global-require */
 /* eslint-disable import/no-dynamic-require */
 /* eslint-disable @typescript-eslint/no-var-requires */
-import { MSKEvent } from "aws-lambda";
+import { Context, MSKEvent } from "aws-lambda";
 import "dotenv/config";
 import { handler } from "./services/consumer1/handler";
 import { LocalConsumerConfiguration } from "./services/types";
@@ -40,7 +40,7 @@ const runConsumer = async (consumerName: string) => {
           ],
         },
       };
-      return handler(event);
+      return handler(event, {} as Context, () => null);
     },
   });
 };

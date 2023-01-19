@@ -1,8 +1,8 @@
-import { Context, MSKEvent } from "aws-lambda";
+import { Handler, MSKEvent } from "aws-lambda";
 import { Consumer, Kafka, Producer } from "kafkajs";
 
 export interface LocalConsumerConfiguration {
-  handler: (message: MSKEvent, context: Context) => Promise<void>;
+  handler: Handler<MSKEvent>;
   topic: string;
   service: string;
   kafka: KafkaClient;
