@@ -1,6 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { PublishCommand, SNSClient } from "@aws-sdk/client-sns";
-import type { Handler, MSKEvent } from "aws-lambda";
 import { config } from "../../utils/config";
 import { createMskHandler } from "../../utils/createMskHandler";
 import { Consumer1Message, SnsTopic1Payload } from "../messageTypes";
@@ -54,7 +52,4 @@ const consumer1Handler: MSKHandler<Consumer1Message> = async (
   );
 };
 
-const mskHandler = createMskHandler(consumer1Handler, logger);
-
-export const handler: Handler<MSKEvent> = (event, context) =>
-  mskHandler(event, context);
+export const handler = createMskHandler(consumer1Handler, logger);

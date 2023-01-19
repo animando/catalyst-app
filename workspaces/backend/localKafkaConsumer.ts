@@ -40,7 +40,7 @@ const runConsumer = async (consumerName: string) => {
           ],
         },
       };
-      return handler(event, {} as Context, () => null);
+      return handler(event, {} as Context);
     },
   });
 };

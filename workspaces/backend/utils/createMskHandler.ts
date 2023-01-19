@@ -12,8 +12,7 @@ export const createMskHandler =
       messages,
     });
 
-    const responses = await Promise.all(
+    await Promise.all(
       messages.map((message) => payloadHandler(message, context))
     );
-    logger.info("Got responses", { responses });
   };
