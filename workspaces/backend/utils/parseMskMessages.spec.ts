@@ -20,7 +20,7 @@ const validValue = {
   now: "2023-01-19T19:53:58.590Z",
 };
 
-const encodeValue = (value: any) =>
+const encodeValue = (value: object) =>
   Buffer.from(JSON.stringify(value)).toString("base64");
 
 const mockLogger = {
