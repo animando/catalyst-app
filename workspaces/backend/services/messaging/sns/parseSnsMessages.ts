@@ -10,9 +10,20 @@ export const parseSnsMessages = <T>(
 ): SNSMessageEvent<T>[] => {
   const { Records, ...restEvent } = event;
 
-  return Records.map<SNSMessageEvent<T>>((record) => ({
-    ...record,
-    ...restEvent,
-    ...parseMessageValue(record.Sns.Message, { logger, schema }),
-  }));
+  return Records.map<SNSMessageEvent<T>>((record) => {
+    const parsedMessage = JSON.parse(
+      Buffer.from(record.Sns.Message, "base64").toString()
+    );
+    const { value: unparsedValue, headers = {} } = parsedMessage;
+
+    if (headers.catalystTraceId) {
+      logger.appendKeys({ catalystTraceId: headers.catalystTraceId });
+    }
+    return {
+      ...record,
+      ...restEvent,
+      headers,
+      ...parseMessageValue(unparsedValue, { logger, schema }),
+    };
+  });
 };

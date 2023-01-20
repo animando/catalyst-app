@@ -42,7 +42,9 @@ type UnparsedMessageAttributes<M> = M & {
 };
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-interface SnsMessageAttributes {}
+interface SnsMessageAttributes {
+  headers: MessageHeaders;
+}
 
 type ParsedMSKResult<T> =
   | ParsedMessageAttributes<MskMessageAttributes, T>

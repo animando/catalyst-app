@@ -7,11 +7,13 @@ import { logger } from "./logger";
 import Consumer1MessageSchema from "../../json-schemas/Consumer1Message.json";
 import { Consumer1Message } from "../../compiled-types/Consumer1Message";
 import { SnsTopic1Payload } from "../../compiled-types/SnsTopic1Payload";
+import { publishSnsMessage } from "../messaging/sns/publishSnsMessage";
 
 const consumer1Handler: MSKHandler<Consumer1Message> = async (
   event,
   context
 ) => {
+  console.log({ IS_OFFLINE: config.IS_OFFLINE });
   const sns = new SNSClient({
     region: config.REGION,
     ...(config.IS_OFFLINE
@@ -42,17 +44,10 @@ const consumer1Handler: MSKHandler<Consumer1Message> = async (
 
   const payload = Buffer.from(JSON.stringify(snsMessage)).toString("base64");
 
-  logger.info("Preparing to send sns message", {
-    topic: config.SNS_TOPIC1,
-    payload,
+  await publishSnsMessage({ topic: config.SNS_TOPIC1 }, snsMessage, {
+    logger,
+    client: sns,
   });
-
-  // await sns.send(
-  //   new PublishCommand({
-  //     TopicArn: config.SNS_TOPIC1,
-  //     Message: payload,
-  //   })
-  // );
 };
 
 export const handler = createMskHandler(consumer1Handler, {

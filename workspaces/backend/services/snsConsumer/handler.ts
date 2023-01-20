@@ -6,12 +6,10 @@ import { logger } from "./logger";
 import SnsTopic1PayloadSchema from "../../json-schemas/SnsTopic1Payload.json";
 
 export const topic1Handler: Handler<SNSMessageEvent<SnsTopic1Payload>> = async (
-  event,
-  context
+  event
 ) => {
   logger.info("Processing sns message", {
     event,
-    context,
   });
 };
 

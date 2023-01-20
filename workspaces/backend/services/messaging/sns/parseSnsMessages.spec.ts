@@ -10,6 +10,19 @@ const mockLogger = {
   warn: jest.fn(),
 } as unknown as Logger;
 
+const headers = { header1: "headerValue" };
+
+const createMessage = (value: object) => {
+  const valueString = Buffer.from(JSON.stringify(value)).toString("base64");
+
+  const payload = {
+    value: valueString,
+    headers,
+  };
+
+  return Buffer.from(JSON.stringify(payload)).toString("base64");
+};
+
 const createTestEvent = (Message: string): SNSEvent => ({
   Records: [
     {
@@ -32,12 +45,13 @@ const createTestEvent = (Message: string): SNSEvent => ({
     },
   ],
 });
-const createExpectedEvent = (Message: string) => ({
+const createExpectedEvent = (Message: string, value: object | string) => ({
   EventVersion: "1.0",
   EventSubscriptionArn: "EXAMPLE",
   EventSource: "aws:sns",
   parsed: true,
-  value: { snsMessage: "hello" },
+  value,
+  headers,
   Sns: {
     SignatureVersion: "1",
     Timestamp: "2023-01-19T14:19:07.159Z",
@@ -55,16 +69,18 @@ const createExpectedEvent = (Message: string) => ({
 
 describe("parseSnsMessages", () => {
   it("should parse and enrich sns event", () => {
-    const validMessage = "eyJzbnNNZXNzYWdlIjoiaGVsbG8ifQ==";
-    const parsedEvents = parseSnsMessages(createTestEvent(validMessage), {
+    const value = { snsMessage: "hello" };
+    const message = createMessage(value);
+    const parsedEvents = parseSnsMessages(createTestEvent(message), {
       logger: mockLogger,
       schema: SnsTopic1Payload,
     });
-    expect(parsedEvents).toEqual([createExpectedEvent(validMessage)]);
+    expect(parsedEvents).toEqual([createExpectedEvent(message, value)]);
   });
 
   it("should fail to validate event", () => {
-    const invalidMessage = "eyJzbnNtZXNzYWdlIjoiaGVsbG8ifQ==";
+    const value = { invalidKey: "message" };
+    const invalidMessage = createMessage(value);
     const parsedEvents = parseSnsMessages(createTestEvent(invalidMessage), {
       logger: mockLogger,
       schema: SnsTopic1Payload,
@@ -72,8 +88,7 @@ describe("parseSnsMessages", () => {
 
     expect(parsedEvents).toEqual([
       {
-        ...createExpectedEvent(invalidMessage),
-        value: { snsmessage: "hello" },
+        ...createExpectedEvent(invalidMessage, value),
         validationMessage: 'requires property "snsMessage"',
         parsed: false,
       },
@@ -81,7 +96,9 @@ describe("parseSnsMessages", () => {
   });
 
   it("should fail to parse event", () => {
-    const unparseable = "Unparseable";
+    const unparseable = Buffer.from(
+      JSON.stringify({ value: "Unparseable", headers })
+    ).toString("base64");
     const parsedEvents = parseSnsMessages(createTestEvent(unparseable), {
       logger: mockLogger,
       schema: SnsTopic1Payload,
@@ -89,8 +106,7 @@ describe("parseSnsMessages", () => {
 
     expect(parsedEvents).toEqual([
       {
-        ...createExpectedEvent(unparseable),
-        value: unparseable,
+        ...createExpectedEvent(unparseable, "Unparseable"),
         parsed: false,
       },
     ]);
