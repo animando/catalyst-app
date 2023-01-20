@@ -1,4 +1,5 @@
 import { Logger } from "@aws-lambda-powertools/logger";
+import { TRACE_ID_HEADER } from "../../../utils/constants";
 import { KafkaClient, MessageHeaders } from "../../types";
 
 export const publishKafkaMessage = async (
@@ -17,7 +18,7 @@ export const publishKafkaMessage = async (
 
   const headersToSend = {
     ...headers,
-    catalystTraceId: traceId,
+    [TRACE_ID_HEADER]: traceId,
   };
 
   logger.info("Publishing message", { topic, value, headers: headersToSend });

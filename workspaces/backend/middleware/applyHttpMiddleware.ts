@@ -7,21 +7,24 @@ import { injectLambdaContext, Logger } from "@aws-lambda-powertools/logger";
 import { v4 as uuid } from "uuid";
 import { config } from "../utils/config";
 import { parseJwtToken } from "./parseJwtToken";
+import {
+  addTraceToLogger,
+  removeTraceFromLogger,
+} from "../utils/addTraceToLogger";
+import { TRACE_ID_HEADER } from "../utils/constants";
 
 const injectTraceId = (
   logger: Logger
 ): MiddlewareObj<APIGatewayProxyEvent> => ({
   before: (event) => {
-    const traceId = event.event.headers.TraceHeader || uuid();
-    // eslint-disable-next-line no-param-reassign, @typescript-eslint/no-explicit-any
-    (event.context as any).traceId = traceId;
-    logger.appendKeys({ catalystTraceId: traceId });
+    const traceId = event.event.headers[TRACE_ID_HEADER] || uuid();
+    addTraceToLogger(logger, traceId);
   },
   after: () => {
-    logger.removeKeys(["catalystTraceId"]);
+    removeTraceFromLogger(logger);
   },
   onError: () => {
-    logger.removeKeys(["catalystTraceId"]);
+    removeTraceFromLogger(logger);
   },
 });
 

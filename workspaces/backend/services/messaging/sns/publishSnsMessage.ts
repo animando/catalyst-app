@@ -1,5 +1,6 @@
 import { Logger } from "@aws-lambda-powertools/logger";
 import { PublishCommand, SNSClient } from "@aws-sdk/client-sns";
+import { TRACE_ID_HEADER } from "../../../utils/constants";
 import { MessageHeaders } from "../../types";
 
 export const publishSnsMessage = async (
@@ -18,7 +19,7 @@ export const publishSnsMessage = async (
   const headersToSend = {
     ...headers,
     timestamp,
-    catalystTraceId: traceId,
+    [TRACE_ID_HEADER]: traceId,
   };
 
   const MessageContent = {

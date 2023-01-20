@@ -1,6 +1,8 @@
 import { Logger } from "@aws-lambda-powertools/logger";
 import { SNSEvent } from "aws-lambda";
 import { Schema } from "jsonschema";
+import { addTraceToLogger } from "../../../utils/addTraceToLogger";
+import { TRACE_ID_HEADER } from "../../../utils/constants";
 import { SNSMessageEvent } from "../../types";
 import { parseMessageValue } from "../parseMessageValue";
 
@@ -16,9 +18,8 @@ export const parseSnsMessages = <T>(
     );
     const { value: unparsedValue, headers = {} } = parsedMessage;
 
-    if (headers.catalystTraceId) {
-      logger.appendKeys({ catalystTraceId: headers.catalystTraceId });
-    }
+    addTraceToLogger(logger, headers[TRACE_ID_HEADER]);
+
     return {
       ...record,
       ...restEvent,
