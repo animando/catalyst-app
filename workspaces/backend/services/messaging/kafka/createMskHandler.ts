@@ -2,7 +2,7 @@ import { injectLambdaContext, Logger } from "@aws-lambda-powertools/logger";
 import middy from "@middy/core";
 import { Context, MSKEvent } from "aws-lambda";
 import { Schema } from "jsonschema";
-import { MSKHandler } from "../services/types";
+import { MSKHandler } from "../../types";
 import { parseMskMessages } from "./parseMskMessages";
 
 export const createMskHandler = <T>(

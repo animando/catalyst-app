@@ -1,5 +1,5 @@
 import { applyHttpMiddleware } from "../../middleware/applyHttpMiddleware";
-import { publishMessage } from "../../utils/publishMessage";
+import { publishKafkaMessage } from "../messaging/kafka/publishKafkaMessage";
 import { kafkaTopics } from "../topics";
 import { logger } from "./logger";
 import { kafka } from "./kafka";
@@ -11,10 +11,14 @@ const helloHandler = async () => {
   const key = `${Math.floor(Math.random() * 1000)}`;
   const payload: Consumer1Message = { message: "Hello", now };
 
-  await publishMessage({ topic: kafkaTopics.Consumer1Topic, key }, payload, {
-    kafka,
-    logger,
-  });
+  await publishKafkaMessage(
+    { topic: kafkaTopics.Consumer1Topic, key },
+    payload,
+    {
+      kafka,
+      logger,
+    }
+  );
 
   return {
     statusCode: 200,

@@ -1,7 +1,7 @@
 import { Logger } from "@aws-lambda-powertools/logger";
-import { KafkaClient, MessageHeaders } from "../services/types";
+import { KafkaClient, MessageHeaders } from "../../types";
 
-export const publishMessage = async (
+export const publishKafkaMessage = async (
   message: { topic: string; key: string; headers?: MessageHeaders },
   value: object,
   config: { kafka: KafkaClient; logger: Logger }

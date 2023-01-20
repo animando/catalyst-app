@@ -1,3 +1,3 @@
-import { createKafkaClient } from "../../utils/createKafkaClient";
+import { createKafkaClient } from "../messaging/kafka/createKafkaClient";
 
 export const kafkaClient = createKafkaClient("topicManager");

@@ -1,7 +1,7 @@
 import { Logger } from "@aws-lambda-powertools/logger";
 import { SNSEvent } from "aws-lambda";
 import { parseSnsMessages } from "./parseSnsMessages";
-import SnsTopic1Payload from "../json-schemas/SnsTopic1Payload.json";
+import SnsTopic1Payload from "../../../json-schemas/SnsTopic1Payload.json";
 
 const mockLogger = {
   info: jest.fn(),

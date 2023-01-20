@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { PublishCommand, SNSClient } from "@aws-sdk/client-sns";
 import { config } from "../../utils/config";
-import { createMskHandler } from "../../utils/createMskHandler";
+import { createMskHandler } from "../messaging/kafka/createMskHandler";
 import { MSKHandler } from "../types";
 import { logger } from "./logger";
 import Consumer1MessageSchema from "../../json-schemas/Consumer1Message.json";

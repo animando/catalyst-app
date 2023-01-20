@@ -3,8 +3,8 @@ import {
   awsIamAuthenticator,
   Type,
 } from "@jm18457/kafkajs-msk-iam-authentication-mechanism";
-import { KafkaClient } from "../services/types";
-import { config } from "./config";
+import { KafkaClient } from "../../types";
+import { config } from "../../../utils/config";
 
 export const createKafkaClient = (service: string): KafkaClient => {
   const kafka = new Kafka({

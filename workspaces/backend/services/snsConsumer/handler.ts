@@ -1,6 +1,6 @@
 import type { Handler, SNSEvent } from "aws-lambda";
 import { SnsTopic1Payload } from "../../compiled-types/SnsTopic1Payload";
-import { createSnsHandler } from "../../utils/createSnsHandler";
+import { createSnsHandler } from "../messaging/sns/createSnsHandler";
 import { SNSMessageEvent } from "../types";
 import { logger } from "./logger";
 import SnsTopic1PayloadSchema from "../../json-schemas/SnsTopic1Payload.json";

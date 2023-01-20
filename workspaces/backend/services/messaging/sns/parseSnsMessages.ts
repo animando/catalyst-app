@@ -1,8 +1,8 @@
 import { Logger } from "@aws-lambda-powertools/logger";
 import { SNSEvent } from "aws-lambda";
 import { Schema } from "jsonschema";
-import { SNSMessageEvent } from "../services/types";
-import { parseMessageValue } from "./parseMessageValue";
+import { SNSMessageEvent } from "../../types";
+import { parseMessageValue } from "../parseMessageValue";
 
 export const parseSnsMessages = <T>(
   event: SNSEvent,

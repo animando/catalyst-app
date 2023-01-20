@@ -2,7 +2,7 @@ import { injectLambdaContext, Logger } from "@aws-lambda-powertools/logger";
 import middy from "@middy/core";
 import { Context, Handler, Callback, SNSEvent } from "aws-lambda";
 import { Schema } from "jsonschema";
-import { SNSMessageEvent } from "../services/types";
+import { SNSMessageEvent } from "../../types";
 import { parseSnsMessages } from "./parseSnsMessages";
 
 interface Options {

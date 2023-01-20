@@ -1,8 +1,8 @@
 import { Logger } from "@aws-lambda-powertools/logger";
 import { MSKEvent } from "aws-lambda";
 import { Schema } from "jsonschema";
-import { MessageHeaders, MSKMessageEvent } from "../services/types";
-import { parseMessageValue } from "./parseMessageValue";
+import { MessageHeaders, MSKMessageEvent } from "../../types";
+import { parseMessageValue } from "../parseMessageValue";
 
 export const parseMskMessages = <T>(
   event: MSKEvent,
