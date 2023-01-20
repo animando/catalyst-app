@@ -13,7 +13,6 @@ const consumer1Handler: MSKHandler<Consumer1Message> = async (
   event,
   context
 ) => {
-  console.log({ IS_OFFLINE: config.IS_OFFLINE });
   const sns = new SNSClient({
     region: config.REGION,
     ...(config.IS_OFFLINE
