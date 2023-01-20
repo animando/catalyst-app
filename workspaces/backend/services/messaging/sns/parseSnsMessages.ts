@@ -1,7 +1,7 @@
 import { Logger } from "@aws-lambda-powertools/logger";
 import { SNSEvent } from "aws-lambda";
 import { Schema } from "jsonschema";
-import { addTraceToLogger } from "../../../utils/addTraceToLogger";
+import { addTraceToLogger } from "../../../utils/loggerTracing";
 import { TRACE_ID_HEADER } from "../../../utils/constants";
 import { SNSMessageEvent } from "../../types";
 import { parseMessageValue } from "../parseMessageValue";

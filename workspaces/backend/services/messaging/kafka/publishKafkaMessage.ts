@@ -1,5 +1,5 @@
 import { Logger } from "@aws-lambda-powertools/logger";
-import { TRACE_ID_HEADER } from "../../../utils/constants";
+import { TRACE_ID_HEADER, TRACE_ID_LOG_KEY } from "../../../utils/constants";
 import { KafkaClient, MessageHeaders } from "../../types";
 
 export const publishKafkaMessage = async (
@@ -12,7 +12,7 @@ export const publishKafkaMessage = async (
   const { kafka, logger } = config;
   const { producer } = kafka;
 
-  const traceId = logger.getPersistentLogAttributes().catalystTraceId as
+  const traceId = logger.getPersistentLogAttributes()[TRACE_ID_LOG_KEY] as
     | string
     | undefined;
 

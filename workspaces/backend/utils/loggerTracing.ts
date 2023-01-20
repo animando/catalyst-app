@@ -12,3 +12,12 @@ export const removeTraceFromLogger = (logger?: Logger) => {
     logger.removeKeys([TRACE_ID_LOG_KEY]);
   }
 };
+
+export const getLoggerTraceId = (logger?: Logger): string | undefined => {
+  if (logger) {
+    return logger.getPersistentLogAttributes()[TRACE_ID_LOG_KEY] as
+      | string
+      | undefined;
+  }
+  return undefined;
+};
