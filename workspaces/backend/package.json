@@ -19,12 +19,14 @@
     "jsonschema": "^1.4.1",
     "jwt-decode": "^3.1.2",
     "kafkajs": "^2.2.3",
-    "shared-utils": "1.0.0"
+    "shared-utils": "1.0.0",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@serverless/typescript": "^3.25.0",
     "@types/aws-lambda": "^8.10.109",
     "@types/jest": "^29.2.5",
+    "@types/uuid": "^9.0.0",
     "esbuild": "^0.16.15",
     "json-schema-to-typescript": "^11.0.2",
     "serverless": "^3.26.0",
@@ -50,8 +52,8 @@
     "lint": "yarn run prettier:check && yarn run eslint:check",
     "prettier:check": "prettier . --check",
     "run:topicManager": "serverless invoke --function topicManager --stage dev --config serverlessTopicManager.ts",
-    "start:webApi": "DISABLE_PRIVATE_APIS=1 serverless offline --config serverlessWebApi.ts --httpPort 4000 --lambdaPort 4002",
-    "start:backend": "serverless offline",
+    "start:webApi": "POWERTOOLS_DEV=1 DISABLE_PRIVATE_APIS=1 serverless offline --config serverlessWebApi.ts --httpPort 4000 --lambdaPort 4002",
+    "start:backend": "POWERTOOLS_DEV=1 serverless offline",
     "start:consumers": "ts-node ./localKafkaConsumer.ts",
     "start": "concurrently -n \"backend,webApi\" \"yarn run start:backend\" \"yarn run start:webApi\"",
     "test:watch": "jest --watch",

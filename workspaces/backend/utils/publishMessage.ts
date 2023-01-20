@@ -11,7 +11,16 @@ export const publishMessage = async (
   const { kafka, logger } = config;
   const { producer } = kafka;
 
-  logger.info("Publishing message", { topic, value });
+  const traceId = logger.getPersistentLogAttributes().catalystTraceId as
+    | string
+    | undefined;
+
+  const headersToSend = {
+    ...headers,
+    catalystTraceId: traceId,
+  };
+
+  logger.info("Publishing message", { topic, value, headers: headersToSend });
 
   await producer.connect();
   await producer.send({
@@ -21,9 +30,7 @@ export const publishMessage = async (
         key,
         value: JSON.stringify(value),
         timestamp: `${timestamp}`,
-        headers: {
-          ...headers,
-        },
+        headers: headersToSend,
       },
     ],
   });

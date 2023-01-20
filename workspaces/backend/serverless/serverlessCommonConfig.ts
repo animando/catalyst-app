@@ -129,6 +129,8 @@ export const provider: AWS["provider"] = {
   environment: {
     REGION: AWS_REGION,
     STAGE: "${self:custom.stage}",
+    POWERTOOLS_DEV: `${process.env.POWERTOOLS_DEV}`,
+    POWERTOOLS_LOGGER_LOG_EVENT: `${process.env.POWERTOOLS_DEV}`,
   },
 };
 

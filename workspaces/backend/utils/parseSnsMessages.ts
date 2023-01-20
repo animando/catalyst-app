@@ -10,14 +10,9 @@ export const parseSnsMessages = <T>(
 ): SNSMessageEvent<T>[] => {
   const { Records, ...restEvent } = event;
 
-  return Records.map<SNSMessageEvent<T>>((record) => {
-    logger.info("Message", { record });
-
-    const value = parseMessageValue<T>(record.Sns.Message, { logger, schema });
-    return {
-      ...record,
-      ...restEvent,
-      ...value,
-    };
-  });
+  return Records.map<SNSMessageEvent<T>>((record) => ({
+    ...record,
+    ...restEvent,
+    ...parseMessageValue(record.Sns.Message, { logger, schema }),
+  }));
 };

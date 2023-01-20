@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { PublishCommand, SNSClient } from "@aws-sdk/client-sns";
 import { config } from "../../utils/config";
 import { createMskHandler } from "../../utils/createMskHandler";
@@ -46,12 +47,12 @@ const consumer1Handler: MSKHandler<Consumer1Message> = async (
     payload,
   });
 
-  await sns.send(
-    new PublishCommand({
-      TopicArn: config.SNS_TOPIC1,
-      Message: payload,
-    })
-  );
+  // await sns.send(
+  //   new PublishCommand({
+  //     TopicArn: config.SNS_TOPIC1,
+  //     Message: payload,
+  //   })
+  // );
 };
 
 export const handler = createMskHandler(consumer1Handler, {

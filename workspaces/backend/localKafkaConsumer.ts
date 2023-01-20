@@ -1,7 +1,7 @@
 /* eslint-disable global-require */
 /* eslint-disable import/no-dynamic-require */
 /* eslint-disable @typescript-eslint/no-var-requires */
-import { Context, MSKEvent } from "aws-lambda";
+import { Context, MSKEvent, MSKRecordHeader } from "aws-lambda";
 import "dotenv/config";
 import { handler } from "./services/consumer1/handler";
 import { LocalConsumerConfiguration } from "./services/types";
@@ -21,14 +21,14 @@ const runConsumer = async (consumerName: string) => {
   await consumer.subscribe({ topic: config.topic });
   await consumer.run({
     eachMessage: async ({ topic, partition, message }) => {
-      const { key, timestamp, offset, value } = message;
+      const { key, timestamp, offset, value, headers } = message;
       const event: MSKEvent = {
         eventSource: "aws:kafka",
         eventSourceArn: "",
         records: {
           [topic]: [
             {
-              headers: [],
+              headers: [headers as unknown as MSKRecordHeader],
               key: key ? key.toString("base64") : "",
               offset: Number(offset),
               partition,

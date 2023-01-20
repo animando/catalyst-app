@@ -1,18 +1,30 @@
-import { Logger } from "@aws-lambda-powertools/logger";
+import { injectLambdaContext, Logger } from "@aws-lambda-powertools/logger";
+import middy from "@middy/core";
 import { Context, Handler, Callback, SNSEvent } from "aws-lambda";
+import { Schema } from "jsonschema";
 import { SNSMessageEvent } from "../services/types";
 import { parseSnsMessages } from "./parseSnsMessages";
 
-export const createSnsHandler =
-  <T>(payloadHandler: Handler<SNSMessageEvent<T>>, logger: Logger) =>
-  async (event: SNSEvent, context: Context, callback: Callback<void>) => {
-    const messages = parseSnsMessages<T>(event, { logger });
-
-    logger.info("Consumed messages", {
-      messages,
-    });
+interface Options {
+  logger: Logger;
+  schema: Schema;
+}
+export const createSnsHandler = <T>(
+  payloadHandler: Handler<SNSMessageEvent<T>>,
+  options: Options
+) => {
+  const middifiedHandler = middy(payloadHandler).use(
+    injectLambdaContext(options.logger)
+  );
+  return async (
+    event: SNSEvent,
+    context: Context,
+    callback: Callback<void>
+  ) => {
+    const messages = parseSnsMessages<T>(event, options);
 
     messages.forEach(async (message) => {
-      await payloadHandler(message, context, callback);
+      await middifiedHandler(message, context, callback);
     });
   };
+};
