@@ -121,6 +121,26 @@ export const snsServerlessCustomConfig = {
   snsTopicArnPrefix: "arn:aws:sns:${aws:region}:${aws:accountId}",
 };
 
+export const ddbServerlessCustomConfig = {
+  stages: ["local", "dev"],
+  start: {
+    port: 8000,
+    inMemory: true,
+    migrate: true,
+    seed: true,
+  },
+  seed: {
+    domain: {
+      sources: [
+        {
+          table: "Catalyst",
+          sources: ["./db/seed/Catalyst.json"],
+        },
+      ],
+    },
+  },
+};
+
 export const provider: AWS["provider"] = {
   name: "aws",
   runtime: "nodejs16.x",

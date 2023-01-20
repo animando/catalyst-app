@@ -18,8 +18,10 @@ import {
   cognitoServerlessCustomConfig,
   vpcServerlessConfig,
   snsServerlessCustomConfig,
+  ddbServerlessCustomConfig,
 } from "./serverless/serverlessCommonConfig";
 import { snsTopics } from "./services/topics";
+import { CatalystTable } from "./db/table-definitions/Catalyst";
 
 const SNSTopicTopic1 = {
   Type: "AWS::SNS::Topic",
@@ -43,9 +45,10 @@ const config: AWS = {
     individually: true,
   },
   plugins: [
+    "serverless-dynamodb-local",
     "serverless-esbuild",
-    "serverless-offline",
     "serverless-offline-sns",
+    "serverless-offline",
   ],
   functions: {
     consumer1,
@@ -58,6 +61,7 @@ const config: AWS = {
       iamRolePreTokenGeneration,
       iamRoleSnsConsumer,
       SNSTopicTopic1,
+      CatalystTable,
     },
   },
   custom: {
@@ -66,6 +70,9 @@ const config: AWS = {
     ...kafkaServerlessCustomConfig,
     ...vpcServerlessCustomConfig,
     ...snsServerlessCustomConfig,
+    dynamodb: {
+      ...ddbServerlessCustomConfig,
+    },
     "serverless-offline-sns": {
       port: 5000,
     },
