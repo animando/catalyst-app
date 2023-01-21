@@ -1,8 +1,10 @@
+import { CatalystTableName } from "../db/table-definitions/Catalyst";
 import {
   cognitoServerlessConfig,
   kafkaServerlessConfig,
   snsServerlessConfig,
   ssmServerlessConfig,
+  ddbServerlessConfig,
 } from "../serverless/serverlessCommonConfig";
 import { kafkaTopics, snsTopics } from "../services/topics";
 import { ALLOW } from "../utils/serverless/iamHelpers";
@@ -11,7 +13,16 @@ const createTopicArn = (topicName: string) =>
   `${kafkaServerlessConfig.KAFKA_TOPIC_ARN_PREFIX}/${topicName}`;
 const createSnsTopicArn = (topicName: string) =>
   `${snsServerlessConfig.SNS_TOPIC_ARN_PREFIX}:${topicName}`;
+const createDynamoTableArn = (tableName: string) =>
+  `${ddbServerlessConfig.TABLE_ARN_PREFIX}/${tableName}`;
 
+const createTableReadStatement = (tableName: string) => [
+  {
+    Effect: ALLOW,
+    Action: ["dynamodb:GetItem"],
+    Resource: createDynamoTableArn(tableName),
+  },
+];
 const createReadSecretStatement = (secretArn: string) => [
   {
     Effect: ALLOW,
@@ -129,4 +140,5 @@ export const policies = {
   ),
   ReadSsmParameters,
   PublishTopic1: createSnsPublishStatement(snsTopics.Topic1),
+  CatalystTableRead: createTableReadStatement(CatalystTableName),
 };

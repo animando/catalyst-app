@@ -19,6 +19,7 @@ import {
   vpcServerlessConfig,
   snsServerlessCustomConfig,
   ddbServerlessCustomConfig,
+  dynamodbServerlessConfig,
 } from "./serverless/serverlessCommonConfig";
 import { snsTopics } from "./services/topics";
 import { CatalystTable } from "./db/table-definitions/Catalyst";
@@ -70,8 +71,9 @@ const config: AWS = {
     ...kafkaServerlessCustomConfig,
     ...vpcServerlessCustomConfig,
     ...snsServerlessCustomConfig,
+    ...ddbServerlessCustomConfig,
     dynamodb: {
-      ...ddbServerlessCustomConfig,
+      ...dynamodbServerlessConfig,
     },
     "serverless-offline-sns": {
       port: 5000,

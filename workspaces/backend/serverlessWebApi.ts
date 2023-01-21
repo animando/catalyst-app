@@ -11,6 +11,7 @@ import {
   vpcServerlessCustomConfig,
   cognitoServerlessCustomConfig,
   cognitoServerlessConfig,
+  ddbServerlessCustomConfig,
 } from "./serverless/serverlessCommonConfig";
 
 const apiKeyConfig = process.env.DISABLE_PRIVATE_APIS
@@ -75,6 +76,7 @@ const config: AWS = {
     ...cognitoServerlessCustomConfig,
     ...kafkaServerlessCustomConfig,
     ...vpcServerlessCustomConfig,
+    ...ddbServerlessCustomConfig,
     spaUrl:
       "${file(serverless/serverlessVariables-${self:custom.stage}.yml):spaUrl}",
   },

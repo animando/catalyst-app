@@ -5,4 +5,5 @@ import { role } from "../config";
 export const iamRoleHello = createRole(role, [
   ...policies.CommonKafkaPublisher,
   ...policies.KafkaReadWriteConsumer1,
+  ...policies.CatalystTableRead,
 ]);

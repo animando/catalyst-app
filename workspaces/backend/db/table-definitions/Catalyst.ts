@@ -1,7 +1,9 @@
+export const CatalystTableName = "Catalyst";
+
 export const CatalystTable = {
   Type: "AWS::DynamoDB::Table",
   Properties: {
-    TableName: "Catalyst",
+    TableName: CatalystTableName,
     AttributeDefinitions: [
       {
         AttributeName: "PK",

@@ -121,7 +121,13 @@ export const snsServerlessCustomConfig = {
   snsTopicArnPrefix: "arn:aws:sns:${aws:region}:${aws:accountId}",
 };
 
+export const ddbServerlessConfig = {
+  TABLE_ARN_PREFIX: "${self:custom.dbdTableArnPrefix}",
+};
 export const ddbServerlessCustomConfig = {
+  dbdTableArnPrefix: "arn:aws:dynamodb:${aws:region}:${aws:accountId}:table",
+};
+export const dynamodbServerlessConfig = {
   stages: ["local", "dev"],
   start: {
     port: 8000,
