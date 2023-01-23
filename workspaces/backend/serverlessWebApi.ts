@@ -64,7 +64,7 @@ const config: AWS = {
     apiGateway: {
       ...apiKeyConfig,
     },
-    websocketsApiName: "ws-api",
+    websocketsApiName: "${self:custom.stage}-wsApi",
     websocketsApiRouteSelectionExpression: "$request.body.action",
     websocketsDescription: "Serverless Websockets",
   },
