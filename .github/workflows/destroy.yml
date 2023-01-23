@@ -26,8 +26,8 @@ jobs:
       - name: Destroy backend
         run: yarn run destroy:backend
 
-      - name: Destroy topic manager
-        run: yarn run destroy:topicManager
+      # - name: Destroy topic manager
+      #   run: yarn run destroy:topicManager
 
       - name: Destroy auth
         run: yarn run destroy:auth
