@@ -7,7 +7,7 @@ import {
   ddbServerlessConfig,
 } from "../serverless/serverlessCommonConfig";
 import { kafkaTopics, snsTopics } from "../services/topics";
-import { ALLOW } from "../utils/serverless/iamHelpers";
+import { ALLOW, IamStatement } from "../utils/serverless/iamHelpers";
 
 const createTopicArn = (topicName: string) =>
   `${kafkaServerlessConfig.KAFKA_TOPIC_ARN_PREFIX}/${topicName}`;
@@ -66,6 +66,7 @@ const createKafkaAdminStatement = () => [
   },
 ];
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const KafkaGroupPermissions = [
   {
     Effect: ALLOW,
@@ -74,6 +75,7 @@ const KafkaGroupPermissions = [
   },
 ];
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const BaseKafkaPermissions = [
   {
     Effect: ALLOW,
@@ -87,6 +89,7 @@ const BaseKafkaPermissions = [
   },
 ];
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const KafkaEc2Permissions = [
   {
     Effect: ALLOW,
@@ -109,10 +112,10 @@ const KafkaEc2Permissions = [
   },
 ];
 
-const CommonKafka = [
-  ...BaseKafkaPermissions,
-  ...KafkaGroupPermissions,
-  ...KafkaEc2Permissions,
+const CommonKafka: IamStatement[] = [
+  // ...BaseKafkaPermissions,
+  // ...KafkaGroupPermissions,
+  // ...KafkaEc2Permissions,
 ];
 
 const CommonKafkaPublisher = CommonKafka;
