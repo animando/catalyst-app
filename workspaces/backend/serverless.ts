@@ -1,6 +1,6 @@
 /* eslint-disable import/no-import-module-exports */
 import type { AWS } from "@serverless/typescript";
-import { consumer1, iamRoleConsumer1 } from "./services/consumer1/serverless";
+// import { consumer1, iamRoleConsumer1 } from "./services/consumer1/serverless";
 import {
   snsConsumer,
   iamRoleSnsConsumer,
@@ -52,13 +52,13 @@ const config: AWS = {
     "serverless-offline",
   ],
   functions: {
-    consumer1,
+    // consumer1,
     preTokenGeneration,
     snsConsumer,
   },
   resources: {
     Resources: {
-      iamRoleConsumer1,
+      // iamRoleConsumer1,
       iamRolePreTokenGeneration,
       iamRoleSnsConsumer,
       SNSTopicTopic1,
