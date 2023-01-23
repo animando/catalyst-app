@@ -56,7 +56,7 @@
     "lint": "yarn run prettier:check && yarn run eslint:check",
     "prettier:check": "prettier . --check",
     "run:topicManager": "serverless invoke --function topicManager --stage dev --config serverlessTopicManager.ts",
-    "start:webApi": "POWERTOOLS_DEV=1 DISABLE_PRIVATE_APIS=1 serverless offline start --config serverlessWebApi.ts --httpPort 4000 --lambdaPort 4002",
+    "start:webApi": "IS_OFFLINE=1 POWERTOOLS_DEV=1 DISABLE_PRIVATE_APIS=1 serverless offline start --config serverlessWebApi.ts --httpPort 4000 --lambdaPort 4002 --websocketPort 4001",
     "start:backend": "POWERTOOLS_DEV=1 serverless offline start",
     "start:consumers": "ts-node ./localKafkaConsumer.ts",
     "start": "concurrently -n \"backend,webApi\" \"yarn run start:backend\" \"yarn run start:webApi\"",

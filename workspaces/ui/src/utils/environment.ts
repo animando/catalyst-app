@@ -3,6 +3,7 @@ const config = (window as any).__config__;
 
 export const environment = {
   API_ENDPOINT_BASE: config.API_ENDPOINT_BASE || "",
+  WS_ENDPOINT_BASE: config.WS_ENDPOINT_BASE || "",
   API_KEY: config.API_KEY || "",
   USER_POOL_CLIENT_ID: config.USER_POOL_CLIENT_ID || "",
   APP_HOST: config.APP_HOST || "",

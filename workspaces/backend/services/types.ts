@@ -1,4 +1,5 @@
 import {
+  APIGatewayProxyWebsocketEventV2,
   Context,
   Handler,
   MSKEvent,
@@ -64,3 +65,14 @@ export type MSKHandler<T> = (
   event: MSKMessageEvent<T>,
   context: Context
 ) => Promise<void>;
+
+export type APIGatewayProxyWebsocketEventV2WithParsedBody<T> = Omit<
+  APIGatewayProxyWebsocketEventV2,
+  "body"
+> & {
+  body: WsEventBody<T>;
+};
+export interface WsEventBody<T> {
+  headers: MessageHeaders;
+  value: T;
+}

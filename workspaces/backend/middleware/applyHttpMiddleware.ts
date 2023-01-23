@@ -9,7 +9,6 @@ import { parseJwtToken } from "./parseJwtToken";
 import { injectTraceId } from "./injectTraceId";
 import { removeTraceId } from "./removeTraceId";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const applyHttpMiddleware = (
   handler: Handler,
   { logger }: { logger: Logger }

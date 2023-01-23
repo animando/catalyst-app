@@ -10,7 +10,7 @@ export { iamRoleHello } from "./iam";
 
 export const hello = {
   ...commonLambdaConfig,
-  handler: `${handlerPath(__dirname)}/handler.hello`,
+  handler: `${handlerPath(__dirname)}/handler.handler`,
   role,
   events: [
     {
@@ -18,7 +18,11 @@ export const hello = {
         path: "hello",
         method: "get",
         cors: corsConfig,
-        authorizer,
+        ...(!process.env.IS_OFFLINE
+          ? {}
+          : {
+              authorizer,
+            }),
         ...(process.env.DISABLE_PRIVATE_APIS ? {} : { private: true }),
       },
     },

@@ -65,6 +65,6 @@ const helloHandler: Handler<APIGatewayProxyEventWithUserAttributes> = async (
   };
 };
 
-export const hello = applyHttpMiddleware(helloHandler, { logger }).use(
+export const handler = applyHttpMiddleware(helloHandler, { logger }).use(
   requireUserGroup("admin", { logger })
 );

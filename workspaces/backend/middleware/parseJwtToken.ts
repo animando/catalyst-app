@@ -2,7 +2,10 @@ import { MiddlewareObj } from "@middy/core";
 import { APIGatewayProxyEvent } from "aws-lambda";
 import { Logger } from "@aws-lambda-powertools/logger";
 import jwtDecode from "jwt-decode";
-import { APIGatewayProxyEventWithUserAttributes } from "../utils/types";
+import {
+  APIGatewayProxyEventWithUserAttributes,
+  UserAttributes,
+} from "../utils/types";
 import { UnauthorizedError } from "../errors/unauthorized";
 
 interface ParsedToken {
@@ -11,8 +14,7 @@ interface ParsedToken {
   "cognito:groups": string[];
 }
 export const parseJwtToken = ({
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  logger,
+  logger: _logger,
 }: {
   logger: Logger;
 }): MiddlewareObj<APIGatewayProxyEvent> => ({
@@ -24,7 +26,7 @@ export const parseJwtToken = ({
     }
     const tokenData = jwtDecode<ParsedToken>(token);
     const { username, "cognito:groups": groups = [], sub: id } = tokenData;
-    const userAttributes = { username, groups, id };
+    const userAttributes: UserAttributes = { username, groups, id };
     // eslint-disable-next-line no-param-reassign
     (event as APIGatewayProxyEventWithUserAttributes).userAttributes =
       userAttributes;

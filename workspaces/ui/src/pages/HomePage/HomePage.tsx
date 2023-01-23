@@ -1,6 +1,8 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useEffect, useState } from "react";
 import { webApi } from "../../api/webApi";
 import { useAuthContext } from "../../auth/authContext";
+import { useWebsockets } from "./useWebsockets";
 
 interface ApiResponse {
   message: string;
@@ -18,6 +20,7 @@ const useHomePageData = () => {
 };
 
 export function HomePage() {
+  useWebsockets();
   const { data } = useHomePageData();
   const authContext = useAuthContext();
 

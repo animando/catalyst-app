@@ -26,7 +26,8 @@
     "lint": "yarn workspaces run lint",
     "start:kafka": "yarn workspace local-kafka start",
     "start:backend": "yarn workspace backend start",
-    "start": "concurrently -n \"kafka,backend,ui,consumers\" \"yarn workspace local-kafka start\"  \"yarn start:backend\" \"yarn workspace ui start\" \"yarn workspace backend start:consumers\"",
+    "start:ui": "yarn workspace ui start",
+    "start": "concurrently -n \"kafka,backend,ui,consumers\" \"yarn workspace local-kafka start\"  \"yarn start:backend\" \"yarn start:ui\" \"yarn workspace backend start:consumers\"",
     "stop:kafka": "yarn workspace local-kafka stop",
     "typecheck": "yarn workspaces run typecheck"
   },

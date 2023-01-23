@@ -3,6 +3,10 @@
 import type { AWS } from "@serverless/typescript";
 import { hello, iamRoleHello } from "./services/hello/serverless";
 import {
+  websocketConnection,
+  iamRoleWebsocketConnection,
+} from "./services/wsConnection/serverless";
+import {
   provider,
   custom,
   kafkaEnvironment,
@@ -60,15 +64,20 @@ const config: AWS = {
     apiGateway: {
       ...apiKeyConfig,
     },
+    websocketsApiName: "ws-api",
+    websocketsApiRouteSelectionExpression: "$request.body.action",
+    websocketsDescription: "Serverless Websockets",
   },
   plugins: ["serverless-esbuild", "serverless-offline"],
   functions: {
     hello,
+    websocketConnection,
   },
   resources: {
     Resources: {
       ApiGatewayAuthorizer,
       iamRoleHello,
+      iamRoleWebsocketConnection,
     },
   },
   custom: {
