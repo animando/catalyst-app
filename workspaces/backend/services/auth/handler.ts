@@ -41,7 +41,7 @@ const getSsmParameter = async (name: string): Promise<string> => {
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const handler = async (event: any) => {
-  const userPoolAppSecret = await getSecret("userpool_client_secret");
+  const userPoolAppSecret = await getSecret("cognito_userpool_client_secret");
   const userPoolId = await getSsmParameter("user-pool-id");
   const userPoolAppId = await getSsmParameter("user-pool-client-id");
   const userPoolDomain = await getSsmParameter("user-pool-domain");
