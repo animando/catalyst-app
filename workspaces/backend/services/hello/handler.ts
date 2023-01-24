@@ -7,20 +7,20 @@ import { logger } from "./logger";
 import { requireUserGroup } from "../../middleware/requireUserGroup";
 // import { Consumer1Message } from "../../compiled-types/Consumer1Message";
 import { APIGatewayProxyEventWithUserAttributes } from "../../utils/types";
-import { getUserItem } from "../../utils/dbAccess";
+// import { getUserItem } from "../../utils/dbAccess";
 
 const helloHandler: Handler<APIGatewayProxyEventWithUserAttributes> = async (
-  event
+  _event
 ) => {
   const now = new Date().toISOString();
   // const key = `${Math.floor(Math.random() * 1000)}`;
   // const payload: Consumer1Message = { message: "Hello", now };
 
-  const { username } = event.userAttributes;
+  // const { username } = event.userAttributes;
 
-  const userItem = await getUserItem(username);
+  // const userItem = await getUserItem(username);
 
-  logger.info("Got user", { userItem, username });
+  // logger.info("Got user", { userItem, username });
 
   // await publishKafkaMessage(
   //   { topic: kafkaTopics.Consumer1Topic, key },

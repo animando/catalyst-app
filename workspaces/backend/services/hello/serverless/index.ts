@@ -23,7 +23,7 @@ export const hello = {
           : {
               authorizer,
             }),
-        ...(process.env.DISABLE_PRIVATE_APIS ? {} : { private: true }),
+        // ...(process.env.DISABLE_PRIVATE_APIS ? {} : { private: true }),
       },
     },
   ],
