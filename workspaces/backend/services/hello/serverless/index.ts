@@ -18,12 +18,12 @@ export const hello = {
         path: "hello",
         method: "get",
         cors: corsConfig,
-        ...(!process.env.IS_OFFLINE
+        ...(process.env.IS_OFFLINE
           ? {}
           : {
               authorizer,
             }),
-        // ...(process.env.DISABLE_PRIVATE_APIS ? {} : { private: true }),
+        ...(process.env.DISABLE_PRIVATE_APIS ? {} : { private: true }),
       },
     },
   ],
