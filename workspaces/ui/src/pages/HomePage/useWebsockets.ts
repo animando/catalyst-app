@@ -5,6 +5,9 @@ type WsTopic = "subscribe";
 type Headers = Record<string, string | undefined>;
 
 const decodeMessage = (data: string) => {
+  if (!data) {
+    return {};
+  }
   const parsedMessage = JSON.parse(data);
   const { action, headers: headersString, value: valueString } = parsedMessage;
   const headers = JSON.parse(window.atob(headersString));
@@ -52,7 +55,6 @@ export const useWebsockets = () => {
       };
 
       sock.onmessage = (event) => {
-        console.log(event);
         console.log(decodeMessage(event.data));
         sock.close();
       };
