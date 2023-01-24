@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef } from "react";
-import type { WsAction } from "shared-types/websocket/actions";
+import type { WsIncomingAction } from "shared-types/websocket/actions";
 import { environment } from "../../utils/environment";
 
 type Headers = Record<string, string | undefined>;
@@ -20,7 +20,7 @@ const decodeMessage = (data: string) => {
 };
 
 const encodeMessage = (
-  topic: WsAction,
+  topic: WsIncomingAction,
   value: object,
   headers: Headers
 ): string => {
@@ -38,7 +38,7 @@ const encodeMessage = (
 export const useWebsockets = () => {
   const sockRef = useRef<WebSocket>();
   const sendMessage = useCallback(
-    (topic: WsAction, value: object, headers: Headers) => {
+    (topic: WsIncomingAction, value: object, headers: Headers) => {
       if (sockRef.current) {
         const encodedMessage = encodeMessage(topic, value, headers);
         sockRef.current.send(encodedMessage);

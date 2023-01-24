@@ -1,5 +1,5 @@
 import { APIGatewayProxyWebsocketEventV2, Handler } from "aws-lambda";
-import { WsAction } from "shared-types/websocket/actions";
+import type { WsIncomingAction } from "shared-types/websocket/actions";
 import { connectHandler } from "./handlers/connectHandler";
 import { defaultHandler } from "./handlers/defaultHandler";
 import { disconnectHandler } from "./handlers/disconnectHandler";
@@ -8,7 +8,7 @@ import { logger } from "./utils/logger";
 
 type BuiltInAction = "$connect" | "$disconnect" | "$default";
 
-type Action = BuiltInAction | WsAction;
+type Action = BuiltInAction | WsIncomingAction;
 
 const handlerMap: Record<Action, Handler | undefined> = {
   $connect: connectHandler,
@@ -24,6 +24,7 @@ export const handler: Handler<APIGatewayProxyWebsocketEventV2> = async (
   const {
     requestContext: { routeKey },
   } = event;
+  logger.info("wsConnection.handler", { routeKey });
   const routeHandler = handlerMap[routeKey as Action];
 
   if (routeHandler) {

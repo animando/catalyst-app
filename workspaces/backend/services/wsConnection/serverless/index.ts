@@ -25,5 +25,11 @@ export const websocketConnection = {
         routeResponseSelectionExpression: "$default",
       } as any,
     },
+    {
+      websocket: {
+        route: "subscribe",
+        routeResponseSelectionExpression: "$default",
+      } as any,
+    },
   ],
 };

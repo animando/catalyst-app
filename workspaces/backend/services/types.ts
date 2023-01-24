@@ -7,6 +7,7 @@ import {
   SNSEventRecord,
 } from "aws-lambda";
 import { Consumer, Kafka, Producer } from "kafkajs";
+import { WsIncomingAction } from "shared-types/websocket/actions";
 
 export interface LocalConsumerConfiguration {
   handler: Handler<MSKEvent>;
@@ -73,6 +74,7 @@ export type APIGatewayProxyWebsocketEventV2WithParsedBody<T> = Omit<
   body: WsEventBody<T>;
 };
 export interface WsEventBody<T> {
+  action: WsIncomingAction;
   headers: MessageHeaders;
   value: T;
 }

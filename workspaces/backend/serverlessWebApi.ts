@@ -65,7 +65,7 @@ const config: AWS = {
       ...apiKeyConfig,
     },
     websocketsApiName: "${self:custom.stage}-wsApi",
-    websocketsApiRouteSelectionExpression: "$request.body.action",
+    websocketsApiRouteSelectionExpression: "${request.body.action}",
     websocketsDescription: "Serverless Websockets",
   },
   plugins: ["serverless-esbuild", "serverless-offline"],

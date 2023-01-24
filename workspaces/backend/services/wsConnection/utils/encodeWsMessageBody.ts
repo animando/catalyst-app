@@ -1,7 +1,8 @@
+import type { WsOutgoingAction } from "shared-types/websocket/actions";
 import { MessageHeaders } from "../../types";
 
 export const encodeWsMessageBody = (
-  action: string,
+  action: WsOutgoingAction,
   headers: MessageHeaders,
   value: object
 ): string => {

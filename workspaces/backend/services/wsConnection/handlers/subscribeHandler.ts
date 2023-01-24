@@ -10,7 +10,7 @@ export const subscribeHandler = middifyWsHandler(async (event) => {
   return {
     statusCode: 200,
     body: encodeWsMessageBody(
-      "subscription-ack",
+      "subscribe-ack",
       { header1: "header1Value" },
       { message: "subscription-response" }
     ),

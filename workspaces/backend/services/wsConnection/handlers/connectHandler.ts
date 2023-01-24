@@ -1,13 +1,18 @@
+import { APIGatewayProxyWebsocketEventV2WithParsedBody } from "../../types";
 import { logger } from "../utils/logger";
 import { middifyWsHandler } from "../utils/middifyWsHandler";
 
-export const connectHandler = middifyWsHandler<undefined>(async (event) => {
+const handler = async (
+  event: APIGatewayProxyWebsocketEventV2WithParsedBody<unknown>
+) => {
   const { body } = event;
 
-  logger.info("connect", { body });
+  logger.info("connect", { event, body });
 
   return {
     statusCode: 200,
     body: "connect response",
   };
-}, logger);
+};
+
+export const connectHandler = middifyWsHandler<undefined>(handler, logger);

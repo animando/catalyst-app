@@ -3,15 +3,14 @@ import middy, { MiddlewareObj } from "@middy/core";
 import { APIGatewayProxyWebsocketEventV2, Handler } from "aws-lambda";
 import { APIGatewayProxyWebsocketEventV2WithParsedBody } from "../../types";
 import { decodeWsMessageBody } from "./decodeWsMessageBody";
-import { logger } from "./logger";
 
 const useWsEventHandler = <T>({
-  logger: _logger,
+  logger,
 }: {
   logger: Logger;
 }): MiddlewareObj<APIGatewayProxyWebsocketEventV2> => ({
-  before: ({ event }) => {
-    logger.info("before", { body: event.body });
+  before: ({ event, context }) => {
+    logger.info("Websocket event", { event, context });
     const modifiedEvent =
       event as unknown as APIGatewayProxyWebsocketEventV2WithParsedBody<T>;
     if (event.body) {
