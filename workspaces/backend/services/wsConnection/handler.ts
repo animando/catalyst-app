@@ -3,9 +3,25 @@ import middy, { MiddlewareObj } from "@middy/core";
 import { APIGatewayProxyWebsocketEventV2, Handler } from "aws-lambda";
 import {
   APIGatewayProxyWebsocketEventV2WithParsedBody,
+  MessageHeaders,
   WsEventBody,
 } from "../types";
 import { logger } from "./logger";
+
+const encodeWsMessageBody = (
+  action: string,
+  headers: MessageHeaders,
+  value: object
+): string => {
+  const headersString = Buffer.from(JSON.stringify(headers)).toString("base64");
+  const valueString = Buffer.from(JSON.stringify(value)).toString("base64");
+  const message = {
+    action,
+    headers: headersString,
+    value: valueString,
+  };
+  return JSON.stringify(message);
+};
 
 const parseWsEventBody = <T>(body: string): WsEventBody<T> => {
   const parsed = JSON.parse(body);
@@ -78,6 +94,11 @@ export const subscribeHandler = middifyWsHandler(async (event) => {
 
   return {
     statusCode: 200,
+    body: encodeWsMessageBody(
+      "subscription-ack",
+      { header1: "header1Value" },
+      { message: "subscription-response" }
+    ),
   };
 }, logger);
 

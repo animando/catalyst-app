@@ -4,6 +4,18 @@ import { environment } from "../../utils/environment";
 type WsTopic = "subscribe";
 type Headers = Record<string, string | undefined>;
 
+const decodeMessage = (data: string) => {
+  const parsedMessage = JSON.parse(data);
+  const { action, headers: headersString, value: valueString } = parsedMessage;
+  const headers = JSON.parse(window.atob(headersString));
+  const value = JSON.parse(window.atob(valueString));
+  return {
+    action,
+    headers,
+    value,
+  };
+};
+
 const encodeMessage = (
   topic: WsTopic,
   value: object,
@@ -39,7 +51,9 @@ export const useWebsockets = () => {
         sendMessage("subscribe", { message: "hello" }, {});
       };
 
-      sock.onmessage = (_event) => {
+      sock.onmessage = (event) => {
+        console.log(event);
+        console.log(decodeMessage(event.data));
         sock.close();
       };
 

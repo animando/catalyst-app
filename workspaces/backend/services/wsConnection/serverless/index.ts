@@ -22,7 +22,8 @@ export const websocketConnection = {
     {
       websocket: {
         route: "$default",
-      },
+        routeResponseSelectionExpression: "$default",
+      } as any,
     },
   ],
 };
