@@ -21,6 +21,7 @@
     "jsonschema": "^1.4.1",
     "jwt-decode": "^3.1.2",
     "kafkajs": "^2.2.3",
+    "shared-types": "1.0.0",
     "shared-utils": "1.0.0",
     "uuid": "^9.0.0"
   },

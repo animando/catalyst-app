@@ -1,0 +1,12 @@
+{
+  "name": "shared-types",
+  "private": "true",
+  "version": "1.0.0",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo 1",
+    "typecheck": "tsc --noEmit"
+  }
+}

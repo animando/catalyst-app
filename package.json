@@ -7,7 +7,8 @@
     "workspaces/backend",
     "workspaces/shared-utils",
     "workspaces/ui",
-    "workspaces/local-kafka"
+    "workspaces/local-kafka",
+    "workspaces/shared-types"
   ],
   "scripts": {
     "build": "yarn workspace ui run build",
